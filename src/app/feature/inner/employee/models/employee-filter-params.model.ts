@@ -1,4 +1,4 @@
-import { PaginationParams } from '../pagination-params.model';
+import { PaginationParams } from '@shared/models/pagination-params.model';
 
 export class EmployeeFilterParams extends PaginationParams {
     public firstName: string;

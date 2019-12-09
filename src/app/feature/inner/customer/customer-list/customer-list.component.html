@@ -1,0 +1,32 @@
+<perfect-scrollbar style="max-height: calc(100% - 52px);">
+    <div class="page-container">
+        <div class="page-content" fxLayout="column" fxLayoutGap="20px">
+
+            <form [formGroup]="searchForm">
+                <mat-card class="search-bar">
+                    <mat-card-content fxLayout="row" fxLayoutAlign="space-between none" fxLayoutGap="20px">
+                        <mat-form-field appearance="outline" class="search-box">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="name">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="search-box">
+                            <mat-label>qqq</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                        <button mat-raised-button color="accent" class="btn-search" (click)="onSearch()">
+                            <mat-icon>search</mat-icon> Search
+                        </button>
+                    </mat-card-content>
+                </mat-card>
+            </form>
+
+            <app-customer-list-table-view [searchCriteria]="this.searchForm.value" [searchCounter]="searchCounter">
+            </app-customer-list-table-view>
+
+        </div>
+    </div>
+</perfect-scrollbar>
+
+<button mat-fab class="btn-add">
+    <mat-icon>add</mat-icon>
+</button>

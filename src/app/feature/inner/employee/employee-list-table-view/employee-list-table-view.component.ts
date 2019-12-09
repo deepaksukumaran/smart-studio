@@ -2,8 +2,8 @@ import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
-import { EmployeeFilterParams } from '@shared/models/employee/employee-filter-params.model';
-import { Employee } from '@shared/models/employee/employee.model';
+import { EmployeeFilterParams } from 'app/feature/inner/employee/models/employee-filter-params.model';
+import { Employee } from 'app/feature/inner/employee/models/employee.model';
 import { merge, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { EmployeeService } from '../employee.service';
@@ -76,6 +76,6 @@ export class EmployeeListTableViewComponent implements AfterViewInit, OnChanges 
   }
 
   showEmployeeProfile(employeeId: number) {
-    this.router.navigateByUrl(`employees/${employeeId}`);
+    this.router.navigateByUrl(`employee/${employeeId}`);
   }
 }

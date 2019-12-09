@@ -5,6 +5,7 @@ import { EmployeeListTableViewComponent } from './employee-list-table-view/emplo
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeProfileSummaryComponent } from './employee-profile-summary/employee-profile-summary.component';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
+import { EmployeeRoutingModule } from './employee-routing.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
   ],
   imports: [
     CommonModule,
-    SharedModule
+    EmployeeRoutingModule,
+    SharedModule,
   ],
   exports: [
     EmployeeListComponent,

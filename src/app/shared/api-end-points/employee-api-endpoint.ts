@@ -1,5 +1,5 @@
 import { API_URL_DOMAIN } from '../configs/globals';
-import { EmployeeFilterParams } from '@shared/models/employee/employee-filter-params.model';
+import { EmployeeFilterParams } from 'app/feature/inner/employee/models/employee-filter-params.model';
 
 export const EmployeeAPI = {
     createEmployeeUrl() {
@@ -12,7 +12,6 @@ export const EmployeeAPI = {
         return `${API_URL_DOMAIN}/employee/id/${employeeId}`;
     },
     getAllEmployeesUrl(params: EmployeeFilterParams) {
-        // return `${API_URL_DOMAIN}/employee/all`;
         return `${API_URL_DOMAIN}/employee/all/page`
             + `?firstName=${params.firstName}&lastName=${params.lastName}`
             + `&page=${params.page}&size=${params.size}&sort=${params.sortBy}`;

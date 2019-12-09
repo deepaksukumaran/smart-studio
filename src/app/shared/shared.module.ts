@@ -3,9 +3,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface, PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { ComponentsModule } from './components/components.module';
 import { MaterialModule } from './modules/material.module';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
 @NgModule({
   declarations: [],
@@ -26,18 +30,12 @@ import { MaterialModule } from './modules/material.module';
     MaterialModule,
     ComponentsModule,
     PerfectScrollbarModule,
-  ]
+  ],
+  providers: [
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
+  ],
 })
-export class SharedModule {
-  // static forRoot(): ModuleWithProviders {
-  //   return {
-  //     ngModule: SharedModule,
-  //     providers: [
-  //       {
-  //         provide: HTTP_INTERCEPTORS,
-  //         useClass: AuthInterceptor,
-  //         multi: true
-  //       }]
-  //   };
-  // }
-}
+export class SharedModule { }

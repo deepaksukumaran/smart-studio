@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Employee } from '@shared/models/employee/employee.model';
+import { Employee } from 'app/feature/inner/employee/models/employee.model';
 import { EmployeeService } from '../employee.service';
 
 @Component({
