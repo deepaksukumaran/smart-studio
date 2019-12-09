@@ -1,0 +1,27 @@
+@import "../../../../shared/styles/page.scss";
+
+.search-box {
+  width: 100%;
+}
+
+.btn-search {
+  width: 100%;
+}
+
+::ng-deep {
+  .search-bar {
+    .mat-form-field {
+      .mat-form-field-wrapper {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+.btn-add {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 0;
+  z-index: 99;
+}

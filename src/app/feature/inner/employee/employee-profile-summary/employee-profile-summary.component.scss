@@ -1,0 +1,51 @@
+.profile-image {
+  height: 150px;
+  width: 150px;
+  border-radius: 75px;
+}
+
+.profile-snap-left {
+  border-right: 2px dashed #ccc;
+}
+
+.profile-snap-left .user-name {
+  color: #333;
+}
+
+.profile-snap-left .text-muted {
+  color: #8e8e8e !important;
+}
+
+profile-snap-left .staff-id {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.personal-snap-right {
+  list-style: none;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.personal-snap-right li {
+  margin-bottom: 10px;
+}
+
+.personal-snap-right li .title {
+  color: #4f4f4f;
+  float: left;
+  font-weight: 500;
+  margin-right: 30px;
+  width: 25%;
+}
+
+.personal-snap-right li .text {
+  color: #8e8e8e;
+  display: block;
+  overflow: hidden;
+
+  a {
+    text-decoration: none;
+  }
+}

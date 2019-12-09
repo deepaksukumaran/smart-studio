@@ -1,0 +1,27 @@
+<div fxLayout fxLayoutAlign="center center" fxFlexFill>
+    <mat-card>
+        <form [formGroup]="loginForm">
+            <mat-card-title>Login</mat-card-title>
+            <mat-card-content fxLayout="column">
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username">
+                    <mat-icon matSuffix color="primary" *ngIf="!loginForm.controls['username'].errors">
+                        sentiment_very_satisfied</mat-icon>
+                    <mat-icon matSuffix color="warn" *ngIf="loginForm.controls['username'].errors">
+                        sentiment_very_dissatisfied</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password">
+                    <mat-icon matSuffix color="primary" *ngIf="!loginForm.controls['password'].errors">
+                        sentiment_very_satisfied</mat-icon>
+                    <mat-icon matSuffix color="warn" *ngIf="loginForm.controls['password'].errors">
+                        sentiment_very_dissatisfied</mat-icon>
+                </mat-form-field>
+                <mat-error *ngIf="loginFailed">Login Failed..!</mat-error>
+            </mat-card-content>
+            <button mat-raised-button color="accent" (click)="login()">Login</button>
+        </form>
+    </mat-card>
+</div>

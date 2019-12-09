@@ -1,0 +1,14 @@
+@import "../../../shared/styles/button.scss";
+
+.pipeline-header {
+  background-color: #b49066;
+  color: white;
+}
+
+.pipeline-header__text {
+  font-weight: 600;
+}
+
+.pipeline-item {
+  cursor: pointer;
+}

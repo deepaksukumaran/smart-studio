@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="toolbar-row">
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggleNeftNav()"
+            *ngIf="isHandset$ | async">
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span class="brand-lockup">
+        </span>
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+            <ul fxLayout="row" fxLayoutGap="20px">
+                <li>
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        Admin <mat-icon>person_outline</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="logout()">
+                            <mat-icon>exit_to_app</mat-icon>
+                            Sign out
+                        </button>
+                    </mat-menu>
+                </li>
+            </ul>
+        </div>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="breadcrumb-row">
+        <span class="page-title">Employees</span>
+    </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,31 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* CUSTOM STYLE */
+.mat-sidenav {
+  width: 250px;
+}
+
+.mat-sidenav-content {
+  overflow: hidden;
+}
+
+.brand-name {
+  background-color: #1e2129 !important;
+  color: #fff !important;
+}

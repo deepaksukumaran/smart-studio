@@ -1,0 +1,23 @@
+.sidenav-item__text {
+  margin-left: 10px;
+}
+
+.mat-nav-list {
+  height: calc(100% - 64px);
+  background-color: #2d323e !important;
+}
+
+.mat-list-base {
+  padding-top: 0;
+}
+
+.active-menu,
+.active-menu:focus {
+  background: linear-gradient(90deg, #c137a2 3%, #313131 3%) !important;
+}
+
+::ng-deep {
+  .mat-list-item-content {
+    color: aliceblue;
+  }
+}
