@@ -5,7 +5,7 @@ export const EmployeeAPI = {
     createEmployeeUrl() {
         return `${API_URL_DOMAIN}/employee/create`;
     },
-    updateEmployeeUrl(employeeId: string) {
+    updateEmployeeUrl(employeeId: number) {
         return `${API_URL_DOMAIN}/employee/${employeeId}`;
     },
     getEmployeeUrl(employeeId: number) {

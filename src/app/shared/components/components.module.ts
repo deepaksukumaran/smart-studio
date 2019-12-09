@@ -9,6 +9,8 @@ import { InnerLayoutComponent } from './layout/inner-layout/inner-layout.compone
 import { SidenavListComponent } from './layout/sidenav-list/sidenav-list.component';
 import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { BreadcrumbComponent } from './layout/breadcrumb/breadcrumb.component';
+import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
+import { MessageModalComponent } from './message-modal/message-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { BreadcrumbComponent } from './layout/breadcrumb/breadcrumb.component';
     ToolbarComponent,
     BreadcrumbComponent,
     LabelTextComboComponent,
+    ConfirmModalComponent,
+    MessageModalComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +33,7 @@ import { BreadcrumbComponent } from './layout/breadcrumb/breadcrumb.component';
     AuthLayoutComponent,
     InnerLayoutComponent,
     LabelTextComboComponent,
+    ConfirmModalComponent,
   ]
 })
 export class ComponentsModule { }

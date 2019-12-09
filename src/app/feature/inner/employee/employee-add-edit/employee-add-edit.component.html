@@ -1,0 +1,99 @@
+<h2 mat-dialog-title>{{isEditMode?'Edit':'Add'}} Employee</h2>
+<mat-dialog-content class="mat-typography">
+    <form fxLayout="column" [formGroup]="employeeFormGroup">
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+            <mat-form-field fxFlex="49">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName">
+            </mat-form-field>
+            <mat-form-field fxFlex="49">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+            <mat-form-field fxFlex="49">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="dobPicker" formControlName="dob">
+                <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+                <mat-datepicker #dobPicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field fxFlex="49">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender" disableOptionCentering>
+                    <mat-option *ngFor="let gender of genderList" [value]="gender.key">
+                        {{ gender.value }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+            <mat-form-field fxFlex>
+                <mat-label>Line 1</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+            <mat-form-field fxFlex="49">
+                <mat-label>City</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field fxFlex="49">
+                <mat-label>State</mat-label>
+                <mat-select disableOptionCentering>
+                    <mat-option *ngFor="let state of stateList" [value]="state.key">
+                        {{ state.value }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+            <mat-form-field fxFlex="49">
+                <mat-label>Nationality</mat-label>
+                <mat-select disableOptionCentering>
+                    <mat-option *ngFor="let country of countryList" [value]="country.key">
+                        {{ country.value }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="49">
+                <mat-label>Pincode</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+            <mat-form-field fxFlex="49">
+                <mat-label>Mobile #</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field fxFlex="49">
+                <mat-label>Alternate Mobile #</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+            <mat-form-field fxFlex="49">
+                <mat-label>Landphone #</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field fxFlex="49">
+                <mat-label>E-mail</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+            <mat-form-field fxFlex="49">
+                <mat-label>Department</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field fxFlex="49">
+                <mat-label>Designation</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-button (click)="onSave()">Save</button>
+</mat-dialog-actions>

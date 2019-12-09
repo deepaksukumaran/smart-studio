@@ -6,13 +6,15 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeProfileSummaryComponent } from './employee-profile-summary/employee-profile-summary.component';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 import { EmployeeRoutingModule } from './employee-routing.module';
+import { EmployeeAddEditComponent } from './employee-add-edit/employee-add-edit.component';
 
 @NgModule({
   declarations: [
     EmployeeListComponent,
     EmployeeListTableViewComponent,
     EmployeeProfileComponent,
-    EmployeeProfileSummaryComponent
+    EmployeeProfileSummaryComponent,
+    EmployeeAddEditComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,9 @@ import { EmployeeRoutingModule } from './employee-routing.module';
     EmployeeListTableViewComponent,
     EmployeeProfileComponent,
     EmployeeProfileSummaryComponent
+  ],
+  entryComponents: [
+    EmployeeAddEditComponent
   ],
 })
 export class EmployeeModule { }

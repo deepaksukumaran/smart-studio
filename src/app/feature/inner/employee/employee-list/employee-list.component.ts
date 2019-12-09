@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material';
+import { ModalService } from '@shared/services/modal.service';
 import { Employee } from 'app/feature/inner/employee/models/employee.model';
+import { EmployeeAddEditComponent } from '../employee-add-edit/employee-add-edit.component';
 import { EmployeeService } from '../employee.service';
 
 @Component({
@@ -14,7 +17,10 @@ export class EmployeeListComponent implements OnInit {
   searchCounter = 0;
   searchForm: FormGroup;
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(
+    private dialog: MatDialog,
+    private modalService: ModalService,
+    private employeeService: EmployeeService) { }
 
   /* Lifecycle Hooks */
   ngOnInit() {
@@ -31,5 +37,15 @@ export class EmployeeListComponent implements OnInit {
 
   onSearch() {
     this.searchCounter++;
+  }
+
+  addNewEmployee() {
+    const dialogConfig = this.modalService.setDialogConfig(true, true, 'auto');
+    this.dialog.open(EmployeeAddEditComponent, dialogConfig)
+      .afterClosed().subscribe(reload => {
+        if (reload) {
+          this.searchCounter++;
+        }
+      });
   }
 }

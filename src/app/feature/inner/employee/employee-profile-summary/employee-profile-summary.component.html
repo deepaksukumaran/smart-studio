@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    <div fxFlex="60" style="margin-left: 15px;">
+    <div fxFlex="57" style="margin-left: 15px;">
         <ul class="personal-snap-right">
             <li>
                 <div class="title">Phone:</div>
@@ -34,5 +34,10 @@
                 <div class="text">{{employeeDetails?.gender}}</div>
             </li>
         </ul>
+    </div>
+    <div fxFlex="3" class="profile-edit">
+        <button mat-mini-fab color="accent" (click)="editProfile()">
+            <mat-icon>edit</mat-icon>
+        </button>
     </div>
 </mat-card>

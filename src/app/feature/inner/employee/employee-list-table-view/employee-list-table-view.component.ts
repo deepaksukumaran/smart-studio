@@ -7,6 +7,9 @@ import { Employee } from 'app/feature/inner/employee/models/employee.model';
 import { merge, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { EmployeeService } from '../employee.service';
+import { ModalService } from '@shared/services/modal.service';
+import { MatDialog } from '@angular/material';
+import { EmployeeAddEditComponent } from '../employee-add-edit/employee-add-edit.component';
 
 @Component({
   selector: 'app-employee-list-table-view',
@@ -20,7 +23,7 @@ export class EmployeeListTableViewComponent implements AfterViewInit, OnChanges 
   isLoadingResults = true;
   isRateLimitReached = false;
   employeeList: Employee[] = [];
-  displayedColumns: string[] = ['firstName', 'gender', 'doj'];
+  displayedColumns: string[] = ['firstName', 'gender', 'doj', 'actions'];
 
   @Input() searchCriteria: EmployeeFilterParams;
   @Input() searchCounter: number;
@@ -29,6 +32,8 @@ export class EmployeeListTableViewComponent implements AfterViewInit, OnChanges 
 
   constructor(
     private router: Router,
+    private dialog: MatDialog,
+    private modalService: ModalService,
     private employeeService: EmployeeService) { }
 
   /* Lifecycle Hooks */
@@ -77,5 +82,15 @@ export class EmployeeListTableViewComponent implements AfterViewInit, OnChanges 
 
   showEmployeeProfile(employeeId: number) {
     this.router.navigateByUrl(`employee/${employeeId}`);
+  }
+
+  editEmployeeProfile(employeeId: string) {
+    const dialogConfig = this.modalService.setDialogConfig(true, true, 'auto', { employeeId: employeeId });
+    this.dialog.open(EmployeeAddEditComponent, dialogConfig)
+      .afterClosed().subscribe(reload => {
+        if (reload) {
+          this.getEmployees();
+        }
+      });
   }
 }

@@ -1,0 +1,30 @@
+::ng-deep {
+  .mat-dialog-container {
+    padding: 0;
+    box-shadow: none;
+    background-color: transparent;
+    .confirm-container {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .form-column {
+        padding: 24px;
+        border-radius: 4px;
+        background-color: #ffffff;
+      }
+    }
+  }
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+// .confirm-btn {
+//   background-color: $gen-purple-color !important;
+// }
+
+// .cancel-btn {
+//   color: $gen-purple-color !important;
+// }

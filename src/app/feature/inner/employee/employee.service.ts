@@ -21,4 +21,12 @@ export class EmployeeService {
   getEmployee(employeeId: number): Observable<Employee> {
     return this.http.get<Employee>(EmployeeAPI.getEmployeeUrl(employeeId));
   }
+
+  createEmployee(employee: Employee): Observable<Employee> {
+    return this.http.post<Employee>(EmployeeAPI.createEmployeeUrl(), employee);
+  }
+
+  updateEmployee(employee: Employee): Observable<Employee> {
+    return this.http.put<Employee>(EmployeeAPI.updateEmployeeUrl(employee.id), employee);
+  }
 }
