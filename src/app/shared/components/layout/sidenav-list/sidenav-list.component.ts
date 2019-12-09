@@ -19,7 +19,7 @@ export class SidenavListComponent implements OnInit {
   private initVariables() {
     this.sideMenuList = [
       { name: 'EMPLOYEES', icon: 'group', url: 'employee/all' },
-      { name: 'CUSTOMERS', icon: 'group', url: 'customer/all' },
+      { name: 'CUSTOMERS', icon: 'transfer_within_a_station', url: 'customer/all' },
     ];
   }
 }

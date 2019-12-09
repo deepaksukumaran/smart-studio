@@ -9,6 +9,7 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
             {
                 path: 'all',
                 component: EmployeeListComponent,
+                data: { breadcrumb: { label: 'All' } }
             },
             {
                 path: ':employeeId',

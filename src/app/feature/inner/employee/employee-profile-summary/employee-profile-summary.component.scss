@@ -1,3 +1,9 @@
+.profile-summary-card {
+  border-left: 15px;
+  border-left-style: inset;
+  border-left-color: chartreuse;
+}
+
 .profile-image {
   height: 150px;
   width: 150px;
@@ -8,18 +14,8 @@
   border-right: 2px dashed #ccc;
 }
 
-.profile-snap-left .user-name {
-  color: #333;
-}
-
 .profile-snap-left .text-muted {
   color: #8e8e8e !important;
-}
-
-profile-snap-left .staff-id {
-  font-size: 14px;
-  font-weight: 500;
-  margin-top: 5px;
 }
 
 .personal-snap-right {

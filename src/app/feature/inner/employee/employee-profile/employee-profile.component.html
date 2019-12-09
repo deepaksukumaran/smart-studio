@@ -23,11 +23,17 @@
                                 <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
                                     <mat-form-field fxFlex="49">
                                         <mat-label>Gender</mat-label>
-                                        <input matInput formControlName="gender">
+                                        <mat-select formControlName="gender" disableOptionCentering>
+                                            <mat-option *ngFor="let gender of genderList" [value]="gender.key">
+                                                {{ gender.value }}
+                                            </mat-option>
+                                        </mat-select>
                                     </mat-form-field>
                                     <mat-form-field fxFlex="49">
                                         <mat-label>Date of Birth</mat-label>
-                                        <input matInput formControlName="dob">
+                                        <input matInput [matDatepicker]="dobPicker" formControlName="dob">
+                                        <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+                                        <mat-datepicker #dobPicker></mat-datepicker>
                                     </mat-form-field>
                                 </div>
                             </mat-card-content>
@@ -60,7 +66,6 @@
                             </mat-card-content>
                         </mat-card>
                     </div>
-
                     <div fxLayout="row" fxLayoutAlign="space-between center">
                         <mat-card fxFlex="49">
                             <mat-card-header>

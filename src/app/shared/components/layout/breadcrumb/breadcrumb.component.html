@@ -1,0 +1,10 @@
+<ul class="breadcrumb" (window:resize)="onWindowResize()">
+  <li *ngFor="let breadcrumb of breadcrumbs;let last = last;" class="breadcrumb-item">
+    <a routerLink="{{breadcrumb.url}}" *ngIf="!last">
+      {{ breadcrumb.collapse !== true? breadcrumb.label: '...' }}
+    </a>
+    <span *ngIf="last">
+      {{ breadcrumb.collapse !== true? breadcrumb.label: '...' }}
+    </span>
+  </li>
+</ul>

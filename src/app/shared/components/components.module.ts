@@ -8,6 +8,7 @@ import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component'
 import { InnerLayoutComponent } from './layout/inner-layout/inner-layout.component';
 import { SidenavListComponent } from './layout/sidenav-list/sidenav-list.component';
 import { ToolbarComponent } from './layout/toolbar/toolbar.component';
+import { BreadcrumbComponent } from './layout/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ToolbarComponent } from './layout/toolbar/toolbar.component';
     InnerLayoutComponent,
     SidenavListComponent,
     ToolbarComponent,
+    BreadcrumbComponent,
     LabelTextComboComponent,
   ],
   imports: [

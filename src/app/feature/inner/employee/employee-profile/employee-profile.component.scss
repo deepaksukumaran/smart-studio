@@ -1,7 +1,7 @@
 @import "../../../../shared/styles/page.scss";
 
 mat-card-header {
-  background: #12121212;
+  background: cadetblue;
   padding: 5px;
   color: white;
 }
@@ -15,6 +15,6 @@ mat-card {
   margin-top: 15px;
 }
 
-.mat-card-title {
-  color: black;
+mat-card-title {
+  margin-bottom: 0 !important;
 }

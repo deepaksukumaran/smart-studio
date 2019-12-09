@@ -4,7 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './feature/inner/inner.module#InnerModule'
+    loadChildren: './feature/inner/inner.module#InnerModule',
+    data: { breadcrumb: { label: 'Home' } }
   },
   {
     path: 'auth',

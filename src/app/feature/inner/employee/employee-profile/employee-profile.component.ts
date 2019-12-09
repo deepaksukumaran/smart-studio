@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../models/employee.model';
+import { EmployeeConstants } from '../employee-constatnts';
 
 @Component({
   selector: 'app-employee-profile',
@@ -14,6 +15,7 @@ export class EmployeeProfileComponent implements OnInit {
   isEditMode: boolean;
   employeeDetails: Employee;
   employeeFormGroup: FormGroup;
+  genderList = EmployeeConstants.genderList;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -42,10 +44,10 @@ export class EmployeeProfileComponent implements OnInit {
 
   private getEmployee() {
     const employeeId = this.activatedRoute.snapshot.paramMap.get('employeeId');
-    this.employeeService.getEmployee(parseInt(employeeId))
+    this.employeeService.getEmployee(parseInt(employeeId, 0))
       .subscribe((data) => {
         this.employeeDetails = data;
         this.employeeFormGroup.patchValue(this.employeeDetails);
-      })
+      });
   }
 }

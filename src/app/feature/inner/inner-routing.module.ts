@@ -10,7 +10,8 @@ import { InnerComponent } from './inner.component';
                 children: [
                     {
                         path: 'employee',
-                        loadChildren: './employee/employee.module#EmployeeModule'
+                        loadChildren: './employee/employee.module#EmployeeModule',
+                        data: { breadcrumb: { label: 'Employee' } }
                     },
                     {
                         path: 'customer',

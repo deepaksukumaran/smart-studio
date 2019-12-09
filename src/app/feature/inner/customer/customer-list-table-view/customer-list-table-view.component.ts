@@ -71,7 +71,7 @@ export class CustomerListTableViewComponent implements AfterViewInit, OnChanges 
           return observableOf([]);
         })
       ).subscribe(data => {
-        this.customerList = data
+        this.customerList = data;
       });
   }
 
