@@ -23,7 +23,7 @@ export class EmployeeListTableViewComponent implements AfterViewInit, OnChanges 
   isLoadingResults = true;
   isRateLimitReached = false;
   employeeList: Employee[] = [];
-  displayedColumns: string[] = ['firstName', 'gender', 'doj', 'actions'];
+  displayedColumns: string[] = ['firstName', 'gender', 'phone', 'email', 'doj', 'actions'];
 
   @Input() searchCriteria: EmployeeFilterParams;
   @Input() searchCounter: number;
@@ -64,6 +64,7 @@ export class EmployeeListTableViewComponent implements AfterViewInit, OnChanges 
           employeeFilterParams.page = this.paginator.pageIndex;
           employeeFilterParams.size = this.itemPerPage;
           employeeFilterParams.sortBy = this.sort.active;
+          employeeFilterParams.sortDirection = this.sort.direction;
           return this.employeeService.getAllEmployees(employeeFilterParams);
         }),
         map(data => {
@@ -84,8 +85,8 @@ export class EmployeeListTableViewComponent implements AfterViewInit, OnChanges 
     this.router.navigateByUrl(`employee/${employeeId}`);
   }
 
-  editEmployeeProfile(employeeId: string) {
-    const dialogConfig = this.modalService.setDialogConfig(true, true, 'auto', { employeeId: employeeId });
+  editEmployeeProfile(employee: Employee) {
+    const dialogConfig = this.modalService.setDialogConfig(true, true, 'auto', { employee: employee });
     this.dialog.open(EmployeeAddEditComponent, dialogConfig)
       .afterClosed().subscribe(reload => {
         if (reload) {

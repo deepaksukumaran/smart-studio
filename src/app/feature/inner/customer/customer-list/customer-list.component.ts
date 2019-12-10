@@ -25,6 +25,7 @@ export class CustomerListComponent implements OnInit {
   buildForm() {
     this.searchForm = new FormGroup({
       name: new FormControl(''),
+      mobile: new FormControl(''),
     });
   }
 

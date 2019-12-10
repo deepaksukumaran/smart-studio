@@ -54,16 +54,18 @@ export class CustomerListTableViewComponent implements AfterViewInit, OnChanges 
           this.isLoadingResults = true;
           const customerFilterParams = new CustomerFilterParams();
           customerFilterParams.name = this.searchCriteria.name;
+          customerFilterParams.mobile = this.searchCriteria.mobile;
           customerFilterParams.page = this.paginator.pageIndex;
           customerFilterParams.size = this.itemPerPage;
           customerFilterParams.sortBy = this.sort.active;
+          customerFilterParams.sortDirection = this.sort.direction;
           return this.customerService.getAllCustomers(customerFilterParams);
         }),
         map(data => {
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
-          // this.resultsLength = data.totalElements;
-          return data;
+          this.resultsLength = data.totalElements;
+          return data.content;
         }),
         catchError(() => {
           this.isLoadingResults = false;

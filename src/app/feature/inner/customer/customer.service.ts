@@ -14,8 +14,8 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   /* Public Methods */
-  getAllCustomers(customerFilterParams: CustomerFilterParams): Observable<Customer[]> {
-    return this.http.get<Customer[]>(CustomerAPI.getAllCustomersUrl(customerFilterParams));
+  getAllCustomers(customerFilterParams: CustomerFilterParams): Observable<ApiResponse<Customer[]>> {
+    return this.http.get<ApiResponse<Customer[]>>(CustomerAPI.getAllCustomersUrl(customerFilterParams));
   }
 
   getCustomer(customerId: number): Observable<Customer> {

@@ -5,17 +5,22 @@ import { CustomerListTableViewComponent } from './customer-list-table-view/custo
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
+import { CustomerAddEditComponent } from './customer-add-edit/customer-add-edit.component';
 
 @NgModule({
   declarations: [
     CustomerListComponent,
     CustomerListTableViewComponent,
-    CustomerProfileComponent
+    CustomerProfileComponent,
+    CustomerAddEditComponent
   ],
   imports: [
     CommonModule,
     CustomerRoutingModule,
     SharedModule,
+  ],
+  entryComponents: [
+    CustomerAddEditComponent
   ]
 })
 export class CustomerModule { }

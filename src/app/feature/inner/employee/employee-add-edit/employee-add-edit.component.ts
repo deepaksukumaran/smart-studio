@@ -1,10 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { Employee } from '../models/employee.model';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormArray } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ActionService } from '@shared/services/action.service';
 import { EmployeeConstants } from '../employee-constatnts';
 import { EmployeeService } from '../employee.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { ActionService } from '@shared/services/action.service';
+import { Employee } from '../models/employee.model';
 
 @Component({
   selector: 'app-employee-add-edit',
@@ -14,12 +14,12 @@ import { ActionService } from '@shared/services/action.service';
 export class EmployeeAddEditComponent implements OnInit {
 
   isEditMode: boolean;
-  employeeId: number;
   employeeDetails: Employee;
   employeeFormGroup: FormGroup;
   genderList = EmployeeConstants.genderList;
   stateList = EmployeeConstants.stateList;
-  countryList = EmployeeConstants.countryList;
+
+  private get addresses(): FormArray { return this.employeeFormGroup.get('addresses') as FormArray; }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,37 +28,58 @@ export class EmployeeAddEditComponent implements OnInit {
     private dialogRef: MatDialogRef<EmployeeAddEditComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
     this.isEditMode = !actionService.isAllNullOrEmptyObject(data);
-    this.employeeId = data ? data.employeeId : null;
+    this.employeeDetails = data ? data.employee : null;
   }
 
   /* Lifecycle Hooks */
   ngOnInit() {
-    this.initVariables();
     this.buildForm();
-    this.getEmployee();
+    this.bindFormData();
   }
 
   /* Private Methods */
-  private initVariables() {
-
-  }
-
   private buildForm() {
     this.employeeFormGroup = this.formBuilder.group({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
-      gender: new FormControl(''),
-      dob: new FormControl(''),
+      firstName: new FormControl(null),
+      lastName: new FormControl(null),
+      gender: new FormControl(null),
+      dob: new FormControl('1985-11-03'),
+      phone: new FormControl(null),
+      email: new FormControl(null),
+      addresses: this.formBuilder.array([]),
     });
+
+    if (!this.isEditMode) {
+      this.buildAddressForm();
+    }
   }
 
-  private getEmployee() {
-    if (!this.employeeId) { return; }
-    this.employeeService.getEmployee(this.employeeId)
-      .subscribe((data) => {
-        this.employeeDetails = data;
-        this.employeeFormGroup.patchValue(this.employeeDetails);
-      });
+  private buildAddressForm() {
+    this.addresses.push(
+      this.formBuilder.group({
+        id: new FormControl(null),
+        address1: new FormControl(null),
+        address2: new FormControl(null),
+        city: new FormControl(null),
+        state: new FormControl(null),
+        zip: new FormControl(null),
+        landmark: new FormControl(null),
+      })
+    );
+  }
+
+  private bindFormData() {
+    if (!this.isEditMode) { return; }
+
+    this.employeeDetails.addresses.forEach(x => {
+      this.buildAddressForm();
+    });
+
+    if (this.employeeDetails.addresses.length === 0) {
+      this.buildAddressForm();
+    }
+
+    this.employeeFormGroup.patchValue(this.employeeDetails);
   }
 
   private addNewEmployee(employee: Employee) {
@@ -67,6 +88,8 @@ export class EmployeeAddEditComponent implements OnInit {
     employee.createdBy = "28";
     employee.userName = this.employeeFormGroup.value.firstName + '@123';
     employee.password = "password";
+    employee.addresses = [];
+    employee.positions = [];
 
     this.employeeService.createEmployee(employee).subscribe((data) => {
       this.dialogRef.close(true);
@@ -74,11 +97,9 @@ export class EmployeeAddEditComponent implements OnInit {
   }
 
   private updateEmployee(employee: Employee) {
-    employee.id = this.employeeId;
+
     employee.updatedAt = "2019-11-03";
     employee.updatedBy = "28";
-    employee.userName = this.employeeFormGroup.value.firstName + '@123';
-    employee.password = "password";
 
     this.employeeService.updateEmployee(employee).subscribe((data) => {
       this.dialogRef.close(true);
@@ -93,11 +114,13 @@ export class EmployeeAddEditComponent implements OnInit {
   onSave() {
 
     let employee = new Employee;
-    employee = this.employeeFormGroup.value;
 
-    if (!this.employeeId) {
+    if (!this.isEditMode) {
+      employee = this.employeeFormGroup.value;
       this.addNewEmployee(employee);
     } else {
+      employee = this.employeeDetails
+      employee = Object.assign(employee, this.employeeFormGroup.value);
       this.updateEmployee(employee);
     }
   }

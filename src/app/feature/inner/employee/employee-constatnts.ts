@@ -9,11 +9,6 @@ export class EmployeeConstants {
 
     public static stateList: KeyValue<string, string>[] = [
         { key: '', value: '--' },
-        { key: 'Kerala', value: 'Kerala' },
-    ];
-
-    public static countryList: KeyValue<string, string>[] = [
-        { key: '', value: '--' },
-        { key: 'India', value: 'India' },
+        { key: 'KL', value: 'Kerala' },
     ];
 }

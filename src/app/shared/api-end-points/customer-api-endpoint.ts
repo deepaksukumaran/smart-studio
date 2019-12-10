@@ -12,6 +12,8 @@ export const CustomerAPI = {
         return `${API_URL_DOMAIN}/customer/id/${customerId}`;
     },
     getAllCustomersUrl(params: CustomerFilterParams) {
-        return `http://3.134.113.107:8091/api/v1/order-details/order/customer/all`;
+        return `${API_URL_DOMAIN}/order-details/order/customer/pages`
+            + `?name=${params.name}&mobile=${params.mobile}`
+            + `&page=${params.page}&size=${params.size}&sort=${params.sortBy}&direction=${params.sortDirection}`;
     },
 };

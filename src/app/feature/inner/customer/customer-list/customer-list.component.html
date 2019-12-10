@@ -5,11 +5,15 @@
             <form [formGroup]="searchForm">
                 <mat-card class="search-bar">
                     <mat-card-content fxLayout="row" fxLayoutAlign="space-between none" fxLayoutGap="20px">
-                        <mat-form-field appearance="outline" class="search-box" fxFlex="66">
+                        <mat-form-field appearance="outline" class="search-box">
                             <mat-label>Name</mat-label>
                             <input matInput formControlName="name">
                         </mat-form-field>
-                        <button mat-raised-button color="accent" class="btn-search" (click)="onSearch()" fxFlex="34">
+                        <mat-form-field appearance="outline" class="search-box">
+                            <mat-label>Mobile #</mat-label>
+                            <input matInput formControlName="mobile">
+                        </mat-form-field>
+                        <button mat-raised-button color="accent" class="btn-search" (click)="onSearch()">
                             <mat-icon>search</mat-icon> Search
                         </button>
                     </mat-card-content>

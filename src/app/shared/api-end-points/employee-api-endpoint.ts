@@ -3,17 +3,17 @@ import { EmployeeFilterParams } from 'app/feature/inner/employee/models/employee
 
 export const EmployeeAPI = {
     createEmployeeUrl() {
-        return `${API_URL_DOMAIN}/employee/create`;
+        return `${API_URL_DOMAIN}/org/employee/create`;
     },
     updateEmployeeUrl(employeeId: number) {
-        return `${API_URL_DOMAIN}/employee/${employeeId}`;
+        return `${API_URL_DOMAIN}/org/employee/${employeeId}`;
     },
     getEmployeeUrl(employeeId: number) {
-        return `${API_URL_DOMAIN}/employee/id/${employeeId}`;
+        return `${API_URL_DOMAIN}/org/employee/id/${employeeId}`;
     },
     getAllEmployeesUrl(params: EmployeeFilterParams) {
-        return `${API_URL_DOMAIN}/employee/all/page`
+        return `${API_URL_DOMAIN}/org/employee/all/page`
             + `?firstName=${params.firstName}&lastName=${params.lastName}`
-            + `&page=${params.page}&size=${params.size}&sort=${params.sortBy}`;
+            + `&page=${params.page}&size=${params.size}&sort=${params.sortBy}&direction=${params.sortDirection}`;
     },
 };
