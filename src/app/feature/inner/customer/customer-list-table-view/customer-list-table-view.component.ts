@@ -1,11 +1,13 @@
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { merge, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { Customer } from '../../models/customer.model';
 import { CustomerService } from '../customer.service';
 import { CustomerFilterParams } from '../models/customer-filter-params.model';
+import { ModalService } from '@shared/services/modal.service';
+import { CustomerAddEditComponent } from '../customer-add-edit/customer-add-edit.component';
 
 @Component({
   selector: 'app-customer-list-table-view',
@@ -19,7 +21,7 @@ export class CustomerListTableViewComponent implements AfterViewInit, OnChanges 
   isLoadingResults = true;
   isRateLimitReached = false;
   customerList: Customer[] = [];
-  displayedColumns: string[] = ['name', 'mobile', 'email'];
+  displayedColumns: string[] = ['name', 'mobile', 'email', 'actions'];
 
   @Input() searchCriteria: CustomerFilterParams;
   @Input() searchCounter: number;
@@ -28,6 +30,8 @@ export class CustomerListTableViewComponent implements AfterViewInit, OnChanges 
 
   constructor(
     private router: Router,
+    private dialog: MatDialog,
+    private modalService: ModalService,
     private customerService: CustomerService) { }
 
   /* Lifecycle Hooks */
@@ -79,5 +83,15 @@ export class CustomerListTableViewComponent implements AfterViewInit, OnChanges 
 
   showCustomerProfile(customerId: number) {
     this.router.navigateByUrl(`customer/${customerId}`);
+  }
+
+  editCustomerProfile(customer: Customer) {
+    const dialogConfig = this.modalService.setDialogConfig(true, true, 'auto', { customer: customer });
+    this.dialog.open(CustomerAddEditComponent, dialogConfig)
+      .afterClosed().subscribe(reload => {
+        if (reload) {
+
+        }
+      });
   }
 }

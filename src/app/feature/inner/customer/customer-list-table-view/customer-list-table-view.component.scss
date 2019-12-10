@@ -8,6 +8,10 @@
   width: 100%;
 }
 
+.customer-action button {
+  margin-right: 8px;
+}
+
 ::ng-deep {
   .customer-table-paginator .mat-paginator-container {
     justify-content: flex-start;

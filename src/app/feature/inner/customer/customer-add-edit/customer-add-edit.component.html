@@ -1,1 +1,8 @@
-<p>customer-add-edit works!</p>
+<h2 mat-dialog-title>{{isEditMode?'Edit':'Add'}} Customer</h2>
+<mat-dialog-content class="mat-typography">
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-button (click)="onSave()">Save</button>
+</mat-dialog-actions>
