@@ -40,7 +40,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   addNewEmployee() {
-    const dialogConfig = this.modalService.setDialogConfig(true, true, 'auto');
+    const dialogConfig = this.modalService.setDialogConfig(true, true, '780px');
     this.dialog.open(EmployeeAddEditComponent, dialogConfig)
       .afterClosed().subscribe(reload => {
         if (reload) {

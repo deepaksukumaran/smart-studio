@@ -6,7 +6,7 @@ export const CustomerAPI = {
         return `${API_URL_DOMAIN}/order-details/order/customer/create`;
     },
     updateCustomerUrl(customerId: number) {
-        return `${API_URL_DOMAIN}/order-details/order/customer/${customerId}`;
+        return `${API_URL_DOMAIN}/order-details/order/customer/update/${customerId}`;
     },
     getCustomerUrl(customerId: number) {
         return `${API_URL_DOMAIN}/order-details/order/customer/id/${customerId}`;

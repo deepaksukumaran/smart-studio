@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { INDIAN_STATE_LIST } from '@shared/constants/state-list.constant';
 import { ActionService } from '@shared/services/action.service';
 import { CustomerService } from '../customer.service';
 import { Customer } from '../models/customer.model';
@@ -15,6 +16,7 @@ export class CustomerAddEditComponent implements OnInit {
   isEditMode: boolean;
   customerDetails: Customer;
   customerFormGroup: FormGroup;
+  stateList = INDIAN_STATE_LIST;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,14 +37,15 @@ export class CustomerAddEditComponent implements OnInit {
   /* Private Methods */
   private buildForm() {
     this.customerFormGroup = this.formBuilder.group({
-      name: new FormControl(null),
+      name: new FormControl(null, [Validators.required]),
       phone: new FormControl(null),
-      mobile: new FormControl(null),
-      email: new FormControl(null),
+      mobile: new FormControl(null, [Validators.required]),
+      email: new FormControl(null,
+        [Validators.pattern('[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]),
       description: new FormControl(null),
       address: new FormControl(null),
       city: new FormControl(null),
-      state: new FormControl(null),
+      state: new FormControl('KL'),
       zip: new FormControl(null),
     });
   }
@@ -77,6 +80,8 @@ export class CustomerAddEditComponent implements OnInit {
   }
 
   onSave() {
+
+    if (this.customerFormGroup.invalid) { return; }
 
     let customer = new Customer();
 

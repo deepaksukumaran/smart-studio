@@ -24,7 +24,7 @@ export class EmployeeProfileSummaryComponent implements OnInit {
 
   /* Public Methods */
   editProfile() {
-    const dialogConfig = this.modalService.setDialogConfig(true, true, 'auto', { employeeId: this.employeeDetails.id });
+    const dialogConfig = this.modalService.setDialogConfig(true, true, '780px', { employeeId: this.employeeDetails.id });
     this.dialog.open(EmployeeAddEditComponent, dialogConfig)
       .afterClosed().subscribe(reload => {
         if (reload) {

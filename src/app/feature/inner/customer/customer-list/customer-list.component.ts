@@ -40,7 +40,7 @@ export class CustomerListComponent implements OnInit {
   }
 
   addNewCustomer() {
-    const dialogConfig = this.modalService.setDialogConfig(true, true, 'auto');
+    const dialogConfig = this.modalService.setDialogConfig(true, true, '780px');
     this.dialog.open(CustomerAddEditComponent, dialogConfig)
       .afterClosed().subscribe(reload => {
         if (reload) {

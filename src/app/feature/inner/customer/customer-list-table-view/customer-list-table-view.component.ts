@@ -86,7 +86,7 @@ export class CustomerListTableViewComponent implements AfterViewInit, OnChanges 
   }
 
   editCustomerProfile(customer: Customer) {
-    const dialogConfig = this.modalService.setDialogConfig(true, true, 'auto', { customer: customer });
+    const dialogConfig = this.modalService.setDialogConfig(true, true, '780px', { customer: customer });
     this.dialog.open(CustomerAddEditComponent, dialogConfig)
       .afterClosed().subscribe(reload => {
         if (reload) {

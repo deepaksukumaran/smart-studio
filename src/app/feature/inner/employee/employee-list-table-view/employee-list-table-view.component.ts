@@ -86,7 +86,7 @@ export class EmployeeListTableViewComponent implements AfterViewInit, OnChanges 
   }
 
   editEmployeeProfile(employee: Employee) {
-    const dialogConfig = this.modalService.setDialogConfig(true, true, 'auto', { employee: employee });
+    const dialogConfig = this.modalService.setDialogConfig(true, true, '780px', { employee: employee });
     this.dialog.open(EmployeeAddEditComponent, dialogConfig)
       .afterClosed().subscribe(reload => {
         if (reload) {

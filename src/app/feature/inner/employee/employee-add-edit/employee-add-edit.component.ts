@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormArray } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { INDIAN_STATE_LIST } from '@shared/constants/state-list.constant';
 import { ActionService } from '@shared/services/action.service';
 import { EmployeeConstants } from '../employee-constatnts';
 import { EmployeeService } from '../employee.service';
@@ -17,7 +18,7 @@ export class EmployeeAddEditComponent implements OnInit {
   employeeDetails: Employee;
   employeeFormGroup: FormGroup;
   genderList = EmployeeConstants.genderList;
-  stateList = EmployeeConstants.stateList;
+  stateList = INDIAN_STATE_LIST;
 
   private get addresses(): FormArray { return this.employeeFormGroup.get('addresses') as FormArray; }
 
@@ -40,12 +41,13 @@ export class EmployeeAddEditComponent implements OnInit {
   /* Private Methods */
   private buildForm() {
     this.employeeFormGroup = this.formBuilder.group({
-      firstName: new FormControl(null),
-      lastName: new FormControl(null),
-      gender: new FormControl(null),
-      dob: new FormControl('1985-11-03'),
-      phone: new FormControl(null),
-      email: new FormControl(null),
+      firstName: new FormControl(null, [Validators.required]),
+      lastName: new FormControl(null, [Validators.required]),
+      gender: new FormControl(null, [Validators.required]),
+      dob: new FormControl(null, [Validators.required]),
+      phone: new FormControl(null, [Validators.required]),
+      email: new FormControl(null,
+        [Validators.pattern('[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]),
       addresses: this.formBuilder.array([]),
     });
 
@@ -61,7 +63,7 @@ export class EmployeeAddEditComponent implements OnInit {
         address1: new FormControl(null),
         address2: new FormControl(null),
         city: new FormControl(null),
-        state: new FormControl(null),
+        state: new FormControl('KL'),
         zip: new FormControl(null),
         landmark: new FormControl(null),
       })
@@ -112,6 +114,8 @@ export class EmployeeAddEditComponent implements OnInit {
   }
 
   onSave() {
+
+    if (this.employeeFormGroup.invalid) { return; }
 
     let employee = new Employee();
 
