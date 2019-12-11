@@ -83,11 +83,11 @@ export class EmployeeAddEditComponent implements OnInit {
   }
 
   private addNewEmployee(employee: Employee) {
-    employee.doj = "2019-11-03";
-    employee.createdAt = "2019-11-03";
-    employee.createdBy = "28";
+    employee.doj = '2019-11-03';
+    employee.createdAt = '2019-11-03';
+    employee.createdBy = '28';
     employee.userName = this.employeeFormGroup.value.firstName + '@123';
-    employee.password = "password";
+    employee.password = 'password';
     employee.addresses = [];
     employee.positions = [];
 
@@ -98,8 +98,8 @@ export class EmployeeAddEditComponent implements OnInit {
 
   private updateEmployee(employee: Employee) {
 
-    employee.updatedAt = "2019-11-03";
-    employee.updatedBy = "28";
+    employee.updatedAt = '2019-11-03';
+    employee.updatedBy = '28';
 
     this.employeeService.updateEmployee(employee).subscribe((data) => {
       this.dialogRef.close(true);
@@ -113,13 +113,13 @@ export class EmployeeAddEditComponent implements OnInit {
 
   onSave() {
 
-    let employee = new Employee;
+    let employee = new Employee();
 
     if (!this.isEditMode) {
       employee = this.employeeFormGroup.value;
       this.addNewEmployee(employee);
     } else {
-      employee = this.employeeDetails
+      employee = this.employeeDetails;
       employee = Object.assign(employee, this.employeeFormGroup.value);
       this.updateEmployee(employee);
     }

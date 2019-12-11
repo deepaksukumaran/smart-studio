@@ -10,7 +10,8 @@ export class ConfirmModalComponent {
 
   view: any;
 
-  constructor(public dialogRef: MatDialogRef<ConfirmModalComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<ConfirmModalComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
     this.view = data;
   }

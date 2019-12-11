@@ -10,7 +10,8 @@ export class MessageModalComponent {
 
   message: string;
 
-  constructor(public dialogRef: MatDialogRef<MessageModalComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<MessageModalComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
     this.message = data;
   }

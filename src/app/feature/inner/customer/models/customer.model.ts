@@ -1,4 +1,11 @@
 export class Customer {
-    public firstName: string;
-    public lastName: string;
+    public name: string;
+    public phone: string;
+    public mobile: string;
+    public email: string;
+    public description: string;
+    public address: string;
+    public city: string;
+    public state: string;
+    public zip: string;
 }
