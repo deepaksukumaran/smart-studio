@@ -1,13 +1,13 @@
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { Router } from '@angular/router';
+import { ModalService } from '@shared/services/modal.service';
 import { merge, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
-import { Customer } from '../../models/customer.model';
+import { CustomerAddEditComponent } from '../customer-add-edit/customer-add-edit.component';
 import { CustomerService } from '../customer.service';
 import { CustomerFilterParams } from '../models/customer-filter-params.model';
-import { ModalService } from '@shared/services/modal.service';
-import { CustomerAddEditComponent } from '../customer-add-edit/customer-add-edit.component';
+import { Customer } from '../models/customer.model';
 
 @Component({
   selector: 'app-customer-list-table-view',

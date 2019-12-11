@@ -1,4 +1,5 @@
 export class Customer {
+    public id: number;
     public name: string;
     public phone: string;
     public mobile: string;
@@ -8,4 +9,9 @@ export class Customer {
     public city: string;
     public state: string;
     public zip: string;
+
+    public createdAt: string;
+    public createdBy: string;
+    public updatedAt: string;
+    public updatedBy: string;
 }

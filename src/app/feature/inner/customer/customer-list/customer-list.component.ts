@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { ModalService } from '@shared/services/modal.service';
-import { Customer } from '../../models/customer.model';
 import { CustomerAddEditComponent } from '../customer-add-edit/customer-add-edit.component';
 import { CustomerService } from '../customer.service';
+import { Customer } from '../models/customer.model';
 
 @Component({
   selector: 'app-customer-list',

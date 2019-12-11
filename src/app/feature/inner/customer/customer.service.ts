@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { CustomerAPI } from '@shared/api-end-points/customer-api-endpoint';
 import { ApiResponse } from '@shared/models/api-response.model';
 import { Observable } from 'rxjs';
-import { Customer } from '../models/customer.model';
 import { CustomerFilterParams } from './models/customer-filter-params.model';
+import { Customer } from './models/customer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +20,13 @@ export class CustomerService {
 
   getCustomer(customerId: number): Observable<Customer> {
     return this.http.get<Customer>(CustomerAPI.getCustomerUrl(customerId));
+  }
+
+  createCustomer(customer: Customer): Observable<Customer> {
+    return this.http.post<Customer>(CustomerAPI.createCustomerUrl(), customer);
+  }
+
+  updateCustomer(customer: Customer): Observable<Customer> {
+    return this.http.put<Customer>(CustomerAPI.updateCustomerUrl(customer.id), customer);
   }
 }

@@ -82,7 +82,7 @@ export class EmployeeAddEditComponent implements OnInit {
     this.employeeFormGroup.patchValue(this.employeeDetails);
   }
 
-  private addNewEmployee(employee: Employee) {
+  private addEmployee(employee: Employee) {
     employee.doj = '2019-11-03';
     employee.createdAt = '2019-11-03';
     employee.createdBy = '28';
@@ -117,7 +117,7 @@ export class EmployeeAddEditComponent implements OnInit {
 
     if (!this.isEditMode) {
       employee = this.employeeFormGroup.value;
-      this.addNewEmployee(employee);
+      this.addEmployee(employee);
     } else {
       employee = this.employeeDetails;
       employee = Object.assign(employee, this.employeeFormGroup.value);

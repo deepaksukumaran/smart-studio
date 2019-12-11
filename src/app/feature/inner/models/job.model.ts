@@ -1,4 +1,5 @@
-import { Customer } from './customer.model';
+import { Customer } from '../customer/models/customer.model';
+
 // import { JobTask } from './job-task.model';
 
 export class Job {
