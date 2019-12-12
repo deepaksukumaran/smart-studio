@@ -21,7 +21,7 @@ export class CustomerListTableViewComponent implements AfterViewInit, OnChanges 
   isLoadingResults = true;
   isRateLimitReached = false;
   customerList: Customer[] = [];
-  displayedColumns: string[] = ['name', 'mobile', 'email', 'actions'];
+  displayedColumns: string[] = ['name', 'mobile', 'phone', 'email', 'actions'];
 
   @Input() searchCriteria: CustomerFilterParams;
   @Input() searchCounter: number;

@@ -2,14 +2,14 @@
     <div class="page-container">
         <div class="page-content" fxLayout="column" fxLayoutGap="20px">
 
-            <form [formGroup]="searchForm">
+            <form [formGroup]="searchForm" autocomplete="off">
                 <mat-card class="search-bar">
                     <mat-card-content fxLayout="row" fxLayoutAlign="space-between none" fxLayoutGap="20px">
-                        <mat-form-field appearance="outline" class="search-box">
+                        <mat-form-field appearance="legacy" class="search-box">
                             <mat-label>First Name</mat-label>
                             <input matInput formControlName="firstName">
                         </mat-form-field>
-                        <mat-form-field appearance="outline" class="search-box">
+                        <mat-form-field appearance="legacy" class="search-box">
                             <mat-label>Last Name</mat-label>
                             <input matInput formControlName="lastName">
                         </mat-form-field>

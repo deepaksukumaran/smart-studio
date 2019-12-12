@@ -1,23 +1,27 @@
 <div fxLayout fxLayoutAlign="center center" fxFlexFill>
     <mat-card>
-        <form [formGroup]="loginForm">
+        <form [formGroup]="loginForm" autocomplete="off">
             <mat-card-title>Login</mat-card-title>
             <mat-card-content fxLayout="column">
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="legacy">
                     <mat-label>Username</mat-label>
                     <input matInput formControlName="username">
-                    <mat-icon matSuffix color="primary" *ngIf="!loginForm.controls['username'].errors">
+                    <!-- <mat-icon matSuffix color="primary" *ngIf="!loginForm.controls['username'].errors">
                         sentiment_very_satisfied</mat-icon>
                     <mat-icon matSuffix color="warn" *ngIf="loginForm.controls['username'].errors">
-                        sentiment_very_dissatisfied</mat-icon>
+                        sentiment_very_dissatisfied</mat-icon> -->
                 </mat-form-field>
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="legacy">
                     <mat-label>Password</mat-label>
-                    <input type="password" matInput formControlName="password">
-                    <mat-icon matSuffix color="primary" *ngIf="!loginForm.controls['password'].errors">
+                    <!-- <input type="password" matInput formControlName="password"> -->
+                    <input matInput [type]="visible ? 'text' : 'password'" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="visible = !visible" [attr.aria-pressed]="visible">
+                        <mat-icon>{{visible ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </button>
+                    <!-- <mat-icon matSuffix color="primary" *ngIf="!loginForm.controls['password'].errors">
                         sentiment_very_satisfied</mat-icon>
                     <mat-icon matSuffix color="warn" *ngIf="loginForm.controls['password'].errors">
-                        sentiment_very_dissatisfied</mat-icon>
+                        sentiment_very_dissatisfied</mat-icon> -->
                 </mat-form-field>
                 <mat-error *ngIf="loginFailed">Login Failed..!</mat-error>
             </mat-card-content>
