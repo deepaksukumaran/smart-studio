@@ -5,6 +5,7 @@ import { ApiResponse } from '@shared/models/api-response.model';
 import { EmployeeFilterParams } from 'app/feature/inner/employee/models/employee-filter-params.model';
 import { Employee } from 'app/feature/inner/employee/models/employee.model';
 import { Observable } from 'rxjs';
+import { PositionAPI } from '@shared/api-end-points/position-api-endpoint';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,9 @@ export class EmployeeService {
 
   updateEmployee(employee: Employee): Observable<Employee> {
     return this.http.put<Employee>(EmployeeAPI.updateEmployeeUrl(employee.id), employee);
+  }
+
+  getAllPositions(): Observable<ApiResponse<Employee[]>> {
+    return this.http.get<ApiResponse<Employee[]>>(PositionAPI.getAllPositionsUrl());
   }
 }

@@ -82,13 +82,13 @@
                 </div>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
-                <mat-form-field fxFlex="49">
-                    <mat-label>Department</mat-label>
-                    <input matInput>
-                </mat-form-field>
-                <mat-form-field fxFlex="49">
-                    <mat-label>Designation</mat-label>
-                    <input matInput>
+                <mat-form-field fxFlex>
+                    <mat-label>Positions</mat-label>
+                    <mat-select disableOptionCentering multiple formControlName="positions">
+                        <mat-option *ngFor="let position of positionList" [value]="position.id">
+                            {{ position.name }}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
         </div>

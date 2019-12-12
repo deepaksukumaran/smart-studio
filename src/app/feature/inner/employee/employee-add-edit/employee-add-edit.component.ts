@@ -6,6 +6,8 @@ import { ActionService } from '@shared/services/action.service';
 import { EmployeeConstants } from '../employee-constatnts';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../models/employee.model';
+import { PositionService } from '../../position/position.service';
+import { EmployeePosition } from '../../position/models/employee-position.model';
 
 @Component({
   selector: 'app-employee-add-edit',
@@ -19,12 +21,14 @@ export class EmployeeAddEditComponent implements OnInit {
   employeeFormGroup: FormGroup;
   genderList = EmployeeConstants.genderList;
   stateList = INDIAN_STATE_LIST;
+  positionList: EmployeePosition[];
 
   private get addresses(): FormArray { return this.employeeFormGroup.get('addresses') as FormArray; }
 
   constructor(
     private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
+    private positionService: PositionService,
     private actionService: ActionService,
     private dialogRef: MatDialogRef<EmployeeAddEditComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
@@ -36,6 +40,7 @@ export class EmployeeAddEditComponent implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.bindFormData();
+    this.getAllPositions();
   }
 
   /* Private Methods */
@@ -49,6 +54,7 @@ export class EmployeeAddEditComponent implements OnInit {
       email: new FormControl(null,
         [Validators.pattern('[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]),
       addresses: this.formBuilder.array([]),
+      positions: new FormControl([]),
     });
 
     if (!this.isEditMode) {
@@ -86,12 +92,8 @@ export class EmployeeAddEditComponent implements OnInit {
 
   private addEmployee(employee: Employee) {
     employee.doj = '2019-11-03';
-    employee.createdAt = '2019-11-03';
-    employee.createdBy = '28';
     employee.userName = this.employeeFormGroup.value.firstName + '@123';
     employee.password = 'password';
-    employee.addresses = [];
-    employee.positions = [];
 
     this.employeeService.createEmployee(employee).subscribe((data) => {
       this.dialogRef.close(true);
@@ -105,6 +107,12 @@ export class EmployeeAddEditComponent implements OnInit {
 
     this.employeeService.updateEmployee(employee).subscribe((data) => {
       this.dialogRef.close(true);
+    });
+  }
+
+  private getAllPositions() {
+    this.positionService.getAllPositions().subscribe((data) => {
+      this.positionList = data;
     });
   }
 

@@ -7,7 +7,7 @@ export class Employee {
     public firstName: string;
     public lastName: string;
     public gender: string;
-    public positions: any[];
+    public positions: string[];
     public addresses: EmployeeAddress[];
     public phone: string;
     public email: string;
