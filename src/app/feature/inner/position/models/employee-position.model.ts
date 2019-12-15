@@ -6,7 +6,7 @@ export class EmployeePosition {
 
     public status: string;
     public createdAt: string;
-    public createdBy: string;
+    public createdBy: number;
     public updatedAt: string;
-    public updatedBy: string;
+    public updatedBy: number;
 }

@@ -84,11 +84,13 @@
             <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
                 <mat-form-field fxFlex>
                     <mat-label>Positions</mat-label>
-                    <mat-select disableOptionCentering multiple formControlName="positions">
-                        <mat-option *ngFor="let position of positionList" [value]="position.id">
+                    <mat-select disableOptionCentering multiple formControlName="positions"
+                        [compareWith]="comparePositions">
+                        <mat-option *ngFor="let position of positionList" [value]="position">
                             {{ position.name }}
                         </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="employeeFormGroup.controls['positions'].hasError('required')">Required</mat-error>
                 </mat-form-field>
             </div>
         </div>

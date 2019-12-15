@@ -28,7 +28,7 @@ export class EmployeeProfileSummaryComponent implements OnInit {
     this.dialog.open(EmployeeAddEditComponent, dialogConfig)
       .afterClosed().subscribe(reload => {
         if (reload) {
-          //this.getEmployees();
+          // this.getEmployees();
         }
       });
   }

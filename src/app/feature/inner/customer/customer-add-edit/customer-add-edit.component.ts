@@ -58,7 +58,7 @@ export class CustomerAddEditComponent implements OnInit {
 
   private addCustomer(customer: Customer) {
     customer.createdAt = '2019-11-03';
-    customer.createdBy = '28';
+    customer.createdBy = 28;
     this.customerService.createCustomer(customer).subscribe((data) => {
       this.dialogRef.close(true);
     });
@@ -67,7 +67,7 @@ export class CustomerAddEditComponent implements OnInit {
   private updateCustomer(customer: Customer) {
 
     customer.updatedAt = '2019-11-03';
-    customer.updatedBy = '28';
+    customer.updatedBy = 28;
 
     this.customerService.updateCustomer(customer).subscribe((data) => {
       this.dialogRef.close(true);

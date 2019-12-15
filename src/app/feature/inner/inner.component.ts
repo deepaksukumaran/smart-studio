@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from './employee/employee.service';
 
 @Component({
   selector: 'app-inner',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InnerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
+    this.getLoggedInUserAuthorities();
   }
 
+  /*Public Methods */
+  getLoggedInUserAuthorities() {
+    this.employeeService.getEmployeeAuthorities();
+  }
 }

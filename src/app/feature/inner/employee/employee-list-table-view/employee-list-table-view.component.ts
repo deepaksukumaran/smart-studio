@@ -23,7 +23,7 @@ export class EmployeeListTableViewComponent implements AfterViewInit, OnChanges 
   isLoadingResults = true;
   isRateLimitReached = false;
   employeeList: Employee[] = [];
-  displayedColumns: string[] = ['firstName', 'gender', 'phone', 'email', 'doj', 'actions'];
+  displayedColumns: string[] = ['firstName', 'gender', 'phone', 'email', 'dob', 'actions'];
 
   @Input() searchCriteria: EmployeeFilterParams;
   @Input() searchCounter: number;

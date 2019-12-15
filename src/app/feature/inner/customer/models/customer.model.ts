@@ -11,7 +11,7 @@ export class Customer {
     public zip: string;
 
     public createdAt: string;
-    public createdBy: string;
+    public createdBy: number;
     public updatedAt: string;
-    public updatedBy: string;
+    public updatedBy: number;
 }

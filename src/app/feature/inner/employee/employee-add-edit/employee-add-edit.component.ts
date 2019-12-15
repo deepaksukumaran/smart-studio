@@ -54,7 +54,7 @@ export class EmployeeAddEditComponent implements OnInit {
       email: new FormControl(null,
         [Validators.pattern('[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]),
       addresses: this.formBuilder.array([]),
-      positions: new FormControl([]),
+      positions: new FormControl([], [Validators.required]),
     });
 
     if (!this.isEditMode) {
@@ -103,7 +103,7 @@ export class EmployeeAddEditComponent implements OnInit {
   private updateEmployee(employee: Employee) {
 
     employee.updatedAt = '2019-11-03';
-    employee.updatedBy = '28';
+    employee.updatedBy = 28;
 
     this.employeeService.updateEmployee(employee).subscribe((data) => {
       this.dialogRef.close(true);
@@ -117,6 +117,10 @@ export class EmployeeAddEditComponent implements OnInit {
   }
 
   /* Public Methods */
+  comparePositions(o1: any, o2: any): boolean {
+    return o1.id === o2.id;
+  }
+
   onCancel() {
     this.dialogRef.close(false);
   }

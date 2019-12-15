@@ -36,7 +36,17 @@ export class EmployeeListComponent implements OnInit {
   }
 
   onSearch() {
-    this.searchCounter++;
+    if (this.searchForm.value.firstName !== '' || this.searchForm.value.lastName !== '') {
+      this.searchCounter++;
+    }
+  }
+
+  onClearSearch() {
+    this.searchForm.patchValue({
+      firstName: '',
+      lastName: '',
+    });
+    this.searchCounter = 0;
   }
 
   addNewEmployee() {

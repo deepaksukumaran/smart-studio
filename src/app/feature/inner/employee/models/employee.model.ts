@@ -1,4 +1,5 @@
 import { EmployeeAddress } from './employee-address.model';
+import { EmployeePosition } from '../../position/models/employee-position.model';
 
 export class Employee {
     public id: number;
@@ -7,10 +8,10 @@ export class Employee {
     public firstName: string;
     public lastName: string;
     public gender: string;
-    public positions: string[];
-    public addresses: EmployeeAddress[];
     public phone: string;
     public email: string;
+    public addresses: EmployeeAddress[];
+    public positions: EmployeePosition[];
 
     public userName: string;
     public password: string;
@@ -21,7 +22,7 @@ export class Employee {
 
     public status: string;
     public createdAt: string;
-    public createdBy: string;
+    public createdBy: number;
     public updatedAt: string;
-    public updatedBy: string;
+    public updatedBy: number;
 }
