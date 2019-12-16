@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Employee } from '../models/employee.model';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { ActionService } from '@shared/services/action.service';
 import { ModalService } from '@shared/services/modal.service';
 import { EmployeeAddEditComponent } from '../employee-add-edit/employee-add-edit.component';
+import { Employee } from '../models/employee.model';
 
 @Component({
   selector: 'app-employee-profile-summary',
@@ -16,6 +17,7 @@ export class EmployeeProfileSummaryComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private modalService: ModalService,
+    private actionService: ActionService,
   ) { }
 
   /* Lifecycle Hooks */
@@ -31,5 +33,32 @@ export class EmployeeProfileSummaryComponent implements OnInit {
           // this.getEmployees();
         }
       });
+  }
+
+  getEmployeeAddress() {
+    if (this.employeeDetails && this.employeeDetails.addresses.length > 0) {
+      const address = this.employeeDetails.addresses[0];
+      return [
+        this.actionService.getEmptyIfNull(address.address1),
+        this.actionService.getEmptyIfNull(address.address2),
+        this.actionService.getEmptyIfNull(address.city),
+        this.actionService.getEmptyIfNull(address.zip)
+      ]
+        .filter(Boolean)
+        .join(', ');
+    } else {
+      return '';
+    }
+  }
+
+  getEmployeePositions() {
+    if (this.employeeDetails && this.employeeDetails.positions.length > 0) {
+      const positions = this.employeeDetails.positions.map((p) => { return p.name });
+      return positions
+        .filter(Boolean)
+        .join(', ');
+    } else {
+      return '';
+    }
   }
 }

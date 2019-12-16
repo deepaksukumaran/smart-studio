@@ -5,8 +5,7 @@
             <div class="profile-snap-left">
                 <h3>{{employeeDetails?.firstName}} {{employeeDetails?.lastName}}</h3>
                 <div class="mat-body-strong">Employee # : {{employeeDetails?.employeeNo}}</div>
-                <div class="mat-small text-muted">Album Designer</div>
-                <div class="mat-small text-muted">Design Team</div>
+                <div class="mat-small text-muted">{{getEmployeePositions()}}</div>
                 <div class="mat-small text-muted">Date of Join : {{employeeDetails?.doj| date}}</div>
             </div>
         </div>
@@ -27,7 +26,7 @@
             </li>
             <li>
                 <div class="title">Address:</div>
-                <div class="text">1861 Bayonne Ave, Manchester Township, NJ, 08759</div>
+                <div class="text">{{getEmployeeAddress()}}</div>
             </li>
             <li>
                 <div class="title">Gender:</div>

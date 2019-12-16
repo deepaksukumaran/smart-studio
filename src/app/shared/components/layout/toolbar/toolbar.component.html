@@ -10,7 +10,7 @@
             <ul fxLayout="row" fxLayoutGap="20px">
                 <li>
                     <button mat-button [matMenuTriggerFor]="menu">
-                        {{loggedInUser.employeeUserName}} <mat-icon>person_outline</mat-icon>
+                        {{loggedInUser?.employeeUserName}} <mat-icon>person_outline</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item (click)="logout()">
