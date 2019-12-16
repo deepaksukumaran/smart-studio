@@ -88,6 +88,7 @@ export class EmployeeAddEditComponent implements OnInit {
     }
 
     this.employeeFormGroup.patchValue(this.employeeDetails);
+    this.employeeFormGroup.patchValue({ dob: new Date(this.employeeDetails.dob) });
   }
 
   private addEmployee(employee: Employee) {
