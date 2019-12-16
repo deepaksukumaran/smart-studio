@@ -14,7 +14,9 @@
                             <input matInput formControlName="mobile">
                         </mat-form-field>
                         <div>
-                            <button mat-raised-button color="accent" class="btn-search" (click)="onSearch()">
+                            <button mat-raised-button
+                                [disabled]="searchForm.value.name === '' && searchForm.value.mobile === ''"
+                                color="accent" class="btn-search" (click)="onSearch()">
                                 <mat-icon>search</mat-icon> Search
                             </button>
                         </div>

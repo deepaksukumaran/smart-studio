@@ -6,13 +6,15 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 import { CustomerAddEditComponent } from './customer-add-edit/customer-add-edit.component';
+import { CustomerProfileSummaryComponent } from './customer-profile-summary/customer-profile-summary.component';
 
 @NgModule({
   declarations: [
     CustomerListComponent,
     CustomerListTableViewComponent,
     CustomerProfileComponent,
-    CustomerAddEditComponent
+    CustomerAddEditComponent,
+    CustomerProfileSummaryComponent
   ],
   imports: [
     CommonModule,

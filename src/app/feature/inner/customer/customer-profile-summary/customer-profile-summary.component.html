@@ -1,0 +1,29 @@
+<mat-card fxLayout="row" class="profile-summary-card">
+    <div fxFlex="40" fxLayout="row">
+        <div class="profile-snap-left" fxFlex>
+            <h3>{{customerDetails?.name}}</h3>
+            <div class="mat-small text-muted">{{getCustomerAddress()}}</div>
+        </div>
+    </div>
+    <div fxFlex="57" style="margin-left: 15px;">
+        <ul class="personal-snap-right">
+            <li>
+                <div class="title">Phone:</div>
+                <div class="text"><a href="">{{customerDetails?.phone}}</a></div>
+            </li>
+            <li>
+                <div class="title">Mobile:</div>
+                <div class="text"><a href="">{{customerDetails?.mobile}}</a></div>
+            </li>
+            <li>
+                <div class="title">E-Mail:</div>
+                <div class="text"><a href="">{{customerDetails?.email}}</a></div>
+            </li>
+        </ul>
+    </div>
+    <div fxFlex="3" class="profile-edit">
+        <button mat-mini-fab color="accent" (click)="editCustomerProfile()">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+</mat-card>

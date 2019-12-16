@@ -1,14 +1,14 @@
 <mat-card fxLayout="row" class="profile-summary-card">
     <div fxFlex="40" fxLayout="row">
-        <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="profile-image">
-        <div fxFlex style="margin-left: 15px;">
-            <div class="profile-snap-left">
-                <h3>{{employeeDetails?.firstName}} {{employeeDetails?.lastName}}</h3>
-                <div class="mat-body-strong">Employee # : {{employeeDetails?.employeeNo}}</div>
-                <div class="mat-small text-muted">{{getEmployeePositions()}}</div>
-                <div class="mat-small text-muted">Date of Join : {{employeeDetails?.doj| date}}</div>
-            </div>
+        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" class="profile-image">
+
+        <div class="profile-snap-left" fxFlex>
+            <h3>{{employeeDetails?.firstName}} {{employeeDetails?.lastName}}</h3>
+            <div class="mat-body-strong">Employee # : {{employeeDetails?.employeeNo}}</div>
+            <div class="mat-small text-muted">{{getEmployeePositions()}}</div>
+            <div class="mat-small text-muted">Date of Join : {{employeeDetails?.doj| date}}</div>
         </div>
+
     </div>
     <div fxFlex="57" style="margin-left: 15px;">
         <ul class="personal-snap-right">
