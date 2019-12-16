@@ -16,4 +16,8 @@
   .customer-table-paginator .mat-paginator-container {
     justify-content: flex-start;
   }
+
+  th {
+    z-index: 0 !important;
+  }
 }
