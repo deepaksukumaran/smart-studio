@@ -17,6 +17,10 @@ import { InnerComponent } from './inner.component';
                         path: 'customer',
                         loadChildren: './customer/customer.module#CustomerModule'
                     },
+                    {
+                        path: 'order',
+                        loadChildren: './order/order.module#OrderModule'
+                    },
                 ]
             }
         ])
