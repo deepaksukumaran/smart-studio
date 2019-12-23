@@ -1,19 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NewOrderComponent } from './new-order/new-order.component';
+import { OrderListComponent } from './order-list/order-list.component';
 
 @NgModule({
     imports: [
         RouterModule.forChild([
             {
-                path: 'new',
-                component: NewOrderComponent,
-                data: { breadcrumb: { label: 'New' } }
+                path: 'all',
+                component: OrderListComponent,
+                data: { breadcrumb: { label: 'All' } }
             },
-            // {
-            //     path: ':employeeId',
-            //     component: EmployeeProfileComponent,
-            // }
         ])
     ],
     exports: [RouterModule]

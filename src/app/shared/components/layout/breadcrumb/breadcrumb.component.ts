@@ -42,7 +42,7 @@ export class BreadcrumbComponent implements OnInit, AfterViewChecked, OnDestroy 
   private initVariable() {
     this.homeCrumb = {
       id: 'home',
-      url: 'mortgage/pipeline',
+      url: 'QAZ/qaz',
       label: 'HOME',
       collapse: false,
       hide: false

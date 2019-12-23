@@ -6,14 +6,12 @@ import { SharedModule } from '@shared/shared.module';
 import { EmployeeModule } from './employee/employee.module';
 import { InnerRoutingModule } from './inner-routing.module';
 import { InnerComponent } from './inner.component';
-import { JobCardComponent } from './job-card/job-card.component';
-import { PipelineComponent } from './pipeline/pipeline.component';
+import { JobCardComponent } from './order/job-card/job-card.component';
 
 @NgModule({
   declarations: [
     InnerComponent,
-    JobCardComponent,
-    PipelineComponent,
+    JobCardComponent
   ],
   exports: [InnerComponent],
   imports: [
