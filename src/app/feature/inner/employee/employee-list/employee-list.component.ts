@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { ModalService } from '@shared/services/modal.service';
-import { Employee } from 'app/feature/inner/employee/models/employee.model';
 import { EmployeeAddEditComponent } from '../employee-add-edit/employee-add-edit.component';
 import { EmployeeService } from '../employee.service';
 
@@ -13,7 +12,6 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeListComponent implements OnInit {
 
-  employeeList: Employee[];
   searchCounter = 0;
   searchForm: FormGroup;
 

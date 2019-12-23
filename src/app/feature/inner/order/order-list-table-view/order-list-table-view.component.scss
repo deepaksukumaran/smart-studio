@@ -1,0 +1,24 @@
+.order-table-container {
+    position: relative;
+    max-height: 400px;
+    overflow: auto;
+  }
+  
+  .order-table {
+    width: 100%;
+  }
+  
+  .order-action button {
+    margin-right: 8px;
+  }
+  
+  ::ng-deep {
+    .order-table-paginator .mat-paginator-container {
+      justify-content: flex-start;
+    }
+  
+    th {
+      z-index: 0 !important;
+    }
+  }
+  

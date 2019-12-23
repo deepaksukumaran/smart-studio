@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material';
 import { ModalService } from '@shared/services/modal.service';
 import { CustomerAddEditComponent } from '../customer-add-edit/customer-add-edit.component';
 import { CustomerService } from '../customer.service';
-import { Customer } from '../models/customer.model';
 
 @Component({
   selector: 'app-customer-list',
@@ -13,7 +12,6 @@ import { Customer } from '../models/customer.model';
 })
 export class CustomerListComponent implements OnInit {
 
-  employeeList: Customer[];
   searchCounter = 0;
   searchForm: FormGroup;
 

@@ -1,1 +1,41 @@
-<p>order-list works!</p>
+<perfect-scrollbar style="max-height: calc(100% - 52px);">
+    <div class="page-container">
+        <div class="page-content" fxLayout="column" fxLayoutGap="20px">
+
+            <form [formGroup]="searchForm" autocomplete="off">
+                <mat-card class="search-bar">
+                    <mat-card-content fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+                        <mat-form-field appearance="legacy" class="search-box">
+                            <mat-label>First Name</mat-label>
+                            <input matInput formControlName="firstName">
+                        </mat-form-field>
+                        <mat-form-field appearance="legacy" class="search-box">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput formControlName="lastName">
+                        </mat-form-field>
+                        <div>
+                            <button mat-raised-button
+                                [disabled]="searchForm.value.firstName === '' && searchForm.value.lastName === ''"
+                                color="accent" class="btn-search" (click)="onSearch()">
+                                <mat-icon>search</mat-icon> Search
+                            </button>
+                        </div>
+                        <mat-chip-list aria-label="Fish selection" *ngIf="searchCounter>0">
+                            <mat-chip class="clear-search">
+                                <mat-icon class="clear-search__icon" (click)="onClearSearch()">close</mat-icon>Clear
+                            </mat-chip>
+                        </mat-chip-list>
+                    </mat-card-content>
+                </mat-card>
+            </form>
+
+            <app-order-list-table-view [searchCriteria]="this.searchForm.value" [searchCounter]="searchCounter">
+            </app-order-list-table-view>
+
+        </div>
+    </div>
+</perfect-scrollbar>
+
+<button mat-fab class="btn-add" (click)="addNewOrder()">
+    <mat-icon>add</mat-icon>
+</button>
