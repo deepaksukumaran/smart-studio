@@ -12,6 +12,8 @@ import { BreadcrumbComponent } from './layout/breadcrumb/breadcrumb.component';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { MessageModalComponent } from './message-modal/message-modal.component';
 import { FloatingAddButtonComponent } from './floating-add-button/floating-add-button.component';
+import { PageScrollLayoutComponent } from './layout/page-scroll-layout/page-scroll-layout.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -24,12 +26,14 @@ import { FloatingAddButtonComponent } from './floating-add-button/floating-add-b
     ConfirmModalComponent,
     MessageModalComponent,
     FloatingAddButtonComponent,
+    PageScrollLayoutComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    FlexLayoutModule
   ],
   exports: [
     AuthLayoutComponent,
@@ -37,6 +41,7 @@ import { FloatingAddButtonComponent } from './floating-add-button/floating-add-b
     LabelTextComboComponent,
     ConfirmModalComponent,
     FloatingAddButtonComponent,
+    PageScrollLayoutComponent,
   ]
 })
 export class ComponentsModule { }

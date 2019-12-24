@@ -1,202 +1,198 @@
-<perfect-scrollbar style="max-height: calc(100% - 52px);">
-    <div class="page-container">
-        <div class="page-content" fxLayout="column" fxLayoutGap="20px">
+<app-page-scroll-layout>
 
-            <div fxLayout="column">
-                <!-- ORDER SUMMARY -->
-                <mat-card *ngIf="isEditMode">
-                    <mat-card-content fxLayout fxLayoutAlign="space-between start">
-                        <div fxFlex fxLayout="column">
-                            <div>Order #:
-                                <span class="mat-body-strong">OD116766953728838000</span>
-                            </div>
-                            <div fxFlexOffset="20px">Order Date:
-                                <span class="mat-body-strong">14/Dec/2018</span>
-                            </div>
-                            <div fxFlexOffset="20px">Order Taken By:
-                                <span class="mat-body-strong">Rahman</span>
-                            </div>
-                        </div>
-                        <div fxFlex fxLayout="column">
-                            <div>Total Amount:
-                                <span class="mat-body-strong">{{1000 | currency:'INR'}}</span>
-                            </div>
-                            <div fxFlexOffset="20px">Advance Amount:
-                                <span class="mat-body-strong">{{400 | currency:'INR'}}</span>
-                            </div>
-                            <div fxFlexOffset="20px">Balnce Amount:
-                                <span class="mat-body-strong">{{600 | currency:'INR'}}</span>
-                            </div>
-                        </div>
-                        <div fxFlex fxLayout="column">
-                            <div>Status:
-                                <span class="mat-body-strong btn-green">Delivered</span>
-                            </div>
-                            <div fxFlexOffset="20px">Delivery Date:
-                                <span class="mat-body-strong">14/Dec/2018</span>
-                            </div>
-                            <div fxFlexOffset="14px">Invoice:
-                                <button mat-button>View</button>
-                                <button mat-button>Download</button></div>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-                <!-- / ORDER SUMMARY -->
-            
-                <div fxLayout.xs="column" fxLayoutAlign="space-between start" fxFlexOffset="20px">
-                    <div fxLayout="column" fxFlex="70%">
-                        <!-- CUSTOMER DETAILS  -->
-                        <mat-card>
-                            <mat-card-title>
-                                <mat-icon>perm_identity</mat-icon>
-                                Customer Details
-                            </mat-card-title>
-                            <mat-card-content fxLayout fxLayoutAlign="space-between start">
-                                <mat-form-field fxFlex>
-                                    <mat-label>Name</mat-label>
-                                    <input matInput>
-                                </mat-form-field>
-                                <mat-form-field fxFlex fxFlexOffset="10px">
-                                    <mat-label>Mobile #</mat-label>
-                                    <input matInput>
-                                </mat-form-field>
-                                <mat-form-field fxFlex fxFlexOffset="10px">
-                                    <mat-label>E-mail</mat-label>
-                                    <input matInput>
-                                </mat-form-field>
-                            </mat-card-content>
-                        </mat-card>
-                        <!-- / CUSTOMER DETAILS  -->
-            
-                        <mat-card fxLayout="column" fxFlexOffset.gt-xs="20px">
-                            <mat-card-title>Order Details</mat-card-title>
-                            <mat-form-field>
-                                <mat-label>Album Type</mat-label>
-                                <input matInput>
-                            </mat-form-field>
-                            <div fxLayout="row">
-                                <mat-form-field fxFlex>
-                                    <mat-label>Album Size</mat-label>
-                                    <mat-select matNativeControl>
-                                        <mat-option value="">Normal Cover</mat-option>
-                                        <mat-option value="">Fancy Cover</mat-option>
-                                        <mat-option value="">3fold Cover</mat-option>
-                                        <mat-option value="">Leather Box</mat-option>
-                                        <mat-option value="">Shirt Box</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <mat-form-field fxFlex fxFlexOffset="20px">
-                                    <mat-label>No. of Sheets</mat-label>
-                                    <input matInput>
-                                </mat-form-field>
-                            </div>
-                            <div fxLayout="row">
-                                <mat-form-field fxFlex>
-                                    <mat-label>Type of Cover</mat-label>
-                                    <mat-select matNativeControl>
-                                        <mat-option value="">Normal Cover</mat-option>
-                                        <mat-option value="">Fancy Cover</mat-option>
-                                        <mat-option value="">3fold Cover</mat-option>
-                                        <mat-option value="">Leather Box</mat-option>
-                                        <mat-option value="">Shirt Box</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <mat-form-field fxFlex fxFlexOffset="20px">
-                                    <mat-label>Type of Bag</mat-label>
-                                    <mat-select matNativeControl>
-                                        <mat-option value="">Normal Cover</mat-option>
-                                        <mat-option value="">Fancy Cover</mat-option>
-                                        <mat-option value="">3fold Cover</mat-option>
-                                        <mat-option value="">Leather Box</mat-option>
-                                        <mat-option value="">Shirt Box</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <mat-form-field fxFlex>
-                                <mat-label>Lamination Type</mat-label>
-                                <mat-select matNativeControl>
-                                    <mat-option value="">Glossy</mat-option>
-                                    <mat-option value="">Sparkle</mat-option>
-                                    <mat-option value="">Silky Matt</mat-option>
-                                    <mat-option value="">Velvet</mat-option>
-                                    <mat-option value="">Mixed Lamination</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            <mat-form-field>
-                                <mat-label>Lamination Description</mat-label>
-                                <textarea matInput></textarea>
-                            </mat-form-field>
-                            <mat-form-field>
-                                <mat-label>Additional Notes</mat-label>
-                                <textarea matInput></textarea>
-                            </mat-form-field>
-                        </mat-card>
+    <div fxLayout="column">
+        <!-- ORDER SUMMARY -->
+        <mat-card *ngIf="isEditMode">
+            <mat-card-content fxLayout fxLayoutAlign="space-between start">
+                <div fxFlex fxLayout="column">
+                    <div>Order #:
+                        <span class="mat-body-strong">OD116766953728838000</span>
                     </div>
-            
-                    <div fxFlex fxFlexOffset.gt-xs="20px">
-                        <mat-card fxLayout="column">
-                            <mat-card-title>
-                                Work Status
-                            </mat-card-title>
-                            <mat-vertical-stepper [linear]="isLinear" #stepper>
-                                <mat-step [stepControl]="firstFormGroup">
-                                    <form [formGroup]="firstFormGroup" autocomplete="off">
-                                        <ng-template matStepLabel>Design</ng-template>
-                                        <div fxLayout="column" fxLayoutGap="10px">
-                                            <mat-label>Received: 14/Nov/2018</mat-label>
-                                            <mat-label>Dispatched: 16/Nov/2018</mat-label>
-                                        </div>
-                                    </form>
-                                </mat-step>
-                                <mat-step [stepControl]="secondFormGroup">
-                                    <form [formGroup]="secondFormGroup" autocomplete="off">
-                                        <ng-template matStepLabel>Correction</ng-template>
-                                        <div fxLayout="column" fxLayoutGap="10px">
-                                            <mat-label>Received:</mat-label>
-                                            <mat-label>Dispatched:</mat-label>
-                                        </div>
-                                    </form>
-                                </mat-step>
-                                <mat-step>
-                                    <ng-template matStepLabel>Croping</ng-template>
-                                    <div fxLayout="column" fxLayoutGap="10px">
-                                        <mat-label>Received:</mat-label>
-                                        <mat-label>Dispatched:</mat-label>
-                                    </div>
-                                </mat-step>
-                                <mat-step>
-                                    <ng-template matStepLabel>Printing</ng-template>
-                                    <div fxLayout="column" fxLayoutGap="10px">
-                                        <mat-label>Received:</mat-label>
-                                        <mat-label>Dispatched:</mat-label>
-                                    </div>
-                                </mat-step>
-                                <mat-step>
-                                    <ng-template matStepLabel>Window/V-Cut</ng-template>
-                                    <div fxLayout="column" fxLayoutGap="10px">
-                                        <mat-label>Received:</mat-label>
-                                        <mat-label>Dispatched:</mat-label>
-                                    </div>
-                                </mat-step>
-                                <mat-step>
-                                    <ng-template matStepLabel>Lamination</ng-template>
-                                    <div fxLayout="column" fxLayoutGap="10px">
-                                        <mat-label>Received:</mat-label>
-                                        <mat-label>Dispatched:</mat-label>
-                                    </div>
-                                </mat-step>
-                                <mat-step>
-                                    <ng-template matStepLabel>Delivered</ng-template>
-                                    <div fxLayout="column" fxLayoutGap="10px">
-                                        <mat-label>On:</mat-label>
-                                    </div>
-                                </mat-step>
-                            </mat-vertical-stepper>
-                        </mat-card>
+                    <div fxFlexOffset="20px">Order Date:
+                        <span class="mat-body-strong">14/Dec/2018</span>
+                    </div>
+                    <div fxFlexOffset="20px">Order Taken By:
+                        <span class="mat-body-strong">Rahman</span>
                     </div>
                 </div>
+                <div fxFlex fxLayout="column">
+                    <div>Total Amount:
+                        <span class="mat-body-strong">{{1000 | currency:'INR'}}</span>
+                    </div>
+                    <div fxFlexOffset="20px">Advance Amount:
+                        <span class="mat-body-strong">{{400 | currency:'INR'}}</span>
+                    </div>
+                    <div fxFlexOffset="20px">Balnce Amount:
+                        <span class="mat-body-strong">{{600 | currency:'INR'}}</span>
+                    </div>
+                </div>
+                <div fxFlex fxLayout="column">
+                    <div>Status:
+                        <span class="mat-body-strong btn-green">Delivered</span>
+                    </div>
+                    <div fxFlexOffset="20px">Delivery Date:
+                        <span class="mat-body-strong">14/Dec/2018</span>
+                    </div>
+                    <div fxFlexOffset="14px">Invoice:
+                        <button mat-button>View</button>
+                        <button mat-button>Download</button></div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <!-- / ORDER SUMMARY -->
+
+        <div fxLayout.xs="column" fxLayoutAlign="space-between start" fxFlexOffset="20px">
+            <div fxLayout="column" fxFlex="70%">
+                <!-- CUSTOMER DETAILS  -->
+                <mat-card>
+                    <mat-card-title>
+                        <mat-icon>perm_identity</mat-icon>
+                        Customer Details
+                    </mat-card-title>
+                    <mat-card-content fxLayout fxLayoutAlign="space-between start">
+                        <mat-form-field fxFlex>
+                            <mat-label>Name</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                        <mat-form-field fxFlex fxFlexOffset="10px">
+                            <mat-label>Mobile #</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                        <mat-form-field fxFlex fxFlexOffset="10px">
+                            <mat-label>E-mail</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </mat-card-content>
+                </mat-card>
+                <!-- / CUSTOMER DETAILS  -->
+
+                <mat-card fxLayout="column" fxFlexOffset.gt-xs="20px">
+                    <mat-card-title>Order Details</mat-card-title>
+                    <mat-form-field>
+                        <mat-label>Album Type</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                    <div fxLayout="row">
+                        <mat-form-field fxFlex>
+                            <mat-label>Album Size</mat-label>
+                            <mat-select matNativeControl>
+                                <mat-option value="">Normal Cover</mat-option>
+                                <mat-option value="">Fancy Cover</mat-option>
+                                <mat-option value="">3fold Cover</mat-option>
+                                <mat-option value="">Leather Box</mat-option>
+                                <mat-option value="">Shirt Box</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field fxFlex fxFlexOffset="20px">
+                            <mat-label>No. of Sheets</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row">
+                        <mat-form-field fxFlex>
+                            <mat-label>Type of Cover</mat-label>
+                            <mat-select matNativeControl>
+                                <mat-option value="">Normal Cover</mat-option>
+                                <mat-option value="">Fancy Cover</mat-option>
+                                <mat-option value="">3fold Cover</mat-option>
+                                <mat-option value="">Leather Box</mat-option>
+                                <mat-option value="">Shirt Box</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field fxFlex fxFlexOffset="20px">
+                            <mat-label>Type of Bag</mat-label>
+                            <mat-select matNativeControl>
+                                <mat-option value="">Normal Cover</mat-option>
+                                <mat-option value="">Fancy Cover</mat-option>
+                                <mat-option value="">3fold Cover</mat-option>
+                                <mat-option value="">Leather Box</mat-option>
+                                <mat-option value="">Shirt Box</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <mat-form-field fxFlex>
+                        <mat-label>Lamination Type</mat-label>
+                        <mat-select matNativeControl>
+                            <mat-option value="">Glossy</mat-option>
+                            <mat-option value="">Sparkle</mat-option>
+                            <mat-option value="">Silky Matt</mat-option>
+                            <mat-option value="">Velvet</mat-option>
+                            <mat-option value="">Mixed Lamination</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Lamination Description</mat-label>
+                        <textarea matInput></textarea>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Additional Notes</mat-label>
+                        <textarea matInput></textarea>
+                    </mat-form-field>
+                </mat-card>
             </div>
 
+            <div fxFlex fxFlexOffset.gt-xs="20px">
+                <mat-card fxLayout="column">
+                    <mat-card-title>
+                        Work Status
+                    </mat-card-title>
+                    <mat-vertical-stepper [linear]="isLinear" #stepper>
+                        <mat-step [stepControl]="firstFormGroup">
+                            <form [formGroup]="firstFormGroup" autocomplete="off">
+                                <ng-template matStepLabel>Design</ng-template>
+                                <div fxLayout="column" fxLayoutGap="10px">
+                                    <mat-label>Received: 14/Nov/2018</mat-label>
+                                    <mat-label>Dispatched: 16/Nov/2018</mat-label>
+                                </div>
+                            </form>
+                        </mat-step>
+                        <mat-step [stepControl]="secondFormGroup">
+                            <form [formGroup]="secondFormGroup" autocomplete="off">
+                                <ng-template matStepLabel>Correction</ng-template>
+                                <div fxLayout="column" fxLayoutGap="10px">
+                                    <mat-label>Received:</mat-label>
+                                    <mat-label>Dispatched:</mat-label>
+                                </div>
+                            </form>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>Croping</ng-template>
+                            <div fxLayout="column" fxLayoutGap="10px">
+                                <mat-label>Received:</mat-label>
+                                <mat-label>Dispatched:</mat-label>
+                            </div>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>Printing</ng-template>
+                            <div fxLayout="column" fxLayoutGap="10px">
+                                <mat-label>Received:</mat-label>
+                                <mat-label>Dispatched:</mat-label>
+                            </div>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>Window/V-Cut</ng-template>
+                            <div fxLayout="column" fxLayoutGap="10px">
+                                <mat-label>Received:</mat-label>
+                                <mat-label>Dispatched:</mat-label>
+                            </div>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>Lamination</ng-template>
+                            <div fxLayout="column" fxLayoutGap="10px">
+                                <mat-label>Received:</mat-label>
+                                <mat-label>Dispatched:</mat-label>
+                            </div>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>Delivered</ng-template>
+                            <div fxLayout="column" fxLayoutGap="10px">
+                                <mat-label>On:</mat-label>
+                            </div>
+                        </mat-step>
+                    </mat-vertical-stepper>
+                </mat-card>
+            </div>
         </div>
     </div>
-</perfect-scrollbar>
+
+</app-page-scroll-layout>

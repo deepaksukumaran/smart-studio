@@ -1,12 +1,8 @@
-<perfect-scrollbar style="max-height: calc(100% - 52px);">
-    <div class="page-container">
-        <div class="page-content">
-            <app-customer-profile-summary [customerDetails]="customerDetails"></app-customer-profile-summary>
-            <mat-tab-group>
-                <mat-tab label="Order History">
-                    Order History
-                </mat-tab>
-            </mat-tab-group>
-        </div>
-    </div>
-</perfect-scrollbar>
+<app-page-scroll-layout>
+    <app-customer-profile-summary [customerDetails]="customerDetails"></app-customer-profile-summary>
+    <mat-tab-group>
+        <mat-tab label="Order History">
+            Order History
+        </mat-tab>
+    </mat-tab-group>
+</app-page-scroll-layout>

@@ -1,40 +1,36 @@
-<perfect-scrollbar style="max-height: calc(100% - 52px);">
-    <div class="page-container">
-        <div class="page-content" fxLayout="column" fxLayoutGap="20px">
+<app-page-scroll-layout>
 
-            <form [formGroup]="searchForm" autocomplete="off">
-                <mat-card class="search-bar">
-                    <mat-card-content fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-                        <mat-form-field appearance="legacy" class="search-box">
-                            <mat-label>Name</mat-label>
-                            <input matInput formControlName="name">
-                        </mat-form-field>
-                        <mat-form-field appearance="legacy" class="search-box">
-                            <mat-label>Mobile #</mat-label>
-                            <input matInput formControlName="mobile">
-                        </mat-form-field>
-                        <div>
-                            <button mat-raised-button
-                                [disabled]="searchForm.value.name === '' && searchForm.value.mobile === ''"
-                                color="accent" class="btn-search" (click)="onSearch()">
-                                <mat-icon>search</mat-icon> Search
-                            </button>
-                        </div>
-                        <mat-chip-list aria-label="Fish selection" *ngIf="searchCounter>0">
-                            <mat-chip class="clear-search">
-                                <mat-icon class="clear-search__icon" (click)="onClearSearch()">close</mat-icon>Clear
-                            </mat-chip>
-                        </mat-chip-list>
-                    </mat-card-content>
-                </mat-card>
-            </form>
+    <form [formGroup]="searchForm" autocomplete="off">
+        <mat-card class="search-bar">
+            <mat-card-content fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+                <mat-form-field appearance="legacy" class="search-box">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+                <mat-form-field appearance="legacy" class="search-box">
+                    <mat-label>Mobile #</mat-label>
+                    <input matInput formControlName="mobile">
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button
+                        [disabled]="searchForm.value.name === '' && searchForm.value.mobile === ''" color="accent"
+                        class="btn-search" (click)="onSearch()">
+                        <mat-icon>search</mat-icon> Search
+                    </button>
+                </div>
+                <mat-chip-list aria-label="Fish selection" *ngIf="searchCounter>0">
+                    <mat-chip class="clear-search">
+                        <mat-icon class="clear-search__icon" (click)="onClearSearch()">close</mat-icon>Clear
+                    </mat-chip>
+                </mat-chip-list>
+            </mat-card-content>
+        </mat-card>
+    </form>
 
-            <app-customer-list-table-view [searchCriteria]="this.searchForm.value" [searchCounter]="searchCounter">
-            </app-customer-list-table-view>
+    <app-customer-list-table-view [searchCriteria]="this.searchForm.value" [searchCounter]="searchCounter">
+    </app-customer-list-table-view>
 
-        </div>
-    </div>
-</perfect-scrollbar>
+</app-page-scroll-layout>
 
 <app-floating-add-button [text]="'New Customer'" (onClick)="addNewCustomer()">
 </app-floating-add-button>
