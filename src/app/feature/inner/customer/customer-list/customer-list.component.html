@@ -36,6 +36,9 @@
     </div>
 </perfect-scrollbar>
 
-<button mat-fab class="btn-add" (click)="addNewCustomer()">
-    <mat-icon>add</mat-icon>
-</button>
+<div class="add-tray" (mouseover)="showAddText=true" (mouseleave)="showAddText=false" (click)="addNewCustomer()">
+    <button mat-fab class="add-tray__btn">
+        <mat-icon>add</mat-icon>
+    </button>
+    <span class="add-tray__text" *ngIf="showAddText">New Customer</span>
+</div>

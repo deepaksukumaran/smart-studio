@@ -1,13 +1,15 @@
-import { Component, OnInit, AfterViewInit, OnChanges, Input, ViewChild, SimpleChanges } from '@angular/core';
-import { MatSort, MatPaginator, MatDialog } from '@angular/material';
+import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { Router } from '@angular/router';
 import { ModalService } from '@shared/services/modal.service';
-import { CustomerService } from '../../customer/customer.service';
+import { merge, of as observableOf } from 'rxjs';
+import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import { CustomerAddEditComponent } from '../../customer/customer-add-edit/customer-add-edit.component';
 import { CustomerFilterParams } from '../../customer/models/customer-filter-params.model';
 import { Customer } from '../../customer/models/customer.model';
-import { merge, of as observableOf } from 'rxjs';
-import { startWith, switchMap, map, catchError } from 'rxjs/operators';
-import { CustomerAddEditComponent } from '../../customer/customer-add-edit/customer-add-edit.component';
+import { Order } from '../models/order';
+import { OrderFilterParams } from '../models/order-filter-params.model';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-order-list-table-view',
@@ -20,10 +22,10 @@ export class OrderListTableViewComponent implements AfterViewInit, OnChanges {
   itemPerPage = 10;
   isLoadingResults = true;
   isRateLimitReached = false;
-  customerList: Customer[] = [];
-  displayedColumns: string[] = ['name', 'mobile', 'phone', 'email', 'actions'];
+  orderList: Order[] = [];
+  displayedColumns: string[] = ['custName', 'phone', 'email', 'actions'];
 
-  @Input() searchCriteria: CustomerFilterParams;
+  @Input() searchCriteria: OrderFilterParams;
   @Input() searchCounter: number;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -32,7 +34,7 @@ export class OrderListTableViewComponent implements AfterViewInit, OnChanges {
     private router: Router,
     private dialog: MatDialog,
     private modalService: ModalService,
-    private customerService: CustomerService) { }
+    private orderService: OrderService) { }
 
   /* Lifecycle Hooks */
   ngOnChanges(changes: SimpleChanges) {
@@ -56,14 +58,19 @@ export class OrderListTableViewComponent implements AfterViewInit, OnChanges {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          const customerFilterParams = new CustomerFilterParams();
-          customerFilterParams.name = this.searchCriteria.name;
-          customerFilterParams.mobile = this.searchCriteria.mobile;
-          customerFilterParams.page = this.paginator.pageIndex;
-          customerFilterParams.size = this.itemPerPage;
-          customerFilterParams.sortBy = this.sort.active;
-          customerFilterParams.sortDirection = this.sort.direction;
-          return this.customerService.getAllCustomers(customerFilterParams);
+          const orderFilterParams = new OrderFilterParams();
+          orderFilterParams.custName = this.searchCriteria.custName;
+          orderFilterParams.phone = this.searchCriteria.phone;
+          orderFilterParams.email = this.searchCriteria.phone;
+          orderFilterParams.dueDate = '2019-12-24T04:18:22.750Z';
+          orderFilterParams.present = this.searchCriteria.phone;
+          orderFilterParams.priority = this.searchCriteria.phone;
+          orderFilterParams.status = this.searchCriteria.phone;
+          orderFilterParams.page = this.paginator.pageIndex;
+          orderFilterParams.size = this.itemPerPage;
+          orderFilterParams.sortBy = this.sort.active;
+          orderFilterParams.sortDirection = this.sort.direction;
+          return this.orderService.getAllOrders(orderFilterParams);
         }),
         map(data => {
           this.isLoadingResults = false;
@@ -77,21 +84,21 @@ export class OrderListTableViewComponent implements AfterViewInit, OnChanges {
           return observableOf([]);
         })
       ).subscribe(data => {
-        this.customerList = data;
+        this.orderList = data;
       });
   }
 
-  showCustomerProfile(customerId: number) {
-    this.router.navigateByUrl(`customer/${customerId}`);
+  showOrderProfile(orderId: number) {
+    // this.router.navigateByUrl(`order/${orderId}`);
   }
 
-  editCustomerProfile(customer: Customer) {
-    const dialogConfig = this.modalService.setDialogConfig(true, true, '780px', { customer: customer });
-    this.dialog.open(CustomerAddEditComponent, dialogConfig)
-      .afterClosed().subscribe(reload => {
-        if (reload) {
+  editOrderProfile(order: Order) {
+    // const dialogConfig = this.modalService.setDialogConfig(true, true, '780px', { customer: order });
+    // this.dialog.open(CustomerAddEditComponent, dialogConfig)
+    //   .afterClosed().subscribe(reload => {
+    //     if (reload) {
 
-        }
-      });
+    //     }
+    //   });
   }
 }

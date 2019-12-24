@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { InnerComponent } from './inner.component';
-import { JobCardComponent } from './order/job-card/job-card.component';
 
 @NgModule({
     imports: [
@@ -21,10 +20,6 @@ import { JobCardComponent } from './order/job-card/job-card.component';
                     {
                         path: 'order',
                         loadChildren: './order/order.module#OrderModule'
-                    },
-                    {
-                        path: 'order/:orderId',
-                        component: JobCardComponent
                     },
                 ]
             }

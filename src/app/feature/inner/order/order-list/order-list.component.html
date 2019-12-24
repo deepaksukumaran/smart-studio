@@ -6,17 +6,22 @@
                 <mat-card class="search-bar">
                     <mat-card-content fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
                         <mat-form-field appearance="legacy" class="search-box">
-                            <mat-label>First Name</mat-label>
-                            <input matInput formControlName="firstName">
+                            <mat-label>Customer Name</mat-label>
+                            <input matInput formControlName="custName">
                         </mat-form-field>
                         <mat-form-field appearance="legacy" class="search-box">
-                            <mat-label>Last Name</mat-label>
-                            <input matInput formControlName="lastName">
+                            <mat-label>Phone</mat-label>
+                            <input matInput formControlName="phone">
+                        </mat-form-field>
+                        <mat-form-field appearance="legacy" class="search-box">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email">
                         </mat-form-field>
                         <div>
-                            <button mat-raised-button
-                                [disabled]="searchForm.value.firstName === '' && searchForm.value.lastName === ''"
-                                color="accent" class="btn-search" (click)="onSearch()">
+                            <button mat-raised-button [disabled]="searchForm.value.custName === '' 
+                                && searchForm.value.phone === ''
+                                && searchForm.value.email === ''" color="accent" class="btn-search"
+                                (click)="onSearch()">
                                 <mat-icon>search</mat-icon> Search
                             </button>
                         </div>
@@ -36,6 +41,9 @@
     </div>
 </perfect-scrollbar>
 
-<button mat-fab class="btn-add" (click)="addNewOrder()">
-    <mat-icon>add</mat-icon>
-</button>
+<div class="add-tray" (mouseover)="showAddText=true" (mouseleave)="showAddText=false" (click)="addNewOrder()">
+    <button mat-fab class="add-tray__btn">
+        <mat-icon>add</mat-icon>
+    </button>
+    <span class="add-tray__text" *ngIf="showAddText">New Order</span>
+</div>

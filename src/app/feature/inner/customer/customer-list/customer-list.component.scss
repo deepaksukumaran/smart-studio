@@ -1,12 +1,26 @@
 @import "../../../../shared/styles/page.scss";
 
-.btn-add {
+.add-tray {
   position: absolute;
   bottom: 12px;
   right: 12px;
   padding: 0;
   z-index: 99;
   cursor: pointer;
+}
+
+.add-tray:hover {
+  width: 180px;
+  border-radius: 50px;
+  justify-content: safe;
+  background-color: #ff4081;
+  button {
+    box-shadow: none;
+  }
+}
+
+.add-tray__text {
+color: #ffffff;
 }
 
 .clear-search__icon {

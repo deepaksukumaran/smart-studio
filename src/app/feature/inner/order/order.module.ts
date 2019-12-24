@@ -4,9 +4,10 @@ import { SharedModule } from '@shared/shared.module';
 import { OrderRoutingModule } from './order-routing.module';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderListTableViewComponent } from './order-list-table-view/order-list-table-view.component';
+import { JobCardComponent } from './job-card/job-card.component';
 
 @NgModule({
-  declarations: [OrderListComponent, OrderListTableViewComponent],
+  declarations: [OrderListComponent, OrderListTableViewComponent, JobCardComponent],
   imports: [
     CommonModule,
     OrderRoutingModule,

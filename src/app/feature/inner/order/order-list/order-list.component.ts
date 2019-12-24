@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { ModalService } from '@shared/services/modal.service';
 import { OrderService } from '../order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-list',
@@ -15,6 +16,7 @@ export class OrderListComponent implements OnInit {
   searchForm: FormGroup;
 
   constructor(
+    private router: Router,
     private dialog: MatDialog,
     private modalService: ModalService,
     private employeeService: OrderService) { }
@@ -27,32 +29,30 @@ export class OrderListComponent implements OnInit {
   /* Public Methods */
   buildForm() {
     this.searchForm = new FormGroup({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
+      custName: new FormControl(''),
+      phone: new FormControl(''),
+      email: new FormControl(''),
     });
   }
 
   onSearch() {
-    if (this.searchForm.value.firstName !== '' || this.searchForm.value.lastName !== '') {
+    if (this.searchForm.value.custName !== '' 
+    || this.searchForm.value.phone !== ''
+    || this.searchForm.value.email !== '') {
       this.searchCounter++;
     }
   }
 
   onClearSearch() {
     this.searchForm.patchValue({
-      firstName: '',
-      lastName: '',
+      custName: '',
+      phone: '',
+      email:'',
     });
     this.searchCounter = 0;
   }
 
   addNewOrder() {
-  //   const dialogConfig = this.modalService.setDialogConfig(true, true, '780px');
-  //   this.dialog.open(EmployeeAddEditComponent, dialogConfig)
-  //     .afterClosed().subscribe(reload => {
-  //       if (reload) {
-  //         this.searchCounter++;
-  //       }
-  //     });
+    this.router.navigateByUrl(`order/new`);
   }
 }
