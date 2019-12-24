@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrderListComponent } from './order-list/order-list.component';
-import { JobCardComponent } from './job-card/job-card.component';
 
 @NgModule({
     imports: [
@@ -13,7 +13,7 @@ import { JobCardComponent } from './job-card/job-card.component';
             },
             {
                 path: 'new',
-                component: JobCardComponent,
+                component: OrderDetailsComponent,
                 data: { breadcrumb: { label: 'All' } }
             },
         ])
