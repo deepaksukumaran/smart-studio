@@ -41,9 +41,5 @@
     </div>
 </perfect-scrollbar>
 
-<div class="add-tray" (mouseover)="showAddText=true" (mouseleave)="showAddText=false" (click)="addNewOrder()">
-    <button mat-fab class="add-tray__btn">
-        <mat-icon>add</mat-icon>
-    </button>
-    <span class="add-tray__text" *ngIf="showAddText">New Order</span>
-</div>
+<app-floating-add-button [text]="'New Order'" (onClick)="addNewOrder()">
+</app-floating-add-button>

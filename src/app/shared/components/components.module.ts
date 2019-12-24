@@ -11,6 +11,7 @@ import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { BreadcrumbComponent } from './layout/breadcrumb/breadcrumb.component';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { MessageModalComponent } from './message-modal/message-modal.component';
+import { FloatingAddButtonComponent } from './floating-add-button/floating-add-button.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MessageModalComponent } from './message-modal/message-modal.component';
     LabelTextComboComponent,
     ConfirmModalComponent,
     MessageModalComponent,
+    FloatingAddButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { MessageModalComponent } from './message-modal/message-modal.component';
     InnerLayoutComponent,
     LabelTextComboComponent,
     ConfirmModalComponent,
+    FloatingAddButtonComponent,
   ]
 })
 export class ComponentsModule { }

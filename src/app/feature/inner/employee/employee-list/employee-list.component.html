@@ -36,9 +36,5 @@
     </div>
 </perfect-scrollbar>
 
-<div class="add-tray" (mouseover)="showAddText=true" (mouseleave)="showAddText=false" (click)="addNewEmployee()">
-    <button mat-fab class="add-tray__btn">
-        <mat-icon>add</mat-icon>
-    </button>
-    <span class="add-tray__text" *ngIf="showAddText">New Employee</span>
-</div>
+<app-floating-add-button [text]="'New Employee'" (onClick)="addNewEmployee()">
+</app-floating-add-button>
