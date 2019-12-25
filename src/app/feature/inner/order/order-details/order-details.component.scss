@@ -1,1 +1,9 @@
 @import "../../customer/customer-list/customer-list.component.scss";
+
+.mat-card-title {
+  display: flex;
+}
+
+.notes {
+  height: 75px;
+}

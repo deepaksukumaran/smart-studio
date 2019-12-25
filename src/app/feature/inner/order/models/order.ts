@@ -3,13 +3,13 @@ import { OrderPage } from './order-page.model';
 export class Order {
     public id: number;
     public parentOrderId: number;
+    public type: string; // album/momento
+    public subTyte: string;
+    public notes: string; // 
     public dueDate: string;
-    public notes: string;
-    public priority: string;
-    public type: string;
-    public subType: string;
+    public priority: string; // normal/medium/high
+    public pages: OrderPage[];
     public status: string;
-    public pages : OrderPage[];
 
     public customerId: string;
     public customerName: string;

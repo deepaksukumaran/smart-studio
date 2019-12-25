@@ -60,7 +60,7 @@ export class CustomerAddEditComponent implements OnInit {
     customer.createdAt = '2019-11-03';
     customer.createdBy = 28;
     this.customerService.createCustomer(customer).subscribe((data) => {
-      this.dialogRef.close(true);
+      this.dialogRef.close(data);
     });
   }
 
@@ -70,13 +70,13 @@ export class CustomerAddEditComponent implements OnInit {
     customer.updatedBy = 28;
 
     this.customerService.updateCustomer(customer).subscribe((data) => {
-      this.dialogRef.close(true);
+      this.dialogRef.close(data);
     });
   }
 
   /* Public Methods */
   onCancel() {
-    this.dialogRef.close();
+    this.dialogRef.close(null);
   }
 
   onSave() {

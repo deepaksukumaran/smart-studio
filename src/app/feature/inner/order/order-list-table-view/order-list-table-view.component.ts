@@ -23,7 +23,7 @@ export class OrderListTableViewComponent implements AfterViewInit, OnChanges {
   isLoadingResults = true;
   isRateLimitReached = false;
   orderList: Order[] = [];
-  displayedColumns: string[] = ['custName', 'phone', 'email', 'actions'];
+  displayedColumns: string[] = ['customerName', 'phone', 'email', 'actions'];
 
   @Input() searchCriteria: OrderFilterParams;
   @Input() searchCounter: number;

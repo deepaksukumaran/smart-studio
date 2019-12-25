@@ -18,21 +18,22 @@ export class CustomerListComponent implements OnInit {
   constructor(
     private customerService: CustomerService,
     private dialog: MatDialog,
-    private modalService: ModalService, ) { }
+    private modalService: ModalService) { }
 
   /* Lifecycle Hooks */
   ngOnInit() {
     this.buildForm();
   }
 
-  /* Public Methods */
-  buildForm() {
+  /* Private Methods */
+  private buildForm() {
     this.searchForm = new FormGroup({
       name: new FormControl(''),
       mobile: new FormControl(''),
     });
   }
 
+  /* Public Methods */
   onSearch() {
     if (this.searchForm.value.name !== '' || this.searchForm.value.mobile !== '') {
       this.searchCounter++;

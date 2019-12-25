@@ -26,8 +26,8 @@ export class OrderListComponent implements OnInit {
     this.buildForm();
   }
 
-  /* Public Methods */
-  buildForm() {
+  /* Private Methods */
+  private buildForm() {
     this.searchForm = new FormGroup({
       custName: new FormControl(''),
       phone: new FormControl(''),
@@ -35,10 +35,11 @@ export class OrderListComponent implements OnInit {
     });
   }
 
+  /* Public Methods */
   onSearch() {
-    if (this.searchForm.value.custName !== '' 
-    || this.searchForm.value.phone !== ''
-    || this.searchForm.value.email !== '') {
+    if (this.searchForm.value.custName !== ''
+      || this.searchForm.value.phone !== ''
+      || this.searchForm.value.email !== '') {
       this.searchCounter++;
     }
   }
@@ -47,7 +48,7 @@ export class OrderListComponent implements OnInit {
     this.searchForm.patchValue({
       custName: '',
       phone: '',
-      email:'',
+      email: '',
     });
     this.searchCounter = 0;
   }

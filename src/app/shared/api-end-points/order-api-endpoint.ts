@@ -13,7 +13,7 @@ export const OrderAPI = {
     },
     getAllOrdersUrl(params: OrderFilterParams) {
         return `${API_URL_DOMAIN}/order-details/order/order/pages`
-            + `?custname=${params.custName}&duedate=${params.dueDate}&email=${params.email}&phone=${params.phone}`
+            + `?custname=${params.custName}&email=${params.email}&phone=${params.phone}`
             + `&present=${params.present}&priority=${params.priority}&status=${params.status}`
             + `&page=${params.page}&size=${params.size}&sort=${params.sortBy}&direction=${params.sortDirection}`;
     },
