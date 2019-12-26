@@ -1,7 +1,6 @@
 <form [formGroup]="searchForm" autocomplete="off">
     <h2 mat-dialog-title>Customer Lookup</h2>
-    <mat-dialog-content class="mat-typography">
-
+    <mat-dialog-content class="dialog-content">
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
             <mat-form-field appearance="legacy" class="search-box">
                 <mat-label>Name</mat-label>
@@ -59,8 +58,6 @@
             <mat-paginator [length]="resultsLength" [pageSize]="itemPerPage" class="customer-table-paginator">
             </mat-paginator>
         </div>
-
-
     </mat-dialog-content>
     <mat-dialog-actions align="end">
         <button mat-button type="button" (click)="onCancel()">Cancel</button>

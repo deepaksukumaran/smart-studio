@@ -1,3 +1,14 @@
 .clear-search__icon {
   cursor: pointer;
 }
+
+::ng-deep {
+  .mat-header-row {
+    background-color: darkslategray;
+  }
+
+  .mat-header-cell,
+  .mat-sort-header-arrow {
+    color: #ffffff;
+  }
+}

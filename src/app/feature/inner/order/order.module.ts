@@ -8,12 +8,14 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrderListTableViewComponent } from './order-list-table-view/order-list-table-view.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderRoutingModule } from './order-routing.module';
+import { OrderDetailsPagesComponent } from './order-details-pages/order-details-pages.component';
 
 @NgModule({
   declarations: [
     OrderListComponent,
     OrderListTableViewComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    OrderDetailsPagesComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { OrderRoutingModule } from './order-routing.module';
   ],
   entryComponents: [
     CustomerLookupComponent,
-    CustomerAddEditComponent
+    CustomerAddEditComponent,
+    OrderDetailsPagesComponent
   ]
 })
 export class OrderModule { }

@@ -17,11 +17,11 @@
                         <span>{{customer.address}}</span>
                     </mat-card-content>
                     <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center" *ngIf="!customer">
-                        <button mat-stroked-button color="warn" (click)="lookupCustomer()">
+                        <button type="button" mat-stroked-button color="warn" (click)="lookupCustomer()">
                             <mat-icon>search</mat-icon>
                             Lookup
                         </button>
-                        <button mat-stroked-button color="warn" (click)="addCustomer()">
+                        <button type="button" mat-stroked-button color="warn" (click)="addCustomer()">
                             <mat-icon>person_add</mat-icon>
                             Add
                         </button>
@@ -43,136 +43,108 @@
                         <mat-form-field fxFlex>
                             <mat-label>Name</mat-label>
                             <input matInput formControlName="customerName">
+                            <mat-error *ngIf="orderForm.controls['customerName'].hasError('required')">Required
+                            </mat-error>
                         </mat-form-field>
                         <mat-form-field fxFlex fxFlexOffset="10px">
                             <mat-label>Phone #</mat-label>
                             <input matInput formControlName="phone">
+                            <mat-error *ngIf="orderForm.controls['phone'].hasError('required')">Required
+                            </mat-error>
                         </mat-form-field>
                         <mat-form-field fxFlex fxFlexOffset="10px">
                             <mat-label>E-mail</mat-label>
                             <input matInput formControlName="email">
+                            <mat-error *ngIf="orderForm.controls['email'].hasError('pattern')">Invalid
+                            </mat-error>
                         </mat-form-field>
                     </mat-card-content>
                 </mat-card>
                 <!-- / CONTACT DETAILS  -->
             </div>
-
-            <mat-card fxFlexOffset="20px">
-                <mat-card-title>Order Details</mat-card-title>
-                <mat-card-content fxLayout="column">
-                    <div fxLayout="row">
-                        <mat-form-field fxFlex>
-                            <mat-label>Order Type</mat-label>
-                            <mat-select matNativeControl formControlName="type">
-                                <mat-option value="">--</mat-option>
-                                <mat-option value="">Printing</mat-option>
-                                <mat-option value="">Design</mat-option>
-                                <mat-option value="">Momentous</mat-option>
-                                <mat-option value="">Photo Good</mat-option>
-                                <mat-option value="">Lamination</mat-option>
-                                <mat-option value="">Accessories</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <mat-form-field fxFlex fxFlexOffset="20px">
-                            <mat-label>Sub Type</mat-label>
-                            <mat-select matNativeControl formControlName="subType">
-                                <mat-option value="">--</mat-option>
-                                <mat-option value="">Album</mat-option>
-                                <mat-option value="">Priniting</mat-option>
-                                <mat-option value="">Enlargement Print</mat-option>
-                                <mat-option value="">Laser Printing</mat-option>
-                                <mat-option value="">Canvas Printing</mat-option>
-                                <mat-option value="">Print & Lamination</mat-option>
-                                <mat-option value="">Lamination Only</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div fxLayout="row">
-                        <mat-form-field fxFlex>
-                            <mat-label>Due Date</mat-label>
-                            <input matInput [matDatepicker]="dueDatePicker" formControlName="dueDate">
-                            <mat-datepicker-toggle matSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
-                            <mat-datepicker #dueDatePicker></mat-datepicker>
-                            <!-- <mat-error *ngIf="orderForm.controls['dueDate'].hasError('required')">Required
+            <div fxLayout="row" fxLayoutAlign="space-between none" fxFlexOffset="20px">
+                <!-- REQUIREMENTS  -->
+                <mat-card fxFlex="49">
+                    <mat-card-title>Requirements</mat-card-title>
+                    <mat-card-content fxLayout="column">
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex>
+                                <mat-label>Order Type</mat-label>
+                                <mat-select matNativeControl formControlName="type">
+                                    <mat-option value="">--</mat-option>
+                                    <mat-option value="">Printing</mat-option>
+                                    <mat-option value="">Design</mat-option>
+                                    <mat-option value="">Momentous</mat-option>
+                                    <mat-option value="">Photo Good</mat-option>
+                                    <mat-option value="">Lamination</mat-option>
+                                    <mat-option value="">Accessories</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="orderForm.controls['type'].hasError('required')">Required
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field fxFlex fxFlexOffset="20px">
+                                <mat-label>Sub Type</mat-label>
+                                <mat-select matNativeControl formControlName="subType">
+                                    <mat-option value="">--</mat-option>
+                                    <mat-option value="">Album</mat-option>
+                                    <mat-option value="">Priniting</mat-option>
+                                    <mat-option value="">Enlargement Print</mat-option>
+                                    <mat-option value="">Laser Printing</mat-option>
+                                    <mat-option value="">Canvas Printing</mat-option>
+                                    <mat-option value="">Print & Lamination</mat-option>
+                                    <mat-option value="">Lamination Only</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="orderForm.controls['subType'].hasError('required')">Required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex>
+                                <mat-label>Due Date</mat-label>
+                                <input matInput [matDatepicker]="dueDatePicker" formControlName="dueDate">
+                                <mat-datepicker-toggle matSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
+                                <mat-datepicker #dueDatePicker></mat-datepicker>
+                                <!-- <mat-error *ngIf="orderForm.controls['dueDate'].hasError('required')">Required
                             </mat-error> -->
+                            </mat-form-field>
+                            <mat-form-field fxFlex fxFlexOffset="20px">
+                                <mat-label>Priority</mat-label>
+                                <mat-select matNativeControl formControlName="priority">
+                                    <mat-option value="">Normal</mat-option>
+                                    <mat-option value="">Medium</mat-option>
+                                    <mat-option value="">High</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <mat-form-field fxFlex>
+                            <mat-label>Notes</mat-label>
+                            <textarea matInput class="notes" formControlName="notes"></textarea>
                         </mat-form-field>
-                        <mat-form-field fxFlex fxFlexOffset="20px">
-                            <mat-label>Priority</mat-label>
-                            <mat-select matNativeControl formControlName="priority">
-                                <mat-option value="">Normal</mat-option>
-                                <mat-option value="">Medium</mat-option>
-                                <mat-option value="">High</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <mat-form-field fxFlex>
-                        <mat-label>Notes</mat-label>
-                        <textarea matInput class="notes" formControlName="notes"></textarea>
-                    </mat-form-field>
-                </mat-card-content>
-            </mat-card>
-
-            <!-- <div fxFlex fxFlexOffset.gt-xs="20px">
-                <mat-card fxLayout="column">
-                    <mat-card-title>
-                        Work Status
-                    </mat-card-title>
-                    <mat-vertical-stepper [linear]="isLinear" #stepper>
-                        <mat-step [stepControl]="firstFormGroup">
-                            <form [formGroup]="firstFormGroup" autocomplete="off">
-                                <ng-template matStepLabel>Design</ng-template>
-                                <div fxLayout="column" fxLayoutGap="10px">
-                                    <mat-label>Received: 14/Nov/2018</mat-label>
-                                    <mat-label>Dispatched: 16/Nov/2018</mat-label>
-                                </div>
-                            </form>
-                        </mat-step>
-                        <mat-step [stepControl]="secondFormGroup">
-                            <form [formGroup]="secondFormGroup" autocomplete="off">
-                                <ng-template matStepLabel>Correction</ng-template>
-                                <div fxLayout="column" fxLayoutGap="10px">
-                                    <mat-label>Received:</mat-label>
-                                    <mat-label>Dispatched:</mat-label>
-                                </div>
-                            </form>
-                        </mat-step>
-                        <mat-step>
-                            <ng-template matStepLabel>Croping</ng-template>
-                            <div fxLayout="column" fxLayoutGap="10px">
-                                <mat-label>Received:</mat-label>
-                                <mat-label>Dispatched:</mat-label>
-                            </div>
-                        </mat-step>
-                        <mat-step>
-                            <ng-template matStepLabel>Printing</ng-template>
-                            <div fxLayout="column" fxLayoutGap="10px">
-                                <mat-label>Received:</mat-label>
-                                <mat-label>Dispatched:</mat-label>
-                            </div>
-                        </mat-step>
-                        <mat-step>
-                            <ng-template matStepLabel>Window/V-Cut</ng-template>
-                            <div fxLayout="column" fxLayoutGap="10px">
-                                <mat-label>Received:</mat-label>
-                                <mat-label>Dispatched:</mat-label>
-                            </div>
-                        </mat-step>
-                        <mat-step>
-                            <ng-template matStepLabel>Lamination</ng-template>
-                            <div fxLayout="column" fxLayoutGap="10px">
-                                <mat-label>Received:</mat-label>
-                                <mat-label>Dispatched:</mat-label>
-                            </div>
-                        </mat-step>
-                        <mat-step>
-                            <ng-template matStepLabel>Delivered</ng-template>
-                            <div fxLayout="column" fxLayoutGap="10px">
-                                <mat-label>On:</mat-label>
-                            </div>
-                        </mat-step>
-                    </mat-vertical-stepper>
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="49">
+                                <mat-label>Number of pages</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+                            <button type="button" mat-stroked-button color="warn" (click)="configurePages()" fxFlex="49"
+                                fxFlexOffset="20px">
+                                <mat-icon>page</mat-icon>
+                                Configure Pages
+                            </button>
+                        </div>
+                    </mat-card-content>
                 </mat-card>
-            </div> -->
+                <!-- / REQUIREMENTS  -->
+
+                <!-- PAYMENT DETAILS  -->
+                <mat-card fxFlex="49">
+                    <mat-card-title>Payment Details</mat-card-title>
+                    <mat-card-content fxLayout="column">
+
+                    </mat-card-content>
+                </mat-card>
+                <!-- / PAYMENT DETAILS  -->
+            </div>
         </div>
+        <button mat-button type="submit" (click)="onSave()">Save</button>
     </form>
 </app-page-scroll-layout>
