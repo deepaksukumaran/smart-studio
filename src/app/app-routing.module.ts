@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: './feature/inner/inner.module#InnerModule',
-    data: { breadcrumb: { label: 'Home' } }
+    data: { breadcrumb: 'Home' }
   },
   {
     path: 'auth',

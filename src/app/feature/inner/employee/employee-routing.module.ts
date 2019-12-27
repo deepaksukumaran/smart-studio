@@ -9,11 +9,12 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
             {
                 path: 'all',
                 component: EmployeeListComponent,
-                data: { breadcrumb: { label: 'All' } }
+                data: { breadcrumb: 'All' }
             },
             {
                 path: ':employeeId',
                 component: EmployeeProfileComponent,
+                data: { breadcrumb: 'Employee' }
             }
         ])
     ],

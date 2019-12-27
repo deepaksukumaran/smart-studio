@@ -11,15 +11,17 @@ import { InnerComponent } from './inner.component';
                     {
                         path: 'employee',
                         loadChildren: './employee/employee.module#EmployeeModule',
-                        data: { breadcrumb: { label: 'Employee' } }
+                        data: { breadcrumb: 'Employees' }
                     },
                     {
                         path: 'customer',
-                        loadChildren: './customer/customer.module#CustomerModule'
+                        loadChildren: './customer/customer.module#CustomerModule',
+                        data: { breadcrumb: 'Customers' }
                     },
                     {
                         path: 'order',
-                        loadChildren: './order/order.module#OrderModule'
+                        loadChildren: './order/order.module#OrderModule',
+                        data: { breadcrumb: 'Orders' }
                     },
                 ]
             }

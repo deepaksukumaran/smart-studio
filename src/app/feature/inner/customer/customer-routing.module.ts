@@ -9,10 +9,12 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
             {
                 path: 'all',
                 component: CustomerListComponent,
+                data: { breadcrumb: 'All' }
             },
             {
                 path: ':customerId',
                 component: CustomerProfileComponent,
+                data: { breadcrumb: 'Customer' }
             }
         ])
     ],

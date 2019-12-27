@@ -9,12 +9,12 @@ import { OrderListComponent } from './order-list/order-list.component';
             {
                 path: 'all',
                 component: OrderListComponent,
-                data: { breadcrumb: { label: 'All' } }
+                data: { breadcrumb: 'All' }
             },
             {
                 path: 'new',
                 component: OrderDetailsComponent,
-                data: { breadcrumb: { label: 'All' } }
+                data: { breadcrumb: 'New' }
             },
         ])
     ],

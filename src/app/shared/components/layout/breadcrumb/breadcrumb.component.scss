@@ -1,50 +1,22 @@
-:host {
-  width: 75%;
-}
-
-.bc-ellipsis {
-  li:last-child {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    color: #ffffff;
-  }
-}
-
-.breadcrumb {
+ol {
+  list-style: none;
   display: flex;
-  list-style-type: none;
-  font-size: 12px;
   margin-left: -40px;
+  font-size: 15px;
 
   li {
-    a {
-      font-weight: 500;
-      color: inherit;
-      text-decoration: none;
-    }
+    cursor: pointer;
+    margin-right: 5px;
   }
+
+  li a {
+    text-decoration: none;
+  }
+
   li:after {
-    content: "/";
-    margin-left: 10px;
-  }
-  li:before {
-    content: "";
-    margin-left: 10px;
+    content: "\\";
   }
   li:last-child:after {
     content: "";
-  }
-  li:last-child {
-    span {
-      color: #ffffff;
-    }
-  }
-  li:first-child {
-    a,
-    span {
-      color: black;
-      font-weight: 900;
-    }
   }
 }

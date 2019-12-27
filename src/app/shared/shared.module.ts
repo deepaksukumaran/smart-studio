@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { ComponentsModule } from './components/components.module';
 import { MaterialModule } from './modules/material.module';
+import { NumbersOnlyDirective } from './directives/numbers-only.directive';
+import { DirectivesModule } from './directives/directives.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -30,6 +32,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MaterialModule,
     ComponentsModule,
     PerfectScrollbarModule,
+    DirectivesModule,
   ],
   providers: [
     {
