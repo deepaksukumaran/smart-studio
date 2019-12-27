@@ -53,7 +53,7 @@ export class EmployeeProfileSummaryComponent implements OnInit {
 
   getEmployeePositions() {
     if (this.employeeDetails && this.employeeDetails.positions.length > 0) {
-      const positions = this.employeeDetails.positions.map((p) => { return p.name });
+      const positions = this.employeeDetails.positions.map((p) => p.name);
       return positions
         .filter(Boolean)
         .join(', ');
