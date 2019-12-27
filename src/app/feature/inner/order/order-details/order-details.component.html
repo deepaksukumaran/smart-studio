@@ -1,5 +1,6 @@
-<app-page-scroll-layout [gutter]="70">
-    <form [formGroup]="orderForm" autocomplete="off">
+<form [formGroup]="orderForm" autocomplete="off">
+    <app-page-scroll-layout [gutter]="70">
+
         <div fxLayout="column">
 
             <div fxLayout="row" fxLayoutAlign="space-between none">
@@ -36,7 +37,8 @@
                             <mat-icon>perm_identity</mat-icon>
                             Contact Details
                         </div>
-                        <button mat-stroked-button color="warn" (click)="setContactAsCustomer()" *ngIf="customer?.id">
+                        <button type="button" mat-stroked-button color="warn" (click)="setContactAsCustomer()"
+                            *ngIf="customer?.id">
                             Copy from customer</button>
                     </mat-card-title>
                     <mat-card-content fxLayout fxLayoutAlign="space-between start">
@@ -137,7 +139,6 @@
                     <mat-card-title>Notes</mat-card-title>
                     <mat-card-content fxLayout="column">
                         <mat-form-field fxFlex>
-                            <!-- <mat-label>Notes</mat-label> -->
                             <textarea matInput class="notes" formControlName="notes"></textarea>
                         </mat-form-field>
                     </mat-card-content>
@@ -145,8 +146,8 @@
                 <!-- / NOTES  -->
             </div>
         </div>
-    </form>
-</app-page-scroll-layout>
-<div class="footer">
-    <button mat-button type="submit" (click)="onSave()">Save</button>
-</div>
+    </app-page-scroll-layout>
+    <div class="footer" fxLayoutAlign="end end">
+        <button mat-button type="submit" (click)="onSave()">Save</button>
+    </div>
+</form>
