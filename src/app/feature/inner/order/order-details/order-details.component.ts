@@ -71,9 +71,9 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   configurePages() {
-    const dialogConfig = this.modalService.setDialogConfig(true, true, '1000px');
+    const dialogConfig = this.modalService.setDialogConfig(true, true, '100%', null, 'full-width-dialog');
     this.dialog.open(OrderDetailsPagesComponent, dialogConfig)
-      .afterClosed().subscribe(customer => {
+      .afterClosed().subscribe(data => {
 
       });
   }

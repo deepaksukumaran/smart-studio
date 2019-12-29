@@ -15,7 +15,7 @@ import { OrderDetailsPagesComponent } from './order-details-pages/order-details-
     OrderListComponent,
     OrderListTableViewComponent,
     OrderDetailsComponent,
-    OrderDetailsPagesComponent
+    OrderDetailsPagesComponent,
   ],
   imports: [
     CommonModule,

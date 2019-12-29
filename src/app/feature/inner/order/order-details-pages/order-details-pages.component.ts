@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource } from '@angular/material';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ActionService } from '@shared/services/action.service';
-import { SelectionModel } from '@angular/cdk/collections';
+import { OrderPageDetails } from '../models/order-page-details.model';
+import { OrderPage } from '../models/order-page.model';
 
 @Component({
   selector: 'app-order-details-pages',
@@ -12,7 +13,11 @@ import { SelectionModel } from '@angular/cdk/collections';
 export class OrderDetailsPagesComponent implements OnInit {
 
   isEditMode: boolean;
-  orderPagesFormGroup: FormGroup;
+  applyFormGroup: FormGroup;
+  pageCount = 100;
+  pages: OrderPage[] = [];
+  pageTasks: any = [];
+  highlitedPages = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,59 +28,100 @@ export class OrderDetailsPagesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initVariables();
     this.buildForm();
   }
 
-  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-  }
-
   /* Private Methods */
+  private initVariables() {
+
+    for (let i = 1; i <= this.pageCount; i++) {
+      const page = new OrderPage();
+      page.id = i;
+      page.isSelected = false;
+      page.pageDetails = [];
+      this.pages.push(page);
+    }
+  }
+
   private buildForm() {
-    this.orderPagesFormGroup = new FormGroup({});
+    this.applyFormGroup = new FormGroup({
+      type: new FormControl(''),
+      value: new FormControl(''),
+    });
+  }
+
+
+  private updatePageTask() {
+    const selectedPages = this.pages.filter((i) => i.isSelected === true);
+    let tags = [];
+    this.pages.map((i) => {
+      if (i.pageDetails.length > 0) {
+        tags = tags.concat(i.pageDetails);
+      }
+    });
+
+    const mainList = groupBy(tags, 'type');
+    let refinedMainList = [];
+    for (var mainProp in mainList) {
+      if (Object.prototype.hasOwnProperty.call(mainList, mainProp)) {
+        let childList = groupBy(mainList[mainProp], 'value');
+        let refinedChild = [];
+        for (var childProp in childList) {
+          if (Object.prototype.hasOwnProperty.call(childList, childProp)) {
+            refinedChild.push({ 'type': childProp, 'child': childList[childProp] });
+          }
+        }
+        refinedMainList.push({ 'type': mainProp, 'child': refinedChild });
+      }
+    }
+    this.pageTasks = refinedMainList;
   }
 
   /* Public Methods */
-  onCancel() {
-    this.dialogRef.close(null);
+  togglePageSelection(page: OrderPage) {
+    const index = this.pages.findIndex((i) => i.id === page.id);
+    page.isSelected = !page.isSelected;
+    this.pages[index] = page;
+    this.highlitedPages = this.pages.filter((i) => i.isSelected === true);
+  }
+
+  onApply() {
+    const selectedPages = this.pages.filter((i) => i.isSelected === true);
+    const type = this.applyFormGroup.value.type;
+    const value = this.applyFormGroup.value.value;
+    selectedPages.map((item) => {
+      const i = item.pageDetails.findIndex((data) => data.type === type && data.value === value);
+      if (i === -1) {
+        const pageDetails = new OrderPageDetails();
+        pageDetails.pageId = item.id;
+        pageDetails.type = type;
+        pageDetails.value = value;
+        item.pageDetails.push(pageDetails);
+      }
+    });
+    this.updatePageTask();
+    this.applyFormGroup.reset();
   }
 
   onSave() {
-    this.dialogRef.close(null);
+    this.dialogRef.close();
   }
 
+  onCancel() {
+    this.dialogRef.close();
+  }
 }
 
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-];
+// Accepts the array and key
+const groupBy = (array, key) => {
+  // Return the end result
+  return array.reduce((result, currentValue) => {
+    // If an array already present for key, push it to the array. Else create an array and push the object
+    (result[currentValue[key]] = result[currentValue[key]] || []).push(
+      currentValue
+    );
+    // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
+    return result;
+  }, {}); // empty object is the initial value for result object
+};

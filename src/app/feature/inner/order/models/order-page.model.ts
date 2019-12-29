@@ -5,10 +5,12 @@ export class OrderPage {
     public orderId: number;
     public pageNo: number;
     public comments: string;
-    public pageDetails: OrderPageDetails;
+    public pageDetails: OrderPageDetails[];
 
     public createdAt: string;
     public createdBy: number;
     public updatedAt: string;
     public updatedBy: number;
+
+    public isSelected: boolean;
 }

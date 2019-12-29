@@ -10,12 +10,13 @@ export class ModalService {
   constructor(private dialog: MatDialog) { }
 
   /* Public Methods */
-  setDialogConfig(disableClose: boolean, autoFocus: boolean, width: string, data: any = null): MatDialogConfig {
+  setDialogConfig(disableClose: boolean, autoFocus: boolean, width: string, data: any = null, panelClass: string = ''): MatDialogConfig {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = disableClose;
     dialogConfig.autoFocus = autoFocus;
     dialogConfig.width = width;
     dialogConfig.data = data;
+    dialogConfig.panelClass = panelClass;
     return dialogConfig;
   }
 
