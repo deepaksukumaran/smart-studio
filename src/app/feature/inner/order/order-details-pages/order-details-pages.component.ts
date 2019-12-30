@@ -130,7 +130,7 @@ export class OrderDetailsPagesComponent implements OnInit {
 
   /* Public Methods */
   togglePageSelection(page: OrderPage, event) {
-    if (event.ctrlKey) {
+    if (event.shiftKey) {
       this.doSequentialSelection(page);
     }
 

@@ -14,21 +14,24 @@
 }
 
 .page-card {
-  min-width: 40px;
-  cursor: pointer;
   background-color: lightgrey;
   padding: 5px;
   margin-bottom: 5px;
   cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 .page-name-container {
-  overflow: auto;
-  height: calc(100% - 57px);
+  // overflow: auto;
+  // height: calc(100% - 57px);
 }
 
 .page-properties-container {
-  overflow: auto;
+  // overflow: auto;
 }
 
 .selected {
