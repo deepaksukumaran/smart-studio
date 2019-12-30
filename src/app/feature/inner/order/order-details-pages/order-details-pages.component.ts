@@ -18,6 +18,7 @@ export class OrderDetailsPagesComponent implements OnInit {
   pages: OrderPage[] = [];
   pageTasks: any = [];
   highlitedPages = [];
+  pageNumbers: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,6 +28,7 @@ export class OrderDetailsPagesComponent implements OnInit {
     this.isEditMode = !actionService.isAllNullOrEmptyObject(data);
   }
 
+  /* Lifecycle Hooks */
   ngOnInit() {
     this.initVariables();
     this.buildForm();
@@ -46,11 +48,11 @@ export class OrderDetailsPagesComponent implements OnInit {
 
   private buildForm() {
     this.applyFormGroup = new FormGroup({
-      type: new FormControl(''),
-      value: new FormControl(''),
+      type: new FormControl(null),
+      value: new FormControl(null),
+      clearOnApply: new FormControl(false),
     });
   }
-
 
   private updatePageTask() {
     const selectedPages = this.pages.filter((i) => i.isSelected === true);
@@ -61,11 +63,11 @@ export class OrderDetailsPagesComponent implements OnInit {
       }
     });
 
-    const mainList = groupBy(tags, 'type');
+    const mainList = this.actionService.groupBy(tags, 'type');
     let refinedMainList = [];
     for (var mainProp in mainList) {
       if (Object.prototype.hasOwnProperty.call(mainList, mainProp)) {
-        let childList = groupBy(mainList[mainProp], 'value');
+        let childList = this.actionService.groupBy(mainList[mainProp], 'value');
         let refinedChild = [];
         for (var childProp in childList) {
           if (Object.prototype.hasOwnProperty.call(childList, childProp)) {
@@ -78,21 +80,73 @@ export class OrderDetailsPagesComponent implements OnInit {
     this.pageTasks = refinedMainList;
   }
 
+  private setSelectedPages() {
+    this.pageNumbers = '';
+    const selectedPageNumbers = this.highlitedPages.map((i) => { return i.id });
+    const result = selectedPageNumbers.reduce((r, n) => {
+      const lastSubArray = r[r.length - 1];
+
+      if (!lastSubArray || lastSubArray[lastSubArray.length - 1] !== n - 1) {
+        r.push([]);
+      }
+
+      r[r.length - 1].push(n);
+
+      return r;
+    }, []);
+
+    result.map((group) => {
+      if (group.length === 1) {
+        this.pageNumbers = this.pageNumbers + `${group[0]}, `;
+      } else {
+        this.pageNumbers = this.pageNumbers + `${group[0]} - ${group[group.length - 1]}, `;
+      }
+    });
+  }
+
+  private resetSelectedPages() {
+    this.pages = this.pages.map((i) => {
+      i.isSelected = false;
+      return i;
+    });
+  }
+
+  private doSequentialSelection(page: OrderPage) {
+    if (page.isSelected === false) {
+      const selectedPageNumbers = this.highlitedPages.map((i) => { return i.id });
+      const lesser = selectedPageNumbers.filter(function (item) {
+        return item < page.id;
+      });
+      const prevHighlitedPageNumber = Math.max(...lesser);
+      this.pages.map((i) => {
+        if (i.id > prevHighlitedPageNumber && i.id < page.id) {
+          i.isSelected = true;
+        }
+      });
+      this.highlitedPages = this.pages.filter((i) => i.isSelected === true);
+      this.setSelectedPages();
+    }
+  }
+
   /* Public Methods */
-  togglePageSelection(page: OrderPage) {
+  togglePageSelection(page: OrderPage, event) {
+    if (event.ctrlKey) {
+      this.doSequentialSelection(page);
+    }
+
     const index = this.pages.findIndex((i) => i.id === page.id);
     page.isSelected = !page.isSelected;
     this.pages[index] = page;
     this.highlitedPages = this.pages.filter((i) => i.isSelected === true);
+    this.setSelectedPages();
   }
 
   onApply() {
-    const selectedPages = this.pages.filter((i) => i.isSelected === true);
     const type = this.applyFormGroup.value.type;
     const value = this.applyFormGroup.value.value;
-    selectedPages.map((item) => {
-      const i = item.pageDetails.findIndex((data) => data.type === type && data.value === value);
-      if (i === -1) {
+    this.highlitedPages.map((item) => {
+      const index = item.pageDetails.findIndex((data) => data.type === type && data.value === value);
+      if (index === -1) {
         const pageDetails = new OrderPageDetails();
         pageDetails.pageId = item.id;
         pageDetails.type = type;
@@ -102,6 +156,7 @@ export class OrderDetailsPagesComponent implements OnInit {
     });
     this.updatePageTask();
     this.applyFormGroup.reset();
+    if (this.applyFormGroup.value.clearOnApply) { this.resetSelectedPages(); }
   }
 
   onSave() {
@@ -112,16 +167,3 @@ export class OrderDetailsPagesComponent implements OnInit {
     this.dialogRef.close();
   }
 }
-
-// Accepts the array and key
-const groupBy = (array, key) => {
-  // Return the end result
-  return array.reduce((result, currentValue) => {
-    // If an array already present for key, push it to the array. Else create an array and push the object
-    (result[currentValue[key]] = result[currentValue[key]] || []).push(
-      currentValue
-    );
-    // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
-    return result;
-  }, {}); // empty object is the initial value for result object
-};
