@@ -7,12 +7,7 @@
 
                 <!-- CUSTOMER DETAILS  -->
                 <mat-card fxFlex="24">
-                    <mat-card-header>
-                        <mat-card-title>
-                            <mat-icon>perm_identity</mat-icon>
-                            Customer
-                        </mat-card-title>
-                    </mat-card-header>
+                    <mat-card-subtitle class="mat-body-strong">Customer</mat-card-subtitle>
                     <mat-card-content *ngIf="customer">
                         <span>{{customer.name}}</span>
                         <span>{{customer.address}}</span>
@@ -33,10 +28,7 @@
                 <!-- CONTACT DETAILS  -->
                 <mat-card fxFlex="74">
                     <mat-card-title fxLayout="row" fxLayoutAlign="space-between none">
-                        <div>
-                            <mat-icon>perm_identity</mat-icon>
-                            Contact Details
-                        </div>
+                        <mat-card-subtitle class="mat-body-strong">Requirements</mat-card-subtitle>
                         <button type="button" mat-stroked-button color="warn" (click)="setContactAsCustomer()"
                             *ngIf="customer?.id">
                             Copy from customer</button>
@@ -67,7 +59,7 @@
             <div fxLayout="row" fxLayoutAlign="space-between none" fxFlexOffset="20px">
                 <!-- REQUIREMENTS  -->
                 <mat-card fxFlex="49">
-                    <mat-card-title>Requirements</mat-card-title>
+                    <mat-card-subtitle class="mat-body-strong">Requirements</mat-card-subtitle>
                     <mat-card-content fxLayout="column">
                         <div fxLayout="row">
                             <mat-form-field fxFlex>
@@ -113,8 +105,34 @@
                         </div>
                         <div fxLayout="row">
                             <mat-form-field fxFlex="49">
+                                <mat-label>Album Type</mat-label>
+                                <input matInput formControlName="type">
+                            </mat-form-field>
+                            <mat-form-field fxFlex="49" fxFlexOffset="20px">
+                                <mat-label>Album Size</mat-label>
+                                <input matInput formControlName="type">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex>
+                                <mat-label>Cover Type</mat-label>
+                                <mat-select matNativeControl formControlName="coverType">
+                                    <mat-option value="">Normal Cover</mat-option>
+                                    <mat-option value="">Fancy Cover</mat-option>
+                                    <mat-option value="">3Fold Cover</mat-option>
+                                    <mat-option value="">Leather Box</mat-option>
+                                    <mat-option value="">Shirt Box</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field fxFlex fxFlexOffset="20px">
+                                <mat-label>Bag Type</mat-label>
+                                <input matInput formControlName="bagType">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="49">
                                 <mat-label>Number of pages</mat-label>
-                                <input matInput numbersOnly maxlength="3">
+                                <input matInput numbersOnly maxlength="3" formControlName="pages">
                             </mat-form-field>
                             <div fxFlex="49" fxFlexOffset="20px">
                                 <button type="button" mat-stroked-button color="warn" (click)="configurePages()">
@@ -129,7 +147,7 @@
 
                 <!-- NOTES  -->
                 <mat-card fxFlex="49">
-                    <mat-card-title>Notes</mat-card-title>
+                    <mat-card-subtitle class="mat-body-strong">Notes</mat-card-subtitle>
                     <mat-card-content fxLayout="column">
                         <mat-form-field fxFlex>
                             <textarea matInput class="notes" formControlName="notes"></textarea>

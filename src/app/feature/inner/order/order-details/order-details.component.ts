@@ -81,7 +81,11 @@ export class OrderDetailsComponent implements OnInit {
       subType: new FormControl(null, [Validators.required]),
       dueDate: new FormControl(''),
       priority: new FormControl(''),
-      notes: new FormControl(''),
+      // type: new FormControl(''),
+      size: new FormControl(''),
+      pages: new FormControl(''),
+      coverType: new FormControl(''),
+      bagType: new FormControl(''),
     });
   }
 

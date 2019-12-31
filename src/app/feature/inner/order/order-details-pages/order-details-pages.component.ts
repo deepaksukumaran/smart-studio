@@ -42,15 +42,13 @@ export class OrderDetailsPagesComponent implements OnInit {
 
     this.porpertyList = [
       {
-        value: 'Finishing',
-        text: 'Finishing',
+        value: 'Lamination',
+        text: 'Lamination',
         child: [
-          { value: 'Matte', text: 'Matte' },
           { value: 'Glossy', text: 'Glossy' },
-          { value: 'Satin ', text: 'Satin' },
-          { value: 'Pearl', text: 'Pearl' },
-          { value: 'Lustre', text: 'Lustre' },
-          { value: 'Metallic ', text: 'Metallic' },
+          { value: 'Sparkle', text: 'Sparkle' },
+          { value: 'Silky Matt', text: 'Silky Matt' },
+          { value: 'Velvet ', text: 'Velvet' },
         ]
       },
       {
@@ -215,7 +213,10 @@ export class OrderDetailsPagesComponent implements OnInit {
       .findIndex((page) => page.id === task.pageId);
 
     this.pages[pageIndex].pageDetails = this.pages[pageIndex].pageDetails
-      .filter((detail) => detail.type !== task.type && detail.value !== task.value);
+      .filter((detail) => {
+        return detail.type !== task.type
+          || (detail.type === task.type && detail.value !== task.value);
+      });
 
     this.updatePageTask();
   }
