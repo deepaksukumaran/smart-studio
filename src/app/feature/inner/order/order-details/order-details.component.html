@@ -74,27 +74,20 @@
                                 <mat-label>Order Type</mat-label>
                                 <mat-select matNativeControl formControlName="type">
                                     <mat-option value="">--</mat-option>
-                                    <mat-option value="">Printing</mat-option>
-                                    <mat-option value="">Design</mat-option>
-                                    <mat-option value="">Momentous</mat-option>
-                                    <mat-option value="">Photo Good</mat-option>
-                                    <mat-option value="">Lamination</mat-option>
-                                    <mat-option value="">Accessories</mat-option>
+                                    <mat-option *ngFor="let type of orderTypeList" value="{{type.value}}"
+                                        (onSelectionChange)="onTypeSelected($event,type)">{{type.text}}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="orderForm.controls['type'].hasError('required')">Required
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field fxFlex fxFlexOffset="20px">
                                 <mat-label>Sub Type</mat-label>
-                                <mat-select matNativeControl formControlName="subType">
+                                <mat-select matNativeControl formControlName="subType"
+                                    [disabled]="!orderForm.value.type">
                                     <mat-option value="">--</mat-option>
-                                    <mat-option value="">Album</mat-option>
-                                    <mat-option value="">Priniting</mat-option>
-                                    <mat-option value="">Enlargement Print</mat-option>
-                                    <mat-option value="">Laser Printing</mat-option>
-                                    <mat-option value="">Canvas Printing</mat-option>
-                                    <mat-option value="">Print & Lamination</mat-option>
-                                    <mat-option value="">Lamination Only</mat-option>
+                                    <mat-option *ngFor="let type of selectedType?.child" value="{{type.value}}">
+                                        {{type.text}}
+                                    </mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="orderForm.controls['subType'].hasError('required')">Required
                                 </mat-error>

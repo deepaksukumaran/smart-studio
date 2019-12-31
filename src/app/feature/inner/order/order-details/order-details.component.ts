@@ -16,6 +16,8 @@ export class OrderDetailsComponent implements OnInit {
 
   customer: Customer;
   orderForm: FormGroup;
+  orderTypeList = [];
+  selectedType: any;
 
   constructor(
     private dialog: MatDialog,
@@ -23,10 +25,52 @@ export class OrderDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.initVariables();
     this.buildForm();
   }
 
   /* Private Methods */
+  private initVariables() {
+
+    this.orderTypeList = [
+      {
+        value: 'Printing',
+        text: 'Printing',
+        child: [
+          { value: 'Album', text: 'Album' },
+          { value: 'Priniting', text: 'Priniting' },
+          { value: 'Enlargement Print', text: 'Enlargement Print' },
+          { value: 'Laser Printing', text: 'Laser Printing' },
+          { value: 'Canvas Printing', text: 'Canvas Printing' },
+        ]
+      },
+      {
+        value: 'Design',
+        text: 'Design',
+      },
+      {
+        value: 'Momentous',
+        text: 'Momentous',
+      },
+      {
+        value: 'Photo Good',
+        text: 'Photo Good',
+      },
+      {
+        value: 'Lamination',
+        text: 'Lamination',
+        child: [
+          { value: 'Print & Lamination', text: 'Print & Lamination' },
+          { value: 'Lamination Only', text: 'Lamination Only' },
+        ]
+      },
+      {
+        value: 'Accessories',
+        text: 'Accessories',
+      },
+    ];
+  }
+
   private buildForm() {
     this.orderForm = new FormGroup({
       customerName: new FormControl(null, [Validators.required]),
@@ -71,11 +115,22 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   configurePages() {
-    const dialogConfig = this.modalService.setDialogConfig(true, true, '100%', null, 'full-width-dialog');
+    const dialogConfig = this.modalService.setDialogConfig(true, true, '100%', null, 'order-page-details-dialog');
     this.dialog.open(OrderDetailsPagesComponent, dialogConfig)
       .afterClosed().subscribe(data => {
 
       });
+  }
+
+  onTypeSelected(event, type) {
+
+    if (event.isUserInput) {
+      this.selectedType = type;
+    }
+
+    this.orderForm.patchValue({
+      subType: null,
+    });
   }
 
   onSave() {

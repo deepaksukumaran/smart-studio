@@ -37,13 +37,18 @@
 }
 
 ::ng-deep {
-  .full-width-dialog {
-    max-width: 100vw !important;
+  .order-page-details-dialog {
+    max-width: 98% !important;
+    height: 95% !important;
+    margin: auto !important;
+  }
+  .mat-dialog-content {
+    max-height: calc(100% - 80px);
   }
 }
 
-.pad-r-15 {
-  padding-right: 15px;
+.scroll-pad-r {
+  padding-right: 5px;
 }
 
 .page-numbers-line {
