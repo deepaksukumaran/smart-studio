@@ -8,6 +8,17 @@
   font-weight: bolder;
 }
 
+.page-name-filled {
+  font-size: 20px;
+  height: 10px;
+  width: 10px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 2px;
+  font-weight: bolder;
+  color: darkorange;
+}
+
 .page-card {
   background-color: lightgrey;
   padding: 5px;
@@ -33,4 +44,17 @@
 
 .pad-r-15 {
   padding-right: 15px;
+}
+
+.page-numbers-line {
+  padding: 5px;
+  background-color: beige;
+  margin-top: 10px;
+}
+
+.page-property-group {
+  margin-bottom: 8px;
+  border-top-style: ridge;
+  border-left-style: ridge;
+  border-right-style: ridge;
 }

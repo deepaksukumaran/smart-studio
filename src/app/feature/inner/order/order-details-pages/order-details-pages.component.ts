@@ -20,6 +20,8 @@ export class OrderDetailsPagesComponent implements OnInit {
   highlitedPageNumbers: number[] = [];
   pagesGroupedByType: any = [];
   pageNumbersLine: string;
+  porpertyList = [];
+  selectedProperty: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,6 +40,29 @@ export class OrderDetailsPagesComponent implements OnInit {
   /* Private Methods */
   private initVariables() {
 
+    this.porpertyList = [
+      {
+        value: 'Finishing',
+        text: 'Finishing',
+        child: [
+          { value: 'Matte', text: 'Matte' },
+          { value: 'Glossy', text: 'Glossy' },
+          { value: 'Satin ', text: 'Satin' },
+          { value: 'Pearl', text: 'Pearl' },
+          { value: 'Lustre', text: 'Lustre' },
+          { value: 'Metallic ', text: 'Metallic' },
+        ]
+      },
+      {
+        value: 'Color',
+        text: 'Color',
+        child: [
+          { value: 'Vivid', text: 'Vivid' },
+          { value: 'Four color', text: 'Four Color' },
+        ]
+      },
+    ];
+
     for (let i = 1; i <= this.pageCount; i++) {
       const page = new OrderPage();
       page.id = i;
@@ -51,7 +76,6 @@ export class OrderDetailsPagesComponent implements OnInit {
     this.applyFormGroup = new FormGroup({
       type: new FormControl(null),
       value: new FormControl(null),
-      clearOnApply: new FormControl(false),
     });
   }
 
@@ -145,6 +169,7 @@ export class OrderDetailsPagesComponent implements OnInit {
   clearSelection() {
     this.resetSelectedPages();
     this.highlitedPageNumbers = [];
+    this.pageNumbersLine = '';
   }
 
   onApply() {
@@ -170,15 +195,42 @@ export class OrderDetailsPagesComponent implements OnInit {
     });
 
     this.applyFormGroup.reset();
-    if (this.applyFormGroup.value.clearOnApply) { this.resetSelectedPages(); }
+    this.updatePageTask();
+  }
+
+  onPropertySelected(event, type) {
+
+    if (event.isUserInput) {
+      this.selectedProperty = type;
+    }
+
+    this.applyFormGroup.patchValue({
+      value: null,
+    });
+  }
+
+  removePropertyFromPage(task: any) {
+
+    const pageIndex = this.pages
+      .findIndex((page) => page.id === task.pageId);
+
+    this.pages[pageIndex].pageDetails = this.pages[pageIndex].pageDetails
+      .filter((detail) => detail.type !== task.type && detail.value !== task.value);
 
     this.updatePageTask();
   }
 
+  trackByFn(index, item) {
+    return index;
+  }
+
   onUndo() {
     this.pages = this.historyPages;
-    this.historyPages = [];
     this.updatePageTask();
+    this.resetSelectedPages();
+    this.historyPages = [];
+    this.highlitedPageNumbers = [];
+    this.pageNumbersLine = '';
   }
 
   onSave() {
