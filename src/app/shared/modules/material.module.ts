@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import {
     MatButtonToggleModule, MatCheckboxModule, MatChipsModule, MatInputModule,
     MatProgressSpinnerModule, MatRadioModule, MatSelectModule, MatStepperModule,
-    MatTabsModule, MatDatepickerModule, MatDialogModule, MatExpansionModule
+    MatTabsModule, MatDatepickerModule, MatDialogModule, MatExpansionModule, MatBadgeModule
 } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -49,6 +49,7 @@ const materialModules: any[] = [
     MatNativeDateModule,
     MatDialogModule,
     MatExpansionModule,
+    MatBadgeModule,
 ];
 
 @NgModule({

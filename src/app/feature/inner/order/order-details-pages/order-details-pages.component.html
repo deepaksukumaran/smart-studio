@@ -1,9 +1,9 @@
 <h2 mat-dialog-title>Configure Pages</h2>
-<mat-dialog-content fxLayout="row" fxLayoutAlign="space-between center">
-    <div fxFlex="40">
-        <perfect-scrollbar class="page-name-scroll">
-            <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" class="page-name-container">
-                <div fxFlex="100px" *ngFor="let page of pages" class="page-card"
+<mat-dialog-content fxLayout="row" fxLayoutAlign="space-between">
+    <div fxFlex="40" class="page-name-container">
+        <perfect-scrollbar class="page-name-scroll pad-r-15">
+            <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+                <div fxFlex="75px" *ngFor="let page of pages" class="page-card"
                     (click)="togglePageSelection(page,$event)" [ngClass]="{'selected': page.isSelected}">
                     {{page.id}}
                     <mat-icon class="page-name-check" *ngIf="page.isSelected">check</mat-icon>
@@ -11,51 +11,54 @@
             </div>
         </perfect-scrollbar>
     </div>
-    <div fxFlex="16" fxLayoutGap="20px">
-        <form fxLayout="column" [formGroup]="applyFormGroup" autocomplete="off">
-            <mat-form-field fxFlex>
-                <mat-label>Type</mat-label>
-                <mat-select matNativeControl formControlName="type">
-                    <mat-option>--</mat-option>
-                    <mat-option value="Type 1">Type 1</mat-option>
-                    <mat-option value="Type 2">Type 2</mat-option>
-                    <mat-option value="Type 3">Type 3</mat-option>
-                    <mat-option value="Type 4">Type 4</mat-option>
-                    <mat-option value="Type 5">Type 5</mat-option>
-                    <mat-option value="Type 6">Type 6</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field fxFlex fxFlexOffset="20px">
-                <mat-label>Value</mat-label>
-                <mat-select matNativeControl formControlName="value">
-                    <mat-option>--</mat-option>
-                    <mat-option value="Value 1">Value 1</mat-option>
-                    <mat-option value="Value 2">Value 2</mat-option>
-                    <mat-option value="Value 3">Value 3</mat-option>
-                    <mat-option value="Value 4">Value 4</mat-option>
-                    <mat-option value="Value 5">Value 5</mat-option>
-                    <mat-option value="Value 6">Value 6</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <div fxFlex fxFlexOffset="20px">
-                <button mat-raised-button fxFlex [disabled]="!applyFormGroup.value.type 
+    <div fxFlex="16" fxLayoutGap="20px" class="page-action-container">
+        <perfect-scrollbar class="pad-r-15">
+            <form fxLayout="column" [formGroup]="applyFormGroup" autocomplete="off">
+                <mat-form-field fxFlex>
+                    <mat-label>Type</mat-label>
+                    <mat-select matNativeControl formControlName="type">
+                        <mat-option>--</mat-option>
+                        <mat-option value="Type 1">Type 1</mat-option>
+                        <mat-option value="Type 2">Type 2</mat-option>
+                        <mat-option value="Type 3">Type 3</mat-option>
+                        <mat-option value="Type 4">Type 4</mat-option>
+                        <mat-option value="Type 5">Type 5</mat-option>
+                        <mat-option value="Type 6">Type 6</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex fxFlexOffset="20px">
+                    <mat-label>Value</mat-label>
+                    <mat-select matNativeControl formControlName="value">
+                        <mat-option>--</mat-option>
+                        <mat-option value="Value 1">Value 1</mat-option>
+                        <mat-option value="Value 2">Value 2</mat-option>
+                        <mat-option value="Value 3">Value 3</mat-option>
+                        <mat-option value="Value 4">Value 4</mat-option>
+                        <mat-option value="Value 5">Value 5</mat-option>
+                        <mat-option value="Value 6">Value 6</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex fxFlexOffset="20px">
+                    <button mat-raised-button fxFlex="48" color="accent" (click)="onUndo()"
+                        [disabled]="historyPages.length===0">
+                        <mat-icon>undo</mat-icon> Undo
+                    </button>
+                    <button mat-raised-button fxFlex="48" [disabled]="!applyFormGroup.value.type 
                             || !applyFormGroup.value.value 
-                            || highlitedPages.length === 0" class="btn-apply" color="accent" (click)="onApply()">
-                    Apply
-                </button>
+                            || highlitedPageNumbers.length === 0" class="btn-apply" color="accent" (click)="onApply()">
+                        Apply
+                    </button>
+                </div>
+            </form>
+            <div fxLayout="row" fxLayoutGap="20px">
+                {{pageNumbersLine}}
             </div>
-            <div fxFlexOffset="20px">
-                <mat-checkbox formControlName="clearOnApply">Clear selection after apply</mat-checkbox>
-            </div>
-        </form>
-        <div fxLayout="row" fxLayoutGap="20px">
-            {{pageNumbers}}
-        </div>
+        </perfect-scrollbar>
     </div>
-    <div fxFlex="40" fxLayoutGap="20px">
-        <div fxLayout="column" class="page-properties-container">
+    <div fxFlex="40" fxLayoutGap="20px" fxLayout="column" class="page-properties-container">
+        <perfect-scrollbar class="pad-r-15">
             <mat-accordion>
-                <mat-expansion-panel *ngFor="let mainTaks of pageTasks">
+                <mat-expansion-panel *ngFor="let mainTaks of pagesGroupedByType">
                     <mat-expansion-panel-header>
                         {{mainTaks.type}}
                     </mat-expansion-panel-header>
@@ -81,27 +84,17 @@
 
                 </mat-expansion-panel>
             </mat-accordion>
-            <!-- <mat-card *ngFor="let mainTaks of pageTasks">
-                <mat-card-header>
-                    <mat-card-title>{{mainTaks.type}}</mat-card-title>
-                </mat-card-header>
-                <mat-card-content fxLayout="row wrap">
-                    <mat-card *ngFor="let subTask of mainTaks.child">
-                        <mat-card-header>
-                            <mat-card-title>{{subTask.type}}</mat-card-title>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <div *ngFor="let task of subTask.child">
-                                {{task.pageId}}
-                            </div>
-                        </mat-card-content>
-                    </mat-card>
-                </mat-card-content>
-            </mat-card> -->
-        </div>
+        </perfect-scrollbar>
     </div>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-    <button mat-button type="button" (click)="onCancel()">Cancel</button>
-    <button mat-button type="button" (click)="onSave()">Save</button>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxFlex fxFlex="40" fxLayoutAlign="space-between">
+        <mat-checkbox formControlName="clearOnApply">Clear selection after apply</mat-checkbox>
+        <button mat-button type="button" (click)="clearSelection()" [disabled]="historyPages.length===0">Clear
+            Selection</button>
+    </div>
+    <div fxFlex align="end">
+        <button mat-button type="button" (click)="onCancel()">Cancel</button>
+        <button mat-button type="button" (click)="onSave()">Save</button>
+    </div>
 </mat-dialog-actions>

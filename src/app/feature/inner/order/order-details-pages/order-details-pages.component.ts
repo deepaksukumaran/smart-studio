@@ -16,9 +16,10 @@ export class OrderDetailsPagesComponent implements OnInit {
   applyFormGroup: FormGroup;
   pageCount = 100;
   pages: OrderPage[] = [];
-  pageTasks: any = [];
-  highlitedPages = [];
-  pageNumbers: string;
+  historyPages: OrderPage[] = [];
+  highlitedPageNumbers: number[] = [];
+  pagesGroupedByType: any = [];
+  pageNumbersLine: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,7 +56,6 @@ export class OrderDetailsPagesComponent implements OnInit {
   }
 
   private updatePageTask() {
-    const selectedPages = this.pages.filter((i) => i.isSelected === true);
     let tags = [];
     this.pages.map((i) => {
       if (i.pageDetails.length > 0) {
@@ -77,13 +77,12 @@ export class OrderDetailsPagesComponent implements OnInit {
         refinedMainList.push({ 'type': mainProp, 'child': refinedChild });
       }
     }
-    this.pageTasks = refinedMainList;
+    this.pagesGroupedByType = refinedMainList;
   }
 
-  private setSelectedPages() {
-    this.pageNumbers = '';
-    const selectedPageNumbers = this.highlitedPages.map((i) => { return i.id });
-    const result = selectedPageNumbers.reduce((r, n) => {
+  private setSelectedPageInOneLine() {
+    this.pageNumbersLine = '';
+    const result = this.highlitedPageNumbers.reduce((r, n) => {
       const lastSubArray = r[r.length - 1];
 
       if (!lastSubArray || lastSubArray[lastSubArray.length - 1] !== n - 1) {
@@ -97,11 +96,12 @@ export class OrderDetailsPagesComponent implements OnInit {
 
     result.map((group) => {
       if (group.length === 1) {
-        this.pageNumbers = this.pageNumbers + `${group[0]}, `;
+        this.pageNumbersLine = this.pageNumbersLine + `${group[0]}, `;
       } else {
-        this.pageNumbers = this.pageNumbers + `${group[0]} - ${group[group.length - 1]}, `;
+        this.pageNumbersLine = this.pageNumbersLine + `${group[0]} - ${group[group.length - 1]}, `;
       }
     });
+    this.pageNumbersLine = this.pageNumbersLine.replace(/,\s*$/, "");
   }
 
   private resetSelectedPages() {
@@ -113,8 +113,7 @@ export class OrderDetailsPagesComponent implements OnInit {
 
   private doSequentialSelection(page: OrderPage) {
     if (page.isSelected === false) {
-      const selectedPageNumbers = this.highlitedPages.map((i) => { return i.id });
-      const lesser = selectedPageNumbers.filter(function (item) {
+      const lesser = this.highlitedPageNumbers.filter(function (item) {
         return item < page.id;
       });
       const prevHighlitedPageNumber = Math.max(...lesser);
@@ -123,8 +122,9 @@ export class OrderDetailsPagesComponent implements OnInit {
           i.isSelected = true;
         }
       });
-      this.highlitedPages = this.pages.filter((i) => i.isSelected === true);
-      this.setSelectedPages();
+      const highlitedPages = this.pages.filter((i) => i.isSelected === true);
+      this.highlitedPageNumbers = highlitedPages.map((i) => i.id);
+      this.setSelectedPageInOneLine();
     }
   }
 
@@ -137,26 +137,48 @@ export class OrderDetailsPagesComponent implements OnInit {
     const index = this.pages.findIndex((i) => i.id === page.id);
     page.isSelected = !page.isSelected;
     this.pages[index] = page;
-    this.highlitedPages = this.pages.filter((i) => i.isSelected === true);
-    this.setSelectedPages();
+    const highlitedPages = this.pages.filter((i) => i.isSelected === true);
+    this.highlitedPageNumbers = highlitedPages.map((i) => i.id);
+    this.setSelectedPageInOneLine();
+  }
+
+  clearSelection() {
+    this.resetSelectedPages();
+    this.highlitedPageNumbers = [];
   }
 
   onApply() {
     const type = this.applyFormGroup.value.type;
     const value = this.applyFormGroup.value.value;
-    this.highlitedPages.map((item) => {
-      const index = item.pageDetails.findIndex((data) => data.type === type && data.value === value);
-      if (index === -1) {
+    this.historyPages = this.actionService.deepCopy(this.pages);
+
+    this.highlitedPageNumbers.map((number) => {
+
+      const pageIndex = this.pages
+        .findIndex((page) => page.id === number);
+
+      const pageDetailsIndex = this.pages[pageIndex].pageDetails
+        .findIndex((detail) => detail.type === type && detail.value === value);
+
+      if (pageDetailsIndex === -1) {
         const pageDetails = new OrderPageDetails();
-        pageDetails.pageId = item.id;
+        pageDetails.pageId = number;
         pageDetails.type = type;
         pageDetails.value = value;
-        item.pageDetails.push(pageDetails);
+        this.pages[pageIndex].pageDetails.push(pageDetails);
       }
     });
-    this.updatePageTask();
+
     this.applyFormGroup.reset();
     if (this.applyFormGroup.value.clearOnApply) { this.resetSelectedPages(); }
+
+    this.updatePageTask();
+  }
+
+  onUndo() {
+    this.pages = this.historyPages;
+    this.historyPages = [];
+    this.updatePageTask();
   }
 
   onSave() {
