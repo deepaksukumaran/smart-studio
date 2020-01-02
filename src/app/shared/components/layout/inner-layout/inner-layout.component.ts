@@ -1,5 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BRAND_NAME } from '@shared/configs/globals';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
@@ -11,6 +12,7 @@ import { map, shareReplay } from 'rxjs/operators';
 export class InnerLayoutComponent implements OnInit {
 
   leftNavOpen = false;
+  brandName = BRAND_NAME;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

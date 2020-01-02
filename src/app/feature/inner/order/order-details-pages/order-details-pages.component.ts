@@ -236,7 +236,7 @@ export class OrderDetailsPagesComponent implements OnInit {
       page.pageDetails.map((detail) => {
         text = text + `${detail.type} - ${detail.value}, `
       });
-      return text;
+      return text.replace(/,\s*$/, "");
     }
   }
 
