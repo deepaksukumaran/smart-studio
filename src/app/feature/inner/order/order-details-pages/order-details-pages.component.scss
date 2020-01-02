@@ -1,34 +1,20 @@
-.page-name-check {
-  font-size: 14px;
-  height: 10px;
-  width: 10px;
-  float: right;
-  margin-right: 10px;
-  margin-top: 2px;
-  font-weight: bolder;
-}
-
-.page-name-filled {
-  font-size: 20px;
-  height: 10px;
-  width: 10px;
-  float: right;
-  margin-top: -6px;
-  margin-right: 2px;
-  font-weight: bolder;
-  color: darkorange;
-}
-
 .page-card {
-  background-color: lightgrey;
-  padding: 5px;
-  margin-bottom: 5px;
+  width: 75px;
+  border-radius: 0px;
   cursor: pointer;
+
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
+
+  mat-icon {
+    margin-top: 5px;
+    margin-left: 30px;
+    margin-right: 0;
+    font-size: 18px;
+  }
 }
 
 .selected {
@@ -66,5 +52,4 @@
 
 .page-action-container {
   padding: 5px;
-  // background-color: crimson;
 }
