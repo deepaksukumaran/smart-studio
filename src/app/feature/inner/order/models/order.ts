@@ -21,3 +21,4 @@ export class Order {
     public updatedAt: string;
     public updatedBy: number;
 }
+

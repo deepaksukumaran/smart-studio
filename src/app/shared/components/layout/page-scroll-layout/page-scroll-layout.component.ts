@@ -19,7 +19,7 @@ export class PageScrollLayoutComponent implements OnInit {
     if (!this.gutter) {
       this.gutter = 52;
     }
-    let styles = {
+    const styles = {
       'max-height': `calc(100% - ${this.gutter}px)`,
       'margin-bottom': `-${this.gutter}px`
     };

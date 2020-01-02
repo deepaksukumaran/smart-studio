@@ -58,24 +58,21 @@
                     <mat-expansion-panel-header>
                         {{mainTaks.type}}
                     </mat-expansion-panel-header>
-
-                    <div fxLayout="row wrap">
-                        <mat-card *ngFor="let subTask of mainTaks.child">
-                            <mat-card-header>
-                                <mat-card-title>{{subTask.type}}</mat-card-title>
-                            </mat-card-header>
-                            <mat-card-content fxLayout="row wrap">
-                                <mat-chip-list>
-                                    <mat-chip *ngFor="let task of subTask.child">
-                                        {{task.pageId}}
-                                        <mat-icon matChipRemove *ngIf="true" (click)="removePropertyFromPage(task)">
-                                            cancel
-                                        </mat-icon>
-                                    </mat-chip>
-                                </mat-chip-list>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
+                    <mat-accordion>
+                        <mat-expansion-panel *ngFor="let subTask of mainTaks.child;trackBy: trackByFn">
+                            <mat-expansion-panel-header>
+                                {{subTask.type}}
+                            </mat-expansion-panel-header>
+                            <mat-chip-list>
+                                <mat-chip *ngFor="let task of subTask.child">
+                                    {{task.pageId}}
+                                    <mat-icon matChipRemove *ngIf="true" (click)="removePropertyFromPage(task)">
+                                        cancel
+                                    </mat-icon>
+                                </mat-chip>
+                            </mat-chip-list>
+                        </mat-expansion-panel>
+                    </mat-accordion>
                 </mat-expansion-panel>
             </mat-accordion>
         </perfect-scrollbar>
@@ -90,6 +87,5 @@
     <div fxFlex align="end">
         <button mat-button type="button" color="warn" (click)="onCancel()">Cancel</button>
         <button mat-button type="button" color="primary" (click)="onSave()">Save</button>
-
     </div>
 </mat-dialog-actions>

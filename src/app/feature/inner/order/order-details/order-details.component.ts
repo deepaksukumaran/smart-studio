@@ -86,6 +86,7 @@ export class OrderDetailsComponent implements OnInit {
       pages: new FormControl(''),
       coverType: new FormControl(''),
       bagType: new FormControl(''),
+      notes: new FormControl(''),
     });
   }
 

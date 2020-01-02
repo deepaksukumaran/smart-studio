@@ -30,7 +30,7 @@ export class BreadcrumbComponent implements OnInit {
   private subscribeEvents() {
     this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd) {
-        let root: ActivatedRoute = this.activatedRoute.root;
+        const root: ActivatedRoute = this.activatedRoute.root;
         this.breadcrumbs = this.getBreadcrumbs(root);
       }
     });
@@ -38,8 +38,8 @@ export class BreadcrumbComponent implements OnInit {
 
   private getBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: BreadCrumb[] = []) {
     const ROUTE_DATA_BREADCRUMB = 'breadcrumb';
+    const children: ActivatedRoute[] = route.children;
 
-    let children: ActivatedRoute[] = route.children;
     if (children.length === 0) {
       return breadcrumbs;
     }
@@ -52,7 +52,7 @@ export class BreadcrumbComponent implements OnInit {
         return this.getBreadcrumbs(child, url, breadcrumbs);
       }
 
-      let routeURL = child.snapshot.url.map(segment => segment.path).join('/');
+      const routeURL = child.snapshot.url.map(segment => segment.path).join('/');
 
       if (routeURL !== '') {
         url += `/${routeURL}`;
