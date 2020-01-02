@@ -181,14 +181,17 @@ export class OrderDetailsPagesComponent implements OnInit {
         .findIndex((page) => page.id === number);
 
       const pageDetailsIndex = this.pages[pageIndex].pageDetails
-        .findIndex((detail) => detail.type === type && detail.value === value);
+        .findIndex((detail) => detail.type === type);
+
+      const pageDetails = new OrderPageDetails();
+      pageDetails.pageId = number;
+      pageDetails.type = type;
+      pageDetails.value = value;
 
       if (pageDetailsIndex === -1) {
-        const pageDetails = new OrderPageDetails();
-        pageDetails.pageId = number;
-        pageDetails.type = type;
-        pageDetails.value = value;
         this.pages[pageIndex].pageDetails.push(pageDetails);
+      } else {
+        this.pages[pageIndex].pageDetails[pageDetailsIndex] = pageDetails;
       }
     });
 
@@ -223,6 +226,18 @@ export class OrderDetailsPagesComponent implements OnInit {
 
   trackByFn(index, item) {
     return index;
+  }
+
+  getToolTip(page: OrderPage) {
+    if (page.pageDetails.length === 0) {
+      return;
+    } else {
+      let text = '';
+      page.pageDetails.map((detail) => {
+        text = text + `${detail.type} - ${detail.value}, `
+      });
+      return text;
+    }
   }
 
   onUndo() {

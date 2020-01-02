@@ -4,11 +4,12 @@
         <perfect-scrollbar class="page-name-scroll scroll-pad-r">
             <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
                 <div fxFlex="75px" *ngFor="let page of pages" class="page-card"
-                    (click)="togglePageSelection(page,$event)" [ngClass]="{'selected': page.isSelected}">
+                    (click)="togglePageSelection(page,$event)" [ngClass]="{'selected': page.isSelected}"
+                    [matTooltip]="getToolTip(page)">
                     {{page.id}}
                     <mat-icon class="page-name-check" *ngIf="page.isSelected">check</mat-icon>
                     <mat-icon class="page-name-filled" *ngIf="!page.isSelected && page.pageDetails.length>0">
-                        star
+                        turned_in
                     </mat-icon>
                 </div>
             </div>
