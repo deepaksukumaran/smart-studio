@@ -31,7 +31,9 @@
                         <mat-card-subtitle class="mat-body-strong">Requirements</mat-card-subtitle>
                         <button type="button" mat-stroked-button color="warn" (click)="setContactAsCustomer()"
                             *ngIf="customer?.id">
-                            Copy from customer</button>
+                            <mat-icon>file_copy</mat-icon>
+                            Copy from customer
+                        </button>
                     </mat-card-title>
                     <mat-card-content fxLayout fxLayoutAlign="space-between start">
                         <mat-form-field fxFlex>
