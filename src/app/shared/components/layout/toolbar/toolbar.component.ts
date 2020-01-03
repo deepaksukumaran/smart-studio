@@ -29,6 +29,7 @@ export class ToolbarComponent implements OnInit {
     private employeeService: EmployeeService,
   ) { }
 
+  /* Lifecycle Hooks */
   ngOnInit() {
     this.employeeService.employeeAuthorities$.subscribe((data) => {
       this.loggedInUser = data;

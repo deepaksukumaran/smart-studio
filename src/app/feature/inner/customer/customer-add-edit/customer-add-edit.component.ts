@@ -52,7 +52,6 @@ export class CustomerAddEditComponent implements OnInit {
 
   private bindFormData() {
     if (!this.isEditMode) { return; }
-
     this.customerFormGroup.patchValue(this.customerDetails);
   }
 

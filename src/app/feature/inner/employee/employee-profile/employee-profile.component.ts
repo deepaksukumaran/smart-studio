@@ -17,10 +17,12 @@ export class EmployeeProfileComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private employeeService: EmployeeService) { }
 
+  /* Lifecycle Hooks */
   ngOnInit() {
     this.getEmployee();
   }
 
+  /* Private Methods */
   private getEmployee() {
     const employeeId = this.activatedRoute.snapshot.paramMap.get('employeeId');
     this.employeeService.getEmployee(parseInt(employeeId, 0))

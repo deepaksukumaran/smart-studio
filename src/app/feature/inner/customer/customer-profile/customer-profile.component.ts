@@ -16,6 +16,7 @@ export class CustomerProfileComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private customerService: CustomerService) { }
 
+  /* Lifecycle Hooks */
   ngOnInit() {
     this.getEmployee();
   }

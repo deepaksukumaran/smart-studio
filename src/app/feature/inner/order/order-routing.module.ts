@@ -16,6 +16,11 @@ import { OrderListComponent } from './order-list/order-list.component';
                 component: OrderDetailsComponent,
                 data: { breadcrumb: 'New' }
             },
+            {
+                path: ':orderId',
+                component: OrderDetailsComponent,
+                data: { breadcrumb: 'orderId' }
+            },
         ])
     ],
     exports: [RouterModule]

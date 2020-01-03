@@ -11,6 +11,7 @@ export class NoDataMessageComponent implements OnInit {
 
   constructor() { }
 
+  /* Lifecycle Hooks */
   ngOnInit() {
   }
 

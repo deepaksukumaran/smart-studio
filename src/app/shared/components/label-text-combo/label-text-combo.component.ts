@@ -13,6 +13,7 @@ export class LabelTextComboComponent implements OnInit {
 
   constructor() { }
 
+  /* Lifecycle Hooks */
   ngOnInit() {
   }
 

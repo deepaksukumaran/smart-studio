@@ -23,6 +23,7 @@ export class CustomerLookupComponent implements OnInit {
   searchForm: FormGroup;
   customerList: Customer[] = [];
   displayedColumns: string[] = ['name', 'mobile', 'phone', 'email', 'actions'];
+
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 

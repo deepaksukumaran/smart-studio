@@ -12,6 +12,7 @@ export class SidenavListComponent implements OnInit {
 
   constructor(private router: Router) { }
 
+  /* Lifecycle Hooks */
   ngOnInit() {
     this.initVariables();
   }

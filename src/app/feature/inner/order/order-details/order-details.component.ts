@@ -6,6 +6,7 @@ import { Customer } from '../../customer/models/customer.model';
 import { CustomerLookupComponent } from '../../customer/customer-lookup/customer-lookup.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { OrderDetailsPagesComponent } from '../order-details-pages/order-details-pages.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-order-details',
@@ -21,12 +22,16 @@ export class OrderDetailsComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
+  /* Lifecycle Hooks */
   ngOnInit() {
     this.initVariables();
     this.buildForm();
+    const orderId = this.activatedRoute.snapshot.paramMap.get('orderId');
+    debugger;
   }
 
   /* Private Methods */

@@ -10,6 +10,7 @@ export class InnerComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService) { }
 
+  /* Lifecycle Hooks */
   ngOnInit() {
     this.getLoggedInUserAuthorities();
   }

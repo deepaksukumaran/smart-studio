@@ -13,11 +13,12 @@ export class FloatingAddButtonComponent implements OnInit {
 
   constructor() { }
 
+  /* Lifecycle Hooks */
   ngOnInit() {
   }
 
+  /* Public Methods */
   add() {
     this.onClick.emit();
   }
-
 }

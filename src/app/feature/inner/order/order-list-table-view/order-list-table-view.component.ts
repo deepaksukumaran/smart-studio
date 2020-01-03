@@ -89,6 +89,6 @@ export class OrderListTableViewComponent implements AfterViewInit, OnChanges {
   }
 
   showOrderProfile(orderId: number) {
-    // this.router.navigateByUrl(`order/${orderId}`);
+    this.router.navigateByUrl(`order/${orderId}`);
   }
 }

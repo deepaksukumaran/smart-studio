@@ -22,6 +22,7 @@ export class InnerLayoutComponent implements OnInit {
 
   constructor(private breakpointObserver: BreakpointObserver) { }
 
+  /* Lifecycle Hooks */
   ngOnInit() {
 
   }

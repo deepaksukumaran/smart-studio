@@ -11,6 +11,7 @@ export class PageScrollLayoutComponent implements OnInit {
 
   constructor() { }
 
+  /* Lifecycle Hooks */
   ngOnInit() {
   }
 

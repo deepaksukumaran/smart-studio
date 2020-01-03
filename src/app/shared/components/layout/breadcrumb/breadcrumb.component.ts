@@ -52,9 +52,18 @@ export class BreadcrumbComponent implements OnInit {
 
       if (routeURL !== '') {
         url += `/${routeURL}`;
+        let label = '';
+        switch (child.snapshot.data[ROUTE_DATA_BREADCRUMB]) {
+          case 'orderId':
+            label = child.snapshot.data[ROUTE_DATA_BREADCRUMB];
+            break;
+          default:
+            label = child.snapshot.data[ROUTE_DATA_BREADCRUMB];
+            break;
+        }
 
         const breadcrumb: BreadCrumb = {
-          label: child.snapshot.data[ROUTE_DATA_BREADCRUMB],
+          label: label,
           params: child.snapshot.params,
           url: url
         };

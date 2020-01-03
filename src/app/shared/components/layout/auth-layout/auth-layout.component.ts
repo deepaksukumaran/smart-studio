@@ -9,6 +9,7 @@ export class AuthLayoutComponent implements OnInit {
 
   constructor() { }
 
+  /* Lifecycle Hooks */
   ngOnInit() {
   }
 
