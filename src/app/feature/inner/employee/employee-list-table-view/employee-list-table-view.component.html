@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8" [style.display]="employeeList.length>0 ? 'block' : 'none'">
     <div class="employee-table-container">
         <table mat-table [dataSource]="employeeList" class="employee-table" matSort matSortActive="firstName"
             matSortDisableClear matSortDirection="asc">
@@ -42,3 +42,5 @@
     </div>
     <mat-paginator [length]="resultsLength" [pageSize]="itemPerPage" class="employee-table-paginator"></mat-paginator>
 </div>
+
+<app-no-data-message [visible]="employeeList.length===0"></app-no-data-message>

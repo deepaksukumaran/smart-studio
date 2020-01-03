@@ -23,7 +23,7 @@
             </mat-chip-list>
         </div>
 
-        <div class="mat-elevation-z8">
+        <div class="mat-elevation-z8" [style.display]="customerList.length>0 ? 'block' : 'none'">
             <div class="customer-table-container">
                 <table mat-table [dataSource]="customerList" class="customer-table" matSort matSortActive="name"
                     matSortDisableClear matSortDirection="asc">
@@ -58,6 +58,9 @@
             <mat-paginator [length]="resultsLength" [pageSize]="itemPerPage" class="customer-table-paginator">
             </mat-paginator>
         </div>
+
+        <app-no-data-message [visible]="customerList.length===0"></app-no-data-message>
+
     </mat-dialog-content>
     <mat-dialog-actions align="end">
         <button mat-button type="button" color="warn" (click)="onCancel()">Cancel</button>

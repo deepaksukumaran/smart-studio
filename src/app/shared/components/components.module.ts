@@ -14,6 +14,7 @@ import { MessageModalComponent } from './message-modal/message-modal.component';
 import { FloatingAddButtonComponent } from './floating-add-button/floating-add-button.component';
 import { PageScrollLayoutComponent } from './layout/page-scroll-layout/page-scroll-layout.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NoDataMessageComponent } from './no-data-message/no-data-message.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MessageModalComponent,
     FloatingAddButtonComponent,
     PageScrollLayoutComponent,
+    NoDataMessageComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +44,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ConfirmModalComponent,
     FloatingAddButtonComponent,
     PageScrollLayoutComponent,
+    NoDataMessageComponent,
   ]
 })
 export class ComponentsModule { }

@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8" [style.display]="orderList.length>0 ? 'block' : 'none'">
     <div class="order-table-container">
         <table mat-table [dataSource]="orderList" class="order-table" matSort matSortActive="customerName"
             matSortDisableClear matSortDirection="asc">
@@ -30,3 +30,5 @@
     </div>
     <mat-paginator [length]="resultsLength" [pageSize]="itemPerPage" class="order-table-paginator"></mat-paginator>
 </div>
+
+<app-no-data-message [visible]="orderList.length===0"></app-no-data-message>
