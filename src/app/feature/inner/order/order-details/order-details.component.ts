@@ -31,7 +31,6 @@ export class OrderDetailsComponent implements OnInit {
     this.initVariables();
     this.buildForm();
     const orderId = this.activatedRoute.snapshot.paramMap.get('orderId');
-    debugger;
   }
 
   /* Private Methods */
