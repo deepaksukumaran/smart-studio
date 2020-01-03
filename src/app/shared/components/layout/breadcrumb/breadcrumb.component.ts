@@ -9,24 +9,20 @@ import { BreadCrumb } from './breadcrumb.model';
 })
 export class BreadcrumbComponent implements OnInit {
 
-  breadcrumbs: BreadCrumb[];
+  breadcrumbs: BreadCrumb[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) { }
-
-  /* Lifecycle Hooks */
-  ngOnInit() {
-    this.initVariables();
+  ) {
     this.subscribeEvents();
   }
 
-  /* Private Methods */
-  private initVariables() {
-    this.breadcrumbs = [];
+  /* Lifecycle Hooks */
+  ngOnInit() {
   }
 
+  /* Private Methods */
   private subscribeEvents() {
     this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd) {
