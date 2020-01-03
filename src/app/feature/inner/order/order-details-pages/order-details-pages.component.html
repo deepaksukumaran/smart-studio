@@ -63,7 +63,7 @@
                                 {{subTask.type}}
                             </mat-expansion-panel-header>
                             <mat-chip-list>
-                                <mat-chip *ngFor="let task of subTask.child">
+                                <mat-chip *ngFor="let task of subTask.child" class="page-chip">
                                     {{task.pageId}}
                                     <mat-icon matChipRemove (click)="removePropertyFromPage(task)">
                                         cancel

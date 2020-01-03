@@ -91,14 +91,4 @@ export class OrderListTableViewComponent implements AfterViewInit, OnChanges {
   showOrderProfile(orderId: number) {
     // this.router.navigateByUrl(`order/${orderId}`);
   }
-
-  editOrderProfile(order: Order) {
-    // const dialogConfig = this.modalService.setDialogConfig(true, true, '780px', { customer: order });
-    // this.dialog.open(CustomerAddEditComponent, dialogConfig)
-    //   .afterClosed().subscribe(reload => {
-    //     if (reload) {
-
-    //     }
-    //   });
-  }
 }

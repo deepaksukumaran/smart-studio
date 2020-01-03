@@ -53,3 +53,10 @@
 .page-action-container {
   padding: 5px;
 }
+
+.page-chip {
+  width: 75px;
+  mat-icon {
+    margin-left: auto;
+  }
+}

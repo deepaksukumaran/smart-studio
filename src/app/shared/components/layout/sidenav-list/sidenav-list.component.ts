@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav-list',
@@ -9,7 +10,7 @@ export class SidenavListComponent implements OnInit {
 
   sideMenuList: any[] = [];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.initVariables();
@@ -22,5 +23,11 @@ export class SidenavListComponent implements OnInit {
       { name: 'CUSTOMERS', icon: 'transfer_within_a_station', url: 'customer/all' },
       { name: 'ORDERS', icon: 'playlist_add', url: 'order/all' },
     ];
+  }
+
+  /* Public Methods */
+  isModuleSelected(menu) {
+    const moduleName = menu.url.split('/')[0];
+    return this.router.url.includes(moduleName);
   }
 }
