@@ -1,5 +1,5 @@
+import { EmployeePosition } from '../../other/models/employee-position.model';
 import { EmployeeAddress } from './employee-address.model';
-import { EmployeePosition } from '../../position/models/employee-position.model';
 
 export class Employee {
     public id: number;

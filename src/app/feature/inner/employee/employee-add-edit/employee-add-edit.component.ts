@@ -3,11 +3,11 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { INDIAN_STATE_LIST } from '@shared/constants/state-list.constant';
 import { ActionService } from '@shared/services/action.service';
+import { EmployeePosition } from '../../other/models/employee-position.model';
+import { PositionService } from '../../other/position.service';
 import { EmployeeConstants } from '../employee-constatnts';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../models/employee.model';
-import { PositionService } from '../../position/position.service';
-import { EmployeePosition } from '../../position/models/employee-position.model';
 
 @Component({
   selector: 'app-employee-add-edit',
