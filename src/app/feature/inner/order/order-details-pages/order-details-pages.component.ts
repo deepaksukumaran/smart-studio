@@ -87,10 +87,10 @@ export class OrderDetailsPagesComponent implements OnInit {
 
     const mainList = this.actionService.groupBy(tags, 'type');
     const refinedMainList = [];
-    for (var mainProp in mainList) {
+    for (const mainProp in mainList) {
       if (Object.prototype.hasOwnProperty.call(mainList, mainProp)) {
-        let childList = this.actionService.groupBy(mainList[mainProp], 'value');
-        let refinedChild = [];
+        const childList = this.actionService.groupBy(mainList[mainProp], 'value');
+        const refinedChild = [];
         for (const childProp in childList) {
           if (Object.prototype.hasOwnProperty.call(childList, childProp)) {
             refinedChild.push({ 'type': childProp, 'child': childList[childProp] });

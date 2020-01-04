@@ -1,0 +1,24 @@
+.custom-table-container {
+  position: relative;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.custom-table {
+  width: 100%;
+}
+
+.custom-table .table-action {
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+::ng-deep {
+  .custom-table-paginator .mat-paginator-container {
+    justify-content: flex-start;
+  }
+
+  th {
+    z-index: 0 !important;
+  }
+}
