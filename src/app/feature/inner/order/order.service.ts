@@ -18,8 +18,8 @@ export class OrderService {
     return this.http.get<ApiResponse<Order[]>>(OrderAPI.getAllOrdersUrl(employeeFilterParams));
   }
 
-  getOrder(employeeId: number): Observable<Order> {
-    return this.http.get<Order>(OrderAPI.getOrderUrl(employeeId));
+  getOrder(orderId: number): Observable<Order> {
+    return this.http.get<Order>(OrderAPI.getOrderUrl(orderId));
   }
 
   createOrder(order: Order): Observable<Order> {

@@ -6,9 +6,11 @@ import { ModalService } from '@shared/services/modal.service';
 import { CustomerAddEditComponent } from '../../customer/customer-add-edit/customer-add-edit.component';
 import { CustomerLookupComponent } from '../../customer/customer-lookup/customer-lookup.component';
 import { Customer } from '../../customer/models/customer.model';
-import { Service } from '../../other/models/service.model';
-import { OrderDetailsPagesComponent } from '../order-details-pages/order-details-pages.component';
 import { ServiceService } from '../../other/service.service';
+import { Order } from '../models/order';
+import { OrderDetailsPagesComponent } from '../order-details-pages/order-details-pages.component';
+import { OrderService } from '../order.service';
+import { DropdownItem } from '@shared/models/dropdown-item.model';
 
 @Component({
   selector: 'app-order-details',
@@ -21,20 +23,24 @@ export class OrderDetailsComponent implements OnInit {
   orderForm: FormGroup;
   orderTypeList = [];
   selectedType: any;
-  servicesList: Service[];
+  orderId: number;
+  priorityList: DropdownItem[];
 
   constructor(
     private dialog: MatDialog,
     private modalService: ModalService,
     private activatedRoute: ActivatedRoute,
     private serviceService: ServiceService,
+    private orderService: OrderService,
   ) { }
 
   /* Lifecycle Hooks */
   ngOnInit() {
     this.buildForm();
+    this.subscribeEvents();
+    this.initVariables();
     this.getAllServices();
-    const orderId = this.activatedRoute.snapshot.paramMap.get('orderId');
+    this.getOrderDetails();
   }
 
   /* Private Methods */
@@ -45,10 +51,9 @@ export class OrderDetailsComponent implements OnInit {
       email: new FormControl(null,
         [Validators.pattern('[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]),
       type: new FormControl(null, [Validators.required]),
-      subType: new FormControl(null, [Validators.required]),
+      subType: new FormControl(null),
       dueDate: new FormControl(''),
       priority: new FormControl(''),
-      // type: new FormControl(''),
       size: new FormControl(''),
       pages: new FormControl(''),
       coverType: new FormControl(''),
@@ -57,17 +62,59 @@ export class OrderDetailsComponent implements OnInit {
     });
   }
 
+  private subscribeEvents() {
+    this.orderForm.get('type').valueChanges
+      .subscribe(value => {
+        if (value) {
+          const selectedItem = this.orderTypeList.find((item) => item.name.toLowerCase() === value.toLowerCase());
+          if (selectedItem.child.length > 0) {
+            this.orderForm.get('subType').setValidators(Validators.required)
+          } else {
+            this.orderForm.get('subType').clearValidators();
+            this.orderForm.get('subType').updateValueAndValidity();
+          }
+        }
+      });
+  }
+
+  private initVariables() {
+    this.orderId = parseInt(this.activatedRoute.snapshot.paramMap.get('orderId'), 0);
+    this.priorityList = [
+      { value: 'Normal', text: 'Normal' },
+      { value: 'Medium', text: 'Medium' },
+      { value: 'High', text: 'High' }
+    ];
+  }
+
   private getAllServices() {
     this.serviceService.getAllServices().subscribe((data) => {
-      this.servicesList = data;
-
-      this.orderTypeList = this.servicesList
+      this.orderTypeList = data
         .filter((item) => item.type.toLowerCase() === 'parent');
 
       this.orderTypeList.map((item) => {
-        item.child = this.servicesList
+        item.child = data
           .filter((i) => i.type.toLowerCase() === item.name.toLowerCase());
       });
+    });
+  }
+
+  private getOrderDetails() {
+    if (this.orderId) {
+      this.orderService.getOrder(this.orderId).subscribe((data) => {
+        this.bindFormData(data);
+      });
+    }
+  }
+
+  private bindFormData(order: Order) {
+    this.orderForm.patchValue({
+      customerName: order.customerName,
+      phone: order.phone,
+      email: order.email,
+      type: order.type,
+      dueDate: order.dueDate,
+      priority: order.priority,
+      notes: order.notes
     });
   }
 
