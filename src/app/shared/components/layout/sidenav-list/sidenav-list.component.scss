@@ -17,6 +17,10 @@
   background: linear-gradient(90deg, #c137a2 3%, #313131 3%) !important;
 }
 
+.btn-sign-out {
+  background-color: blueviolet;
+}
+
 ::ng-deep {
   .mat-list-item-content {
     color: aliceblue;

@@ -42,6 +42,14 @@
                     <mat-icon class="table-action">visibility
                     </mat-icon>
                 </button>
+                <button mat-button (click)="showOrderProfile(order.id)" matTooltip="Edit">
+                    <mat-icon class="table-action">edit
+                    </mat-icon>
+                </button>
+                <button mat-button (click)="showOrderProfile(order.id)" matTooltip="Delete">
+                    <mat-icon class="table-action">delete
+                    </mat-icon>
+                </button>
             </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true">

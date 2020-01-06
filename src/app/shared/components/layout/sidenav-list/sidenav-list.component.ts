@@ -31,4 +31,8 @@ export class SidenavListComponent implements OnInit {
     const moduleName = menu.url.split('/')[0];
     return this.router.url.includes(moduleName);
   }
+
+  logout() {
+    this.router.navigateByUrl('auth/login');
+  }
 }

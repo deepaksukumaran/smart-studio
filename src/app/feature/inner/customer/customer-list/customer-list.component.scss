@@ -2,6 +2,10 @@
   cursor: pointer;
 }
 
+.search-bar {
+  padding: 8px 16px 8px 16px;
+}
+
 ::ng-deep {
   tr.mat-header-row {
     background-color: #f5f5f5;
