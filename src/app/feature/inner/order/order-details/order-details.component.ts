@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerAddEditComponent } from '../../customer/customer-add-edit/customer-add-edit.component';
-import { ModalService } from '@shared/services/modal.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { Customer } from '../../customer/models/customer.model';
-import { CustomerLookupComponent } from '../../customer/customer-lookup/customer-lookup.component';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { OrderDetailsPagesComponent } from '../order-details-pages/order-details-pages.component';
 import { ActivatedRoute } from '@angular/router';
+import { ModalService } from '@shared/services/modal.service';
+import { CustomerAddEditComponent } from '../../customer/customer-add-edit/customer-add-edit.component';
+import { CustomerLookupComponent } from '../../customer/customer-lookup/customer-lookup.component';
+import { Customer } from '../../customer/models/customer.model';
+import { Service } from '../../other/models/service.model';
+import { OrderDetailsPagesComponent } from '../order-details-pages/order-details-pages.component';
+import { ServiceService } from '../../other/service.service';
 
 @Component({
   selector: 'app-order-details',
@@ -19,62 +21,23 @@ export class OrderDetailsComponent implements OnInit {
   orderForm: FormGroup;
   orderTypeList = [];
   selectedType: any;
+  servicesList: Service[];
 
   constructor(
     private dialog: MatDialog,
     private modalService: ModalService,
     private activatedRoute: ActivatedRoute,
+    private serviceService: ServiceService,
   ) { }
 
   /* Lifecycle Hooks */
   ngOnInit() {
-    this.initVariables();
     this.buildForm();
+    this.getAllServices();
     const orderId = this.activatedRoute.snapshot.paramMap.get('orderId');
   }
 
   /* Private Methods */
-  private initVariables() {
-
-    this.orderTypeList = [
-      {
-        value: 'Printing',
-        text: 'Printing',
-        child: [
-          { value: 'Album', text: 'Album' },
-          { value: 'Priniting', text: 'Priniting' },
-          { value: 'Enlargement Print', text: 'Enlargement Print' },
-          { value: 'Laser Printing', text: 'Laser Printing' },
-          { value: 'Canvas Printing', text: 'Canvas Printing' },
-        ]
-      },
-      {
-        value: 'Design',
-        text: 'Design',
-      },
-      {
-        value: 'Momentous',
-        text: 'Momentous',
-      },
-      {
-        value: 'Photo Good',
-        text: 'Photo Good',
-      },
-      {
-        value: 'Lamination',
-        text: 'Lamination',
-        child: [
-          { value: 'Print & Lamination', text: 'Print & Lamination' },
-          { value: 'Lamination Only', text: 'Lamination Only' },
-        ]
-      },
-      {
-        value: 'Accessories',
-        text: 'Accessories',
-      },
-    ];
-  }
-
   private buildForm() {
     this.orderForm = new FormGroup({
       customerName: new FormControl(null, [Validators.required]),
@@ -91,6 +54,20 @@ export class OrderDetailsComponent implements OnInit {
       coverType: new FormControl(''),
       bagType: new FormControl(''),
       notes: new FormControl(''),
+    });
+  }
+
+  private getAllServices() {
+    this.serviceService.getAllServices().subscribe((data) => {
+      this.servicesList = data;
+
+      this.orderTypeList = this.servicesList
+        .filter((item) => item.type.toLowerCase() === 'parent');
+
+      this.orderTypeList.map((item) => {
+        item.child = this.servicesList
+          .filter((i) => i.type.toLowerCase() === item.name.toLowerCase());
+      });
     });
   }
 

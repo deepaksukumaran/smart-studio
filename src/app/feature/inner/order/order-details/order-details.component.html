@@ -68,8 +68,8 @@
                                 <mat-label>Order Type</mat-label>
                                 <mat-select matNativeControl formControlName="type">
                                     <mat-option value="">--</mat-option>
-                                    <mat-option *ngFor="let type of orderTypeList" value="{{type.value}}"
-                                        (onSelectionChange)="onTypeSelected($event,type)">{{type.text}}</mat-option>
+                                    <mat-option *ngFor="let type of orderTypeList" value="{{type.name}}"
+                                        (onSelectionChange)="onTypeSelected($event,type)">{{type.name}}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="orderForm.controls['type'].hasError('required')">Required
                                 </mat-error>
@@ -77,10 +77,10 @@
                             <mat-form-field fxFlex fxFlexOffset="20px">
                                 <mat-label>Sub Type</mat-label>
                                 <mat-select matNativeControl formControlName="subType"
-                                    [disabled]="!orderForm.value.type">
+                                    [disabled]="!orderForm.value.type || selectedType?.child.length === 0">
                                     <mat-option value="">--</mat-option>
-                                    <mat-option *ngFor="let type of selectedType?.child" value="{{type.value}}">
-                                        {{type.text}}
+                                    <mat-option *ngFor="let type of selectedType?.child" value="{{type.name}}">
+                                        {{type.name}}
                                     </mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="orderForm.controls['subType'].hasError('required')">Required

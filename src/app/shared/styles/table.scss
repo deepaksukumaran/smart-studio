@@ -1,6 +1,5 @@
 .custom-table-container {
   position: relative;
-  // max-height: 400px;
   overflow: auto;
 }
 
@@ -17,6 +16,7 @@
 ::ng-deep {
   .custom-table-paginator .mat-paginator-container {
     justify-content: flex-start !important;
+    min-height: 40px;
   }
 
   .custom-table-paginator .mat-paginator-navigation-previous:not([disabled="true"]),
