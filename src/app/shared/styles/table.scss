@@ -1,6 +1,6 @@
 .custom-table-container {
   position: relative;
-  max-height: 400px;
+  // max-height: 400px;
   overflow: auto;
 }
 
@@ -16,7 +16,19 @@
 
 ::ng-deep {
   .custom-table-paginator .mat-paginator-container {
-    justify-content: flex-start;
+    justify-content: flex-start !important;
+  }
+
+  .custom-table-paginator .mat-paginator-navigation-previous:not([disabled="true"]),
+  .custom-table-paginator .mat-paginator-navigation-next:not([disabled="true"]) {
+    color: #ffffff;
+    background-color: blue;
+    border-radius: 25px;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    line-height: 30px;
   }
 
   th {

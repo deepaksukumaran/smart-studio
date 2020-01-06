@@ -1,44 +1,42 @@
-<div [style.display]="employeeList.length>0 ? 'block' : 'none'">
-    <div class="custom-table-container">
-        <table mat-table [dataSource]="employeeList" class="custom-table" matSort matSortActive="firstName"
-            matSortDisableClear matSortDirection="asc">
-            <ng-container matColumnDef="firstName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-                <td mat-cell *matCellDef="let employee">{{employee.firstName}} {{employee.lastName}}</td>
-            </ng-container>
-            <ng-container matColumnDef="gender">
-                <th mat-header-cell *matHeaderCellDef>Gender</th>
-                <td mat-cell *matCellDef="let employee">{{employee.gender}}</td>
-            </ng-container>
-            <ng-container matColumnDef="phone">
-                <th mat-header-cell *matHeaderCellDef>Phone</th>
-                <td mat-cell *matCellDef="let employee">{{employee.phone}}</td>
-            </ng-container>
-            <ng-container matColumnDef="email">
-                <th mat-header-cell *matHeaderCellDef>E-Mail</th>
-                <td mat-cell *matCellDef="let employee">{{employee.email}}</td>
-            </ng-container>
-            <ng-container matColumnDef="dob">
-                <th mat-header-cell *matHeaderCellDef>Date of Birth</th>
-                <td mat-cell *matCellDef="let employee">{{employee.dob | date}}</td>
-            </ng-container>
-            <ng-container matColumnDef="actions">
-                <th mat-header-cell *matHeaderCellDef></th>
-                <td mat-cell *matCellDef="let employee" class="custom-table-action">
-                    <mat-icon class="table-action" matTooltip="View" (click)="showEmployeeProfile(employee.id)">
-                        visibility</mat-icon>
-                    <mat-icon class="table-action" matTooltip="Edit" (click)="editEmployeeProfile(employee)">edit
-                    </mat-icon>
-                </td>
-            </ng-container>
+<div class="custom-table-container" [style.display]="employeeList.length>0 ? 'block' : 'none'">
+    <table mat-table [dataSource]="employeeList" class="custom-table" matSort matSortActive="firstName"
+        matSortDisableClear matSortDirection="asc">
+        <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let employee">{{employee.firstName}} {{employee.lastName}}</td>
+        </ng-container>
+        <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef>Gender</th>
+            <td mat-cell *matCellDef="let employee">{{employee.gender}}</td>
+        </ng-container>
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef>Phone</th>
+            <td mat-cell *matCellDef="let employee">{{employee.phone}}</td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>E-Mail</th>
+            <td mat-cell *matCellDef="let employee">{{employee.email}}</td>
+        </ng-container>
+        <ng-container matColumnDef="dob">
+            <th mat-header-cell *matHeaderCellDef>Date of Birth</th>
+            <td mat-cell *matCellDef="let employee">{{employee.dob | date}}</td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let employee" class="custom-table-action">
+                <mat-icon class="table-action" matTooltip="View" (click)="showEmployeeProfile(employee.id)">
+                    visibility</mat-icon>
+                <mat-icon class="table-action" matTooltip="Edit" (click)="editEmployeeProfile(employee)">edit
+                </mat-icon>
+            </td>
+        </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true">
-            </tr>
-            <tr mat-row class="employee-row" *matRowDef="let row; columns: displayedColumns;">
-            </tr>
-        </table>
-    </div>
-    <mat-paginator [length]="resultsLength" [pageSize]="itemPerPage" class="employee-table-paginator"></mat-paginator>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true">
+        </tr>
+        <tr mat-row class="employee-row" *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+    </table>
+    <mat-paginator [length]="resultsLength" [pageSize]="itemPerPage" class="custom-table-paginator"></mat-paginator>
 </div>
 
 <app-no-data-message [visible]="employeeList.length===0"></app-no-data-message>
