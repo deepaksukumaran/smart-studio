@@ -40,12 +40,23 @@ export class CustomerListComponent implements OnInit {
     }
   }
 
-  onClearSearch() {
-    this.searchForm.patchValue({
-      name: '',
-      mobile: '',
-    });
-    this.searchCounter = 0;
+  onClearSearch(field: string) {
+    switch (field) {
+      case 'name':
+        this.searchForm.patchValue({ name: '' });
+        break;
+      case 'mobile':
+        this.searchForm.patchValue({ mobile: '' });
+        break;
+      default:
+        this.searchForm.patchValue({ name: '', mobile: '', });
+        this.searchCounter = 0;
+        break;
+    }
+
+    if (this.searchCounter > 0) {
+      this.searchCounter--;
+    }
   }
 
   addNewCustomer() {

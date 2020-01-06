@@ -39,12 +39,23 @@ export class EmployeeListComponent implements OnInit {
     }
   }
 
-  onClearSearch() {
-    this.searchForm.patchValue({
-      firstName: '',
-      lastName: '',
-    });
-    this.searchCounter = 0;
+  onClearSearch(field: string) {
+    switch (field) {
+      case 'firstName':
+        this.searchForm.patchValue({ firstName: '' });
+        break;
+      case 'lastName':
+        this.searchForm.patchValue({ lastName: '' });
+        break;
+      default:
+        this.searchForm.patchValue({ firstName: '', lastName: '', });
+        this.searchCounter = 0;
+        break;
+    }
+
+    if (this.searchCounter > 0) {
+      this.searchCounter--;
+    }
   }
 
   addNewEmployee() {

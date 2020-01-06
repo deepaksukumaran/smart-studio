@@ -44,13 +44,26 @@ export class OrderListComponent implements OnInit {
     }
   }
 
-  onClearSearch() {
-    this.searchForm.patchValue({
-      custName: '',
-      phone: '',
-      email: '',
-    });
-    this.searchCounter = 0;
+  onClearSearch(field: string) {
+    switch (field) {
+      case 'custName':
+        this.searchForm.patchValue({ custName: '' });
+        break;
+      case 'phone':
+        this.searchForm.patchValue({ phone: '' });
+        break;
+      case 'email':
+        this.searchForm.patchValue({ email: '' });
+        break;
+      default:
+        this.searchForm.patchValue({ custName: '', phone: '', email: '', });
+        this.searchCounter = 0;
+        break;
+    }
+
+    if (this.searchCounter > 0) {
+      this.searchCounter--;
+    }
   }
 
   addNewOrder() {
