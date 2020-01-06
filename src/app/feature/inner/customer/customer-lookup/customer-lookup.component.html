@@ -23,39 +23,41 @@
             </mat-chip-list>
         </div>
 
-        <div class="mat-elevation-z8" [style.display]="customerList.length>0 ? 'block' : 'none'">
-            <div class="customer-table-container">
-                <table mat-table [dataSource]="customerList" class="customer-table" matSort matSortActive="name"
-                    matSortDisableClear matSortDirection="asc">
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-                        <td mat-cell *matCellDef="let customer">{{customer.name}}</td>
-                    </ng-container>
-                    <ng-container matColumnDef="mobile">
-                        <th mat-header-cell *matHeaderCellDef>Mobile</th>
-                        <td mat-cell *matCellDef="let customer">{{customer.mobile}}</td>
-                    </ng-container>
-                    <ng-container matColumnDef="phone">
-                        <th mat-header-cell *matHeaderCellDef>Phone</th>
-                        <td mat-cell *matCellDef="let customer">{{customer.phone}}</td>
-                    </ng-container>
-                    <ng-container matColumnDef="email">
-                        <th mat-header-cell *matHeaderCellDef>E-mail</th>
-                        <td mat-cell *matCellDef="let customer">{{customer.email}}</td>
-                    </ng-container>
-                    <ng-container matColumnDef="actions">
-                        <th mat-header-cell *matHeaderCellDef></th>
-                        <td mat-cell *matCellDef="let customer" class="customer-action">
-                            <button mat-raised-button (click)="attachCustomerToOrder(customer)">Attach</button>
-                        </td>
-                    </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true">
-                    </tr>
-                    <tr mat-row class="customer-row" *matRowDef="let row; columns: displayedColumns;">
-                    </tr>
-                </table>
-            </div>
-            <mat-paginator [length]="resultsLength" [pageSize]="itemPerPage" class="customer-table-paginator">
+        <div class="custom-table-container" [style.display]="customerList.length>0 ? 'block' : 'none'">
+            <table mat-table [dataSource]="customerList" class="custom-table" matSort matSortActive="name"
+                matSortDisableClear matSortDirection="asc">
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                    <td mat-cell *matCellDef="let customer">{{customer.name}}</td>
+                </ng-container>
+                <ng-container matColumnDef="mobile">
+                    <th mat-header-cell *matHeaderCellDef>Mobile</th>
+                    <td mat-cell *matCellDef="let customer">{{customer.mobile}}</td>
+                </ng-container>
+                <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef>Phone</th>
+                    <td mat-cell *matCellDef="let customer">{{customer.phone}}</td>
+                </ng-container>
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef>E-mail</th>
+                    <td mat-cell *matCellDef="let customer">{{customer.email}}</td>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let customer" class="customer-action">
+                        <button mat-button (click)="attachCustomerToOrder(customer)">
+                            <mat-icon class="table-action" matTooltip="Attach">
+                                call_merge
+                            </mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true">
+                </tr>
+                <tr mat-row class="customer-row" *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+            </table>
+            <mat-paginator [length]="resultsLength" [pageSize]="itemPerPage" class="custom-table-paginator">
             </mat-paginator>
         </div>
 
