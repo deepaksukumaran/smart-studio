@@ -20,12 +20,12 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let customer" class="customer-action">
-                <button mat-button (click)="showCustomerProfile(customer.id)">
-                    <mat-icon class="table-action" matTooltip="View">
+                <button mat-button (click)="showCustomerProfile(customer.id)" matTooltip="View">
+                    <mat-icon class="table-action">
                         visibility</mat-icon>
                 </button>
-                <button mat-button (click)="editCustomerProfile(customer)">
-                    <mat-icon class="table-action" matTooltip="Edit">edit
+                <button mat-button (click)="editCustomerProfile(customer)" matTooltip="Edit">
+                    <mat-icon class="table-action">edit
                     </mat-icon>
                 </button>
             </td>
