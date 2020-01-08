@@ -10,6 +10,7 @@ import { Customer } from '../../customer/models/customer.model';
 import { Order } from '../models/order';
 import { OrderFilterParams } from '../models/order-filter-params.model';
 import { OrderService } from '../order.service';
+import { ConfirmModalComponent } from '@shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-order-list-table-view',
@@ -91,4 +92,14 @@ export class OrderListTableViewComponent implements AfterViewInit, OnChanges {
   showOrderProfile(orderId: number) {
     this.router.navigateByUrl(`order/${orderId}`);
   }
+
+  // deleteOrder(orderId: number) {
+  //   const dialogConfig = this.modalService.setDialogConfig(true, true, '780px', 'hhh');
+  //   this.dialog.open(ConfirmModalComponent, dialogConfig)
+  //     .afterClosed().subscribe(flag => {
+  //       if (flag) {
+  //         debugger;
+  //       }
+  //     });
+  // }
 }

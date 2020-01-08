@@ -24,13 +24,11 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let employee" class="custom-table-action">
-                <button mat-button (click)="showEmployeeProfile(employee.id)" matTooltip="View">
-                    <mat-icon class="table-action">
-                        visibility</mat-icon>
+                <button mat-button (click)="showEmployeeProfile(employee.id)" matTooltip="View" class="table-action">
+                    <mat-icon> visibility</mat-icon>
                 </button>
-                <button mat-button (click)="editEmployeeProfile(employee)" matTooltip="Edit">
-                    <mat-icon class="table-action">edit
-                    </mat-icon>
+                <button mat-button (click)="editEmployeeProfile(employee)" matTooltip="Edit" class="table-action">
+                    <mat-icon>edit </mat-icon>
                 </button>
             </td>
         </ng-container>

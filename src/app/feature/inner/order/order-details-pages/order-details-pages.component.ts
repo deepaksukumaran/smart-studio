@@ -28,6 +28,7 @@ export class OrderDetailsPagesComponent implements OnInit {
     private actionService: ActionService,
     private dialogRef: MatDialogRef<OrderDetailsPagesComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
+    this.pageCount = data.pages
     this.isEditMode = !actionService.isAllNullOrEmptyObject(data);
   }
 
@@ -58,6 +59,11 @@ export class OrderDetailsPagesComponent implements OnInit {
           { value: 'Vivid', text: 'Vivid' },
           { value: 'Four color', text: 'Four Color' },
         ]
+      },
+      {
+        value: 'Notes',
+        text: 'Notes',
+        child: []
       },
     ];
 

@@ -1,5 +1,5 @@
 <form [formGroup]="orderForm" autocomplete="off">
-    <app-page-scroll-layout [gutter]="70">
+    <app-page-scroll-layout [gutter]="40">
 
         <div fxLayout="column">
 
@@ -137,7 +137,8 @@
                                 <input matInput numbersOnly maxlength="3" formControlName="pages">
                             </mat-form-field>
                             <div fxFlex="49" fxFlexOffset="20px">
-                                <button type="button" mat-stroked-button color="warn" (click)="configurePages()">
+                                <button type="button" mat-stroked-button color="warn" (click)="configurePages()"
+                                    [disabled]="orderForm.value.pages === ''">
                                     <mat-icon>pages</mat-icon>
                                     Configure Pages
                                 </button>
@@ -161,7 +162,7 @@
         </div>
     </app-page-scroll-layout>
     <div class="footer" fxLayoutAlign="end end">
-        <button mat-button type="submit" (click)="onSave()" class="btn-footer-save">
+        <button mat-button type="submit" (click)="onSave()">
             <mat-icon>save</mat-icon>
         </button>
     </div>

@@ -148,7 +148,7 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   configurePages() {
-    const dialogConfig = this.modalService.setDialogConfig(true, true, '100%', null, 'order-page-details-dialog');
+    const dialogConfig = this.modalService.setDialogConfig(true, true, '100%', { pages: parseInt(this.orderForm.value.pages, 0) }, 'order-page-details-dialog');
     this.dialog.open(OrderDetailsPagesComponent, dialogConfig)
       .afterClosed().subscribe(data => {
 

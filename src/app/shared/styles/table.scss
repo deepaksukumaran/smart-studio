@@ -8,7 +8,13 @@
 }
 
 .custom-table .table-action {
-  font-size: 20px;
+  width: 30px !important;
+  min-width: unset !important;
+
+  mat-icon {
+    font-size: 18px;
+    margin-left: -12px;
+  }
 }
 
 ::ng-deep {

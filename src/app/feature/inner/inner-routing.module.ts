@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { InnerComponent } from './inner.component';
+import { PageNotFoundComponent } from '@shared/components/page-not-found/page-not-found.component';
 
 @NgModule({
     imports: [
@@ -23,6 +24,10 @@ import { InnerComponent } from './inner.component';
                         loadChildren: './order/order.module#OrderModule',
                         data: { breadcrumb: 'Orders' }
                     },
+                    // {
+                    //     path: '**',
+                    //     component: PageNotFoundComponent
+                    // }
                 ]
             }
         ])

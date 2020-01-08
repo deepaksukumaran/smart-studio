@@ -26,11 +26,13 @@
                 </mat-form-field>
                 <mat-form-field fxFlex fxFlexOffset="20px">
                     <mat-label>Value</mat-label>
-                    <mat-select matNativeControl formControlName="value" [disabled]="!applyFormGroup.value.type">
+                    <mat-select matNativeControl formControlName="value" [disabled]="!applyFormGroup.value.type"
+                        *ngIf="applyFormGroup.value.type !== 'Notes'">
                         <mat-option>--</mat-option>
                         <mat-option *ngFor="let type of selectedProperty?.child" value="{{type.value}}">{{type.text}}
                         </mat-option>
                     </mat-select>
+                    <input matInput formControlName="value" *ngIf="applyFormGroup.value.type === 'Notes'">
                 </mat-form-field>
                 <div fxLayout.lt-md="column" fxLayoutAlign="space-between center" fxFlex fxFlexOffset="20px">
                     <button mat-raised-button fxFlex="48" color="accent" (click)="onUndo()"

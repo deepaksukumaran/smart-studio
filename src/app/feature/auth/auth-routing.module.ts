@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from '@shared/components/page-not-found/page-not-found.component';
 
 @NgModule({
     imports: [
@@ -13,7 +14,11 @@ import { LoginComponent } from './login/login.component';
                         path: 'login',
                         component: LoginComponent,
                     }]
-            }
+            },
+            // {
+            //     path: '**',
+            //     component: PageNotFoundComponent
+            // }
         ])
     ],
     exports: [RouterModule]

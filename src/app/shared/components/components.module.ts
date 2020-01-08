@@ -15,6 +15,7 @@ import { FloatingAddButtonComponent } from './floating-add-button/floating-add-b
 import { PageScrollLayoutComponent } from './layout/page-scroll-layout/page-scroll-layout.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NoDataMessageComponent } from './no-data-message/no-data-message.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NoDataMessageComponent } from './no-data-message/no-data-message.compon
     FloatingAddButtonComponent,
     PageScrollLayoutComponent,
     NoDataMessageComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +47,7 @@ import { NoDataMessageComponent } from './no-data-message/no-data-message.compon
     FloatingAddButtonComponent,
     PageScrollLayoutComponent,
     NoDataMessageComponent,
+    PageNotFoundComponent,
   ]
 })
 export class ComponentsModule { }
