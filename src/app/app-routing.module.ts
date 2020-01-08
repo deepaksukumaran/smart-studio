@@ -3,13 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: './feature/auth/auth.module#AuthModule'
+  },
+  {
     path: '',
     loadChildren: './feature/inner/inner.module#InnerModule',
     data: { breadcrumb: 'Home' }
   },
   {
-    path: 'auth',
-    loadChildren: './feature/auth/auth.module#AuthModule'
+    path: '**',
+    redirectTo: 'auth/login'
   }
 ];
 

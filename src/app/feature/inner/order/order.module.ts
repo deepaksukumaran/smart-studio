@@ -9,6 +9,7 @@ import { OrderListTableViewComponent } from './order-list-table-view/order-list-
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderRoutingModule } from './order-routing.module';
 import { OrderDetailsPagesComponent } from './order-details-pages/order-details-pages.component';
+import { OrderDetailsViewComponent } from './order-details-view/order-details-view.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { OrderDetailsPagesComponent } from './order-details-pages/order-details-
     OrderListTableViewComponent,
     OrderDetailsComponent,
     OrderDetailsPagesComponent,
+    OrderDetailsViewComponent,
   ],
   imports: [
     CommonModule,

@@ -30,6 +30,7 @@
   }
   .mat-dialog-content {
     max-height: calc(100% - 80px);
+    min-height: calc(100% - 80px);
   }
 }
 

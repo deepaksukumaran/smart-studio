@@ -166,6 +166,10 @@ export class OrderDetailsComponent implements OnInit {
     });
   }
 
+  getPageCount() {
+    return parseInt(this.orderForm.value.pages, 0) || 0;
+  }
+
   onSave() {
 
   }

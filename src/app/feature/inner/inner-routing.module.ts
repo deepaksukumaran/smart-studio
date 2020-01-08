@@ -24,12 +24,12 @@ import { PageNotFoundComponent } from '@shared/components/page-not-found/page-no
                         loadChildren: './order/order.module#OrderModule',
                         data: { breadcrumb: 'Orders' }
                     },
-                    // {
-                    //     path: '**',
-                    //     component: PageNotFoundComponent
-                    // }
                 ]
-            }
+            },
+            {
+                path: '**',
+                redirectTo: 'auth/login'
+            },
         ])
     ],
     exports: [RouterModule]

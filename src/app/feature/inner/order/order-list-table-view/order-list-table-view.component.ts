@@ -89,17 +89,22 @@ export class OrderListTableViewComponent implements AfterViewInit, OnChanges {
       });
   }
 
-  showOrderProfile(orderId: number) {
+  viewOrder(orderId: number) {
     this.router.navigateByUrl(`order/${orderId}`);
   }
 
-  // deleteOrder(orderId: number) {
-  //   const dialogConfig = this.modalService.setDialogConfig(true, true, '780px', 'hhh');
-  //   this.dialog.open(ConfirmModalComponent, dialogConfig)
-  //     .afterClosed().subscribe(flag => {
-  //       if (flag) {
-  //         debugger;
-  //       }
-  //     });
-  // }
+  editOrder(orderId: number) {
+    this.router.navigateByUrl(`order/${orderId}`);
+  }
+
+  deleteOrder(orderId: number) {
+    const confirm = { question: 'Are you sure to delete this order', yes: 'Delete', no: 'Cancel' };
+    const dialogConfig = this.modalService.setDialogConfig(true, true, '780px', confirm);
+    this.dialog.open(ConfirmModalComponent, dialogConfig)
+      .afterClosed().subscribe(flag => {
+        if (flag) {
+          debugger;
+        }
+      });
+  }
 }

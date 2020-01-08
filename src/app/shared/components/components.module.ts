@@ -48,6 +48,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     PageScrollLayoutComponent,
     NoDataMessageComponent,
     PageNotFoundComponent,
+  ],
+  entryComponents: [
+    ConfirmModalComponent
   ]
 })
 export class ComponentsModule { }

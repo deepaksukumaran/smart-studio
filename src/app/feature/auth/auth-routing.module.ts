@@ -13,12 +13,13 @@ import { PageNotFoundComponent } from '@shared/components/page-not-found/page-no
                     {
                         path: 'login',
                         component: LoginComponent,
-                    }]
+                    },
+                    {
+                        path: '**',
+                        redirectTo: 'login'
+                    },
+                ]
             },
-            // {
-            //     path: '**',
-            //     component: PageNotFoundComponent
-            // }
         ])
     ],
     exports: [RouterModule]

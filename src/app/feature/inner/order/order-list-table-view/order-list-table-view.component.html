@@ -38,13 +38,13 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let order" class="order-action">
-                <button mat-button (click)="showOrderProfile(order.id)" matTooltip="View" class="table-action">
+                <button mat-button (click)="viewOrder(order.id)" matTooltip="View" class="table-action">
                     <mat-icon>visibility </mat-icon>
                 </button>
-                <button mat-button (click)="showOrderProfile(order.id)" matTooltip="Edit" class="table-action">
+                <button mat-button (click)="editOrder(order.id)" matTooltip="Edit" class="table-action">
                     <mat-icon>edit </mat-icon>
                 </button>
-                <button mat-button matTooltip="Delete" class="table-action">
+                <button mat-button (click)="deleteOrder(order.id)" matTooltip="Delete" class="table-action">
                     <mat-icon>delete </mat-icon>
                 </button>
             </td>
