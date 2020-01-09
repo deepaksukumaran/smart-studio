@@ -3,13 +3,17 @@ import { Injectable } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private ngxService: NgxUiLoaderService) { }
+  constructor(
+    private ngxService: NgxUiLoaderService,
+    private router: Router,
+  ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -40,6 +44,12 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private setHeader(req: HttpRequest<any>) {
     let modifiedReq: HttpRequest<any>;
+    let token = localStorage.getItem(':jwt');
+
+    if (!token) {
+      this.logout();
+      return;
+    }
 
     switch (req.method) {
       case 'GET':
@@ -49,12 +59,17 @@ export class AuthInterceptor implements HttpInterceptor {
         modifiedReq = req.clone({
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem(':jwt')}`,
+            Authorization: `Bearer ${token}`,
           })
         });
         break;
     }
 
     return modifiedReq;
+  }
+
+  private logout() {
+    this.router.navigateByUrl(`auth/login`);
+    this.hideLoader();
   }
 }

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   /* Lifecycle Hooks */
   ngOnInit() {
     this.buildForm();
-    localStorage.removeItem(':jwt');
+    this.authService.resetSession();
   }
 
   /* Private Methods */

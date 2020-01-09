@@ -103,7 +103,7 @@ export class OrderListTableViewComponent implements AfterViewInit, OnChanges {
     this.dialog.open(ConfirmModalComponent, dialogConfig)
       .afterClosed().subscribe(flag => {
         if (flag) {
-          debugger;
+
         }
       });
   }

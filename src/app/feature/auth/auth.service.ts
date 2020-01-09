@@ -11,7 +11,8 @@ import { EmployeeAuthorities } from '../inner/employee/models/employee-authoriti
 })
 export class AuthService {
 
-  loggedInUser: EmployeeAuthorities;
+  private isLoggedIn = false;;
+  private loggedInUser: EmployeeAuthorities;
 
   /* Declaring Observables*/
   private employeeAuthorities = new ReplaySubject<EmployeeAuthorities>(1);
@@ -27,13 +28,22 @@ export class AuthService {
     return this.http.get<EmployeeAuthorities>(AuthAPI.getEmployeeAuthoritiesUrl())
       .pipe(
         tap((data) => {
+          this.isLoggedIn = true;
           this.employeeAuthorities.next(data);
           this.loggedInUser = data;
         }));
   }
 
-  isAuthenticated() {
-    return true;
-    // return this.loggedInUser.employeeId > 0;
+  loggedIn(): boolean {
+    return this.isLoggedIn;
+  }
+
+  getLoggedInUser(): EmployeeAuthorities {
+    return this.loggedInUser;
+  }
+
+  resetSession() {
+    localStorage.removeItem(':jwt');
+    this.isLoggedIn = false;
   }
 }
