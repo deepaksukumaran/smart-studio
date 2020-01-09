@@ -16,7 +16,4 @@ export const EmployeeAPI = {
             + `?firstName=${params.firstName}&lastName=${params.lastName}`
             + `&page=${params.page}&size=${params.size}&sort=${params.sortBy}&direction=${params.sortDirection}`;
     },
-    getEmployeeAuthoritiesUrl() {
-        return `${API_URL_DOMAIN}/org/employee/authorities`;
-    },
 };

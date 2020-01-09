@@ -18,8 +18,9 @@ export class ServiceService {
   getAllServices(): Observable<Service[]> {
     return this.services
       ? of(this.services)
-      : this.http.get<Service[]>(ServiceAPI.getAllServicesUrl()).pipe(
-        tap((data) => { this.services = data; })
-      );
+      : this.http.get<Service[]>(ServiceAPI.getAllServicesUrl())
+        .pipe(
+          tap((data) => { this.services = data; })
+        );
   }
 }

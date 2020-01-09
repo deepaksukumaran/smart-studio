@@ -1,10 +1,10 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'app/feature/auth/auth.service';
+import { EmployeeAuthorities } from 'app/feature/inner/employee/models/employee-authorities.model';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { EmployeeService } from 'app/feature/inner/employee/employee.service';
-import { EmployeeAuthorities } from 'app/feature/inner/employee/models/employee-authorities.model';
 
 @Component({
   selector: 'app-toolbar',
@@ -26,12 +26,12 @@ export class ToolbarComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
-    private employeeService: EmployeeService,
+    private authService: AuthService,
   ) { }
 
   /* Lifecycle Hooks */
   ngOnInit() {
-    this.employeeService.employeeAuthorities$.subscribe((data) => {
+    this.authService.employeeAuthorities$.subscribe((data) => {
       this.loggedInUser = data;
     });
   }

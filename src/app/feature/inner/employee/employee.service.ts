@@ -4,17 +4,12 @@ import { EmployeeAPI } from '@shared/api-end-points/employee-api-endpoint';
 import { ApiResponse } from '@shared/models/api-response.model';
 import { EmployeeFilterParams } from 'app/feature/inner/employee/models/employee-filter-params.model';
 import { Employee } from 'app/feature/inner/employee/models/employee.model';
-import { Observable, Subscription, Subject, ReplaySubject } from 'rxjs';
-import { EmployeeAuthorities } from './models/employee-authorities.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-
-  /* Declaring Observables*/
-  private employeeAuthorities = new ReplaySubject<EmployeeAuthorities>(1);
-  employeeAuthorities$ = this.employeeAuthorities.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -33,12 +28,5 @@ export class EmployeeService {
 
   updateEmployee(employee: Employee): Observable<Employee> {
     return this.http.put<Employee>(EmployeeAPI.updateEmployeeUrl(employee.id), employee);
-  }
-
-  getEmployeeAuthorities(): void {
-    this.http.get<EmployeeAuthorities>(EmployeeAPI.getEmployeeAuthoritiesUrl())
-      .subscribe((data) => {
-        this.employeeAuthorities.next(data);
-      });
   }
 }
