@@ -187,7 +187,6 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   onSave() {
-    debugger;
     let order = new Order();
     if (true) {
       order = this.orderForm.value;
