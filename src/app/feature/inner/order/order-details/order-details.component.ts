@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DropdownItem } from '@shared/models/dropdown-item.model';
 import { ModalService } from '@shared/services/modal.service';
 import { CustomerAddEditComponent } from '../../customer/customer-add-edit/customer-add-edit.component';
 import { CustomerLookupComponent } from '../../customer/customer-lookup/customer-lookup.component';
@@ -10,7 +11,7 @@ import { ServiceService } from '../../other/service.service';
 import { Order } from '../models/order';
 import { OrderDetailsPagesComponent } from '../order-details-pages/order-details-pages.component';
 import { OrderService } from '../order.service';
-import { DropdownItem } from '@shared/models/dropdown-item.model';
+import { OrderPage } from '../models/order-page.model';
 
 @Component({
   selector: 'app-order-details',
@@ -25,6 +26,7 @@ export class OrderDetailsComponent implements OnInit {
   selectedType: any;
   orderId: number;
   priorityList: DropdownItem[];
+  pages: OrderPage[] = [];
 
   constructor(
     private dialog: MatDialog,
@@ -32,6 +34,7 @@ export class OrderDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private serviceService: ServiceService,
     private orderService: OrderService,
+    private router: Router,
   ) { }
 
   /* Lifecycle Hooks */
@@ -54,10 +57,11 @@ export class OrderDetailsComponent implements OnInit {
       subType: new FormControl(null),
       dueDate: new FormControl(''),
       priority: new FormControl(''),
+      category: new FormControl(''),
       size: new FormControl(''),
-      pages: new FormControl(''),
       coverType: new FormControl(''),
       bagType: new FormControl(''),
+      pages: new FormControl(''),
       notes: new FormControl(''),
     });
   }
@@ -112,9 +116,15 @@ export class OrderDetailsComponent implements OnInit {
       phone: order.phone,
       email: order.email,
       type: order.type,
+      subType: order.subType,
       dueDate: order.dueDate,
       priority: order.priority,
-      notes: order.notes
+      category: order.category,
+      size: order.size,
+      pages: order.pages,
+      coverType: order.coverType,
+      bagType: order.bagType,
+      notes: order.notes,
     });
   }
 
@@ -148,10 +158,16 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   configurePages() {
-    const dialogConfig = this.modalService.setDialogConfig(true, true, '100%', { pages: parseInt(this.orderForm.value.pages, 0) }, 'order-page-details-dialog');
+    const dialogConfig = this.modalService.setDialogConfig(true, true, '100%',
+      {
+        count: parseInt(this.orderForm.value.pages, 0),
+        pages: this.pages
+      }, 'order-page-details-dialog');
     this.dialog.open(OrderDetailsPagesComponent, dialogConfig)
       .afterClosed().subscribe(data => {
-
+        if (data.save) {
+          this.pages = data.data;
+        }
       });
   }
 
@@ -171,6 +187,21 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   onSave() {
-
+    debugger;
+    let order = new Order();
+    if (true) {
+      order = this.orderForm.value;
+      order.customerId = this.customer.id;
+      order.pages = this.pages;
+      this.orderService.createOrder(order)
+        .subscribe((data) => {
+          this.modalService.showNotification('Added new order', 'Close');
+          this.router.navigateByUrl(`order/${data.id}/view`);
+        });
+    } else {
+      // employee = this.employeeDetails;
+      // employee = Object.assign(employee, this.employeeFormGroup.value);
+      // this.updateEmployee(employee);
+    }
   }
 }

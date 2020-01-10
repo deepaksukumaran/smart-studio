@@ -4,14 +4,17 @@ export class Order {
     public id: number;
     public parentOrderId: number;
     public type: string; // album/momento
-    public subTyte: string;
-    public notes: string; // 
-    public dueDate: string;
+    public subType: string; public dueDate: string;
     public priority: string; // normal/medium/high
-    public pages: OrderPage[];
     public status: string;
+    public category: string;
+    public size: string;
+    public coverType: string;
+    public bagType: string;
+    public pages: OrderPage[];
+    public notes: string; // 
 
-    public customerId: string;
+    public customerId: number;
     public customerName: string;
     public email: string;
     public phone: string;

@@ -4,7 +4,6 @@
         <div fxLayout="column">
 
             <div fxLayout="row" fxLayoutAlign="space-between none">
-
                 <!-- CUSTOMER DETAILS  -->
                 <mat-card fxFlex="24">
                     <mat-card-subtitle class="mat-body-strong">Customer</mat-card-subtitle>
@@ -59,7 +58,7 @@
                 <!-- / CONTACT DETAILS  -->
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none" fxFlexOffset="20px">
-                <!-- REQUIREMENTS  -->
+                <!-- ORDER DETAILS  -->
                 <mat-card fxFlex="49">
                     <mat-card-subtitle class="mat-body-strong">Order Details</mat-card-subtitle>
                     <mat-card-content fxLayout="column">
@@ -108,11 +107,11 @@
                         <div fxLayout="row">
                             <mat-form-field fxFlex="49">
                                 <mat-label>Album Type</mat-label>
-                                <input matInput formControlName="type">
+                                <input matInput formControlName="category">
                             </mat-form-field>
                             <mat-form-field fxFlex="49" fxFlexOffset="20px">
                                 <mat-label>Album Size</mat-label>
-                                <input matInput formControlName="type">
+                                <input matInput formControlName="size">
                             </mat-form-field>
                         </div>
                         <div fxLayout="row">
@@ -146,7 +145,7 @@
                         </div>
                     </mat-card-content>
                 </mat-card>
-                <!-- / REQUIREMENTS  -->
+                <!-- / ORDER DETAILS  -->
 
                 <!-- NOTES  -->
                 <mat-card fxFlex="49">

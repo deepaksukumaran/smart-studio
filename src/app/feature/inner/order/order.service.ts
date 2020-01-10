@@ -14,8 +14,8 @@ export class OrderService {
   constructor(private http: HttpClient) { }
 
   /* Public Methods */
-  getAllOrders(employeeFilterParams: OrderFilterParams): Observable<ApiResponse<Order[]>> {
-    return this.http.get<ApiResponse<Order[]>>(OrderAPI.getAllOrdersUrl(employeeFilterParams));
+  getAllOrders(orderFilterParams: OrderFilterParams): Observable<ApiResponse<Order[]>> {
+    return this.http.get<ApiResponse<Order[]>>(OrderAPI.getAllOrdersUrl(orderFilterParams));
   }
 
   getOrder(orderId: number): Observable<Order> {

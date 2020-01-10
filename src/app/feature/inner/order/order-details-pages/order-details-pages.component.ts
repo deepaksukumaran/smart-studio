@@ -28,8 +28,9 @@ export class OrderDetailsPagesComponent implements OnInit {
     private actionService: ActionService,
     private dialogRef: MatDialogRef<OrderDetailsPagesComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
-    this.pageCount = data.pages
-    this.isEditMode = !actionService.isAllNullOrEmptyObject(data);
+    this.pageCount = data.count
+    this.pages = data.pages;
+    this.isEditMode = this.pages.length > 0;
   }
 
   /* Lifecycle Hooks */
@@ -67,12 +68,14 @@ export class OrderDetailsPagesComponent implements OnInit {
       },
     ];
 
-    for (let i = 1; i <= this.pageCount; i++) {
-      const page = new OrderPage();
-      page.id = i;
-      page.isSelected = false;
-      page.pageDetails = [];
-      this.pages.push(page);
+    if (!this.isEditMode) {
+      for (let i = 1; i <= this.pageCount; i++) {
+        const page = new OrderPage();
+        page.id = i;
+        page.isSelected = false;
+        page.pageDetails = [];
+        this.pages.push(page);
+      }
     }
   }
 
@@ -256,10 +259,10 @@ export class OrderDetailsPagesComponent implements OnInit {
   }
 
   onSave() {
-    this.dialogRef.close();
+    this.dialogRef.close({ save: true, data: this.pages });
   }
 
   onCancel() {
-    this.dialogRef.close();
+    this.dialogRef.close({ save: false });
   }
 }
