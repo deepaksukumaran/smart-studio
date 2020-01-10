@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { INDIAN_STATE_LIST } from '@shared/constants/state-list.constant';
 import { ActionService } from '@shared/services/action.service';
+import { ModalService } from '@shared/services/modal.service';
 import { EmployeePosition } from '../../other/models/employee-position.model';
 import { PositionService } from '../../other/position.service';
 import { EmployeeConstants } from '../employee-constatnts';
@@ -30,6 +31,7 @@ export class EmployeeAddEditComponent implements OnInit {
     private employeeService: EmployeeService,
     private positionService: PositionService,
     private actionService: ActionService,
+    private modalService: ModalService,
     private dialogRef: MatDialogRef<EmployeeAddEditComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
     this.isEditMode = !actionService.isAllNullOrEmptyObject(data);
@@ -96,9 +98,11 @@ export class EmployeeAddEditComponent implements OnInit {
     employee.userName = this.employeeFormGroup.value.firstName + '@123';
     employee.password = 'password';
 
-    this.employeeService.createEmployee(employee).subscribe((data) => {
-      this.dialogRef.close(true);
-    });
+    this.employeeService.createEmployee(employee)
+      .subscribe((data) => {
+        this.modalService.showNotification('Added new employee', 'Close');
+        this.dialogRef.close(true);
+      });
   }
 
   private updateEmployee(employee: Employee) {

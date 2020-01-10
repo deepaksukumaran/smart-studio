@@ -1,15 +1,15 @@
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { ModalService } from '@shared/services/modal.service';
 import { EmployeeFilterParams } from 'app/feature/inner/employee/models/employee-filter-params.model';
 import { Employee } from 'app/feature/inner/employee/models/employee.model';
 import { merge, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
-import { EmployeeService } from '../employee.service';
-import { ModalService } from '@shared/services/modal.service';
-import { MatDialog } from '@angular/material';
 import { EmployeeAddEditComponent } from '../employee-add-edit/employee-add-edit.component';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-employee-list-table-view',
@@ -34,7 +34,8 @@ export class EmployeeListTableViewComponent implements AfterViewInit, OnChanges 
     private router: Router,
     private dialog: MatDialog,
     private modalService: ModalService,
-    private employeeService: EmployeeService) { }
+    private employeeService: EmployeeService
+  ) { }
 
   /* Lifecycle Hooks */
   ngOnChanges(changes: SimpleChanges) {

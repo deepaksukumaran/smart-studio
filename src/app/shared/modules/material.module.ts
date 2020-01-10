@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import {
     MatButtonToggleModule, MatCheckboxModule, MatChipsModule, MatInputModule,
     MatProgressSpinnerModule, MatRadioModule, MatSelectModule, MatStepperModule,
-    MatTabsModule, MatDatepickerModule, MatDialogModule, MatExpansionModule, MatBadgeModule, MatTooltipModule
+    MatTabsModule, MatDatepickerModule, MatDialogModule, MatExpansionModule, MatBadgeModule, MatTooltipModule, MatSnackBarModule
 } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -51,6 +51,7 @@ const materialModules: any[] = [
     MatExpansionModule,
     MatBadgeModule,
     MatTooltipModule,
+    MatSnackBarModule,
 ];
 
 @NgModule({
